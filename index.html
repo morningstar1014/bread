@@ -3426,6 +3426,29 @@ const GIST_FILE = 'bread-state.json';
 // 第一次打开时用 ?tok=xxx 或者点提示条粘贴一次，之后就一直记着。
 let GH_TOKEN = '';
 try { GH_TOKEN = localStorage.getItem('bread_gh_token') || ''; } catch (e) {}
+
+// 自愈：老 SW 把页面卡住（之前 Pages 构建卡住时 Edge 缓存了半成品）时清一次
+//   · ?reset=1 → 强制清缓存+注销 SW，刷新页面（一次性）
+//   · 首次访问如果 sw_v3_ok 标记不存在，也清一次
+(function () {
+  const forceReset = location.search.indexOf('reset=1') >= 0;
+  const needReset = forceReset || !localStorage.getItem('sw_v3_ok');
+  if (!needReset) return;
+  const done = (next) => {
+    try { localStorage.setItem('sw_v3_ok', '1'); } catch (e) {}
+    if (next) location.href = next;
+  };
+  if (navigator.serviceWorker) {
+    navigator.serviceWorker.getRegistrations()
+      .then((rs) => Promise.all(rs.map((r) => r.unregister())))
+      .then(() => (self.caches ? caches.keys() : []))
+      .then((ks) => Promise.all((ks || []).map((k) => caches.delete(k))))
+      .then(() => done(forceReset ? location.pathname : null))
+      .catch(() => done(forceReset ? location.pathname : null));
+  } else {
+    done(forceReset ? location.pathname : null);
+  }
+})();
 (function () {
   try {
     const u = new URL(location.href);

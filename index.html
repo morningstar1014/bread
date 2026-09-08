@@ -3646,12 +3646,17 @@ renderAll();
   setInterval(pollServer, useGist ? 15000 : 8000);  // Gist 模式 15 秒一次（省 API 额度，5000 次/小时足够）
 })();
 
-// ===================== 离线兜底（服务器被停也能打开） =====================
-// 装一个 Service Worker：正常时走网络拿最新版，服务器 403/断网就用缓存的页面，
-// 照样能记一笔（存本机），等服务器回来自动补传上去。
+// ===================== 拆掉离线兜底（Service Worker） =====================
+// 页面现在托管在 GitHub Pages —— 永不休眠，不再需要离线缓存。
+// 而且老 SW 在网络异常时会往浏览器返回 undefined，导致「ERR_FAILED 打不开」，
+// 所以这里主动把已安装的 SW 注销掉、清空缓存（新老设备都会自动清理一次）。
 if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js').catch(() => {});
+    navigator.serviceWorker.getRegistrations()
+      .then(function (rs) { return Promise.all(rs.map(function (r) { return r.unregister(); })); })
+      .then(function () { return (window.caches ? caches.keys() : []); })
+      .then(function (ks) { return Promise.all((ks || []).map(function (k) { return caches.delete(k); })); })
+      .catch(function () {});
   });
 }
 </script>

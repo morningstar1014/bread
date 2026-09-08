@@ -2,7 +2,7 @@
 // 策略：
 //   · 页面（导航请求）：网络优先，服务器挂了就用上次缓存的那份 → 照样能记账
 //   · /api/ 数据请求：一律走网络，不缓存（数据同步由页面自己负责）
-// 版本号 1788880689 由 build.py 每次构建时写入，保证更新代码后缓存会跟着换
+// 版本号 1788881790 由 build.py 每次构建时写入，保证更新代码后缓存会跟着换
 // 兼容两种部署位置：站点根目录（沙箱）和子目录（GitHub Pages /bread/）
 const BASE = new URL('./', self.location).href;              // .../bread/
 const PAGE = new URL('./index.html', self.location).href;    // .../bread/index.html

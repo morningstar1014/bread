@@ -1,0 +1,9 @@
+# 本地私有文件，绝不上传
+gh_tokens.json
+gist_config.json
+backups/
+_deprecated_tdocs/
+__pycache__/
+*.pyc
+_check.js
+state.json

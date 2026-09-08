@@ -3429,36 +3429,59 @@ try { GH_TOKEN = localStorage.getItem('bread_gh_token') || ''; } catch (e) {}
 (function () {
   try {
     const u = new URL(location.href);
-    const t = u.searchParams.get('tok');
+    let t = u.searchParams.get('tok');                       // ?tok=xxx
+    if (!t) {
+      const m = /(?:^#|&)tok=([^&]+)/.exec(location.hash || '');   // #tok=xxx
+      if (m) t = decodeURIComponent(m[1]);
+    }
     if (t) {
       localStorage.setItem('bread_gh_token', t);
       GH_TOKEN = t;
       u.searchParams.delete('tok');
-      history.replaceState({}, '', u.toString());   // 把令牌从地址栏抹掉
+      history.replaceState({}, '', u.pathname + u.search);   // 把令牌从地址栏抹掉
     }
   } catch (e) {}
 })();
 
 const useGist   = !!(GIST_ID && GIST_ID.indexOf('__') !== 0);
 
-// 还没设令牌 → 顶部给一条提示，点一下粘贴即可
+// 还没设令牌 → 直接铺一层全屏卡片，页面内输入（不用 prompt —— 微信等内置浏览器会拦）
 (function () {
   if (!useGist || GH_TOKEN) return;
-  window.addEventListener('load', () => {
-    const b = document.createElement('div');
-    b.id = 'tok-banner';
-    b.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:99999;background:#ff6b6b;' +
-      'color:#fff;padding:10px 12px;font-size:13px;text-align:center;line-height:1.5';
-    b.innerHTML = '⚠️ 还没设置数据令牌 · <u style="cursor:pointer">点此粘贴一次</u>';
-    b.querySelector('u').onclick = () => {
-      const t = prompt('粘贴 GitHub 令牌（只勾了 gist 权限那个）：');
-      if (t && t.trim()) {
-        try { localStorage.setItem('bread_gh_token', t.trim()); } catch (e) {}
-        location.reload();
-      }
+  const show = () => {
+    if (document.getElementById('tok-gate')) return;
+    const d = document.createElement('div');
+    d.id = 'tok-gate';
+    d.style.cssText = 'position:fixed;inset:0;z-index:2147483647;display:flex;align-items:center;' +
+      'justify-content:center;background:#fffaf3;padding:20px;font-family:inherit';
+    d.innerHTML =
+      '<div style="width:100%;max-width:420px;background:#fff;border-radius:18px;padding:22px 20px;' +
+      'box-shadow:0 10px 40px rgba(0,0,0,.14);text-align:center">' +
+      '<div style="font-size:40px;line-height:1">🍞</div>' +
+      '<div style="font-size:18px;font-weight:700;margin:10px 0 6px;color:#333">首次使用 · 设置数据令牌</div>' +
+      '<div style="font-size:13px;color:#888;line-height:1.7;margin-bottom:14px">' +
+      '只在这台设备填一次，之后自动记住。<br>令牌是一串 <b>ghp_</b> 开头的东西。</div>' +
+      '<input id="tok-input" type="text" placeholder="粘贴 ghp_ 开头的令牌" ' +
+      'style="width:100%;box-sizing:border-box;padding:12px;font-size:14px;border:1.5px solid #ddd;' +
+      'border-radius:10px;outline:none;text-align:center">' +
+      '<button id="tok-save" style="width:100%;margin-top:12px;padding:13px;font-size:16px;' +
+      'font-weight:700;color:#fff;background:#ff8a3d;border:0;border-radius:10px;cursor:pointer">' +
+      '保存并进入</button>' +
+      '<div id="tok-err" style="color:#e33;font-size:12px;margin-top:10px;min-height:16px"></div>' +
+      '</div>';
+    document.body.appendChild(d);
+    const inp = d.querySelector('#tok-input');
+    const save = () => {
+      const v = (inp.value || '').trim();
+      if (v.length < 10) { d.querySelector('#tok-err').textContent = '令牌看起来不对，请重新粘贴'; return; }
+      try { localStorage.setItem('bread_gh_token', v); } catch (e) {}
+      location.reload();
     };
-    document.body.appendChild(b);
-  });
+    d.querySelector('#tok-save').onclick = save;
+    inp.addEventListener('keydown', (e) => { if (e.key === 'Enter') save(); });
+    setTimeout(() => { try { inp.focus(); } catch (e) {} }, 100);
+  };
+  if (document.body) show(); else document.addEventListener('DOMContentLoaded', show);
 })();
 
 function ghHeaders() {

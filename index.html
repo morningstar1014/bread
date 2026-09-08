@@ -1,0 +1,3578 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-page-node-id="BMObwmVGHzMYquSvnr3B4N">
+<head data-page-node-id="5OECC3P5OBYIeH9mmeOeBo">
+<meta charset="UTF-8" data-page-node-id="m3XKVtUgQVXQelV6EuFjj9" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" data-page-node-id="AnfSzWCjCDZBqXxJiEPDdw" />
+<title>生活工作台 · 早饭吃什么 · 库存</title>
+<style>
+  :root {
+    --bg-warm: #FBF4E8;
+    --card-warm: #FFFCF5;
+    --soft-warm: #F4E9D6;
+    --line-warm: #E8D6B8;
+    --ink: #3B2A1A;
+    --ink-soft: #7A5C3F;
+    --caramel: #B9753B;
+    --caramel-deep: #8B5A2B;
+    --melon: #E89F6E;
+    --tomato: #D85C4A;
+    --sage: #8FA67E;
+    --cream: #FFF7E6;
+
+    --bg-cool: #F1F5EE;
+    --card-cool: #FBFCF7;
+    --soft-cool: #E2EBD8;
+    --line-cool: #CCDBC0;
+    --ink-cool: #2A3A22;
+    --ink-cool-soft: #5A6E50;
+    --mint: #6B9B5E;
+    --mint-deep: #467A3C;
+    --berry: #C66B6B;
+    --purple: #9D89B5;
+
+    --shadow: 0 4px 18px rgba(74, 53, 42, 0.08);
+    --shadow-hover: 0 8px 28px rgba(74, 53, 42, 0.15);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    font-family: "Songti SC", "Noto Serif SC", "STSong", "Source Han Serif SC", serif;
+    background: var(--bg-warm); color: var(--ink);
+    min-height: 100vh; -webkit-font-smoothing: antialiased;
+  }
+  body {
+    background-image:
+      radial-gradient(circle at 8% 8%, rgba(232, 159, 110, 0.10), transparent 35%),
+      radial-gradient(circle at 92% 50%, rgba(143, 166, 126, 0.10), transparent 40%),
+      radial-gradient(circle at 50% 95%, rgba(157, 137, 181, 0.08), transparent 40%);
+    padding: 40px 24px 64px;
+  }
+  .frame { max-width: 1200px; margin: 0 auto; }
+
+  /* ============ 顶部 ============ */
+  .site-top {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 28px; padding: 0 8px; gap: 20px; flex-wrap: wrap;
+  }
+  .title-block .eyebrow {
+    font-family: "STKaiti", "KaiTi", serif;
+    color: var(--caramel-deep); letter-spacing: 6px; font-size: 13px;
+    margin-bottom: 8px;
+  }
+  .title-block h1 {
+    font-size: 44px; font-weight: 600; letter-spacing: 4px;
+    color: var(--ink); line-height: 1.1;
+  }
+  .title-block h1 .dot { color: var(--melon); }
+  .title-block .sub {
+    margin-top: 10px; color: var(--ink-soft);
+    font-size: 14px; letter-spacing: 2px;
+  }
+
+  .top-actions { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .sync-bar {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--soft-warm);
+    border: 1px solid var(--line-warm);
+    border-radius: 999px;
+    padding: 6px 8px;
+  }
+  .sync-bar .lbl {
+    font-size: 12px; color: var(--ink-soft);
+    letter-spacing: 2px; padding: 0 8px;
+  }
+  .sync-btn {
+    border: none; background: transparent;
+    padding: 8px 14px; border-radius: 999px;
+    font-family: inherit; font-size: 13px;
+    letter-spacing: 1px; cursor: pointer;
+    color: var(--ink-soft); transition: all .2s ease;
+  }
+  .sync-btn:hover { background: var(--bg-warm); color: var(--ink); }
+  .sync-btn.primary { background: var(--caramel-deep); color: var(--cream); }
+  .sync-btn.primary:hover { background: var(--ink); }
+
+  .add-btn {
+    background: var(--ink); color: var(--cream);
+    border: none; padding: 12px 22px;
+    border-radius: 999px; font-size: 14px;
+    letter-spacing: 2px; cursor: pointer;
+    font-family: inherit; box-shadow: var(--shadow);
+    transition: all .25s ease;
+  }
+  .add-btn:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+
+  /* ============ 板块 ============ */
+  .panel { margin-bottom: 56px; }
+  .panel-head {
+    display: flex; align-items: flex-end; justify-content: space-between;
+    margin-bottom: 22px; padding: 0 8px; gap: 16px; flex-wrap: wrap;
+  }
+  .panel-head .ph-title {
+    font-size: 28px; font-weight: 600;
+    letter-spacing: 4px; color: var(--ink);
+  }
+  .panel-head .ph-title .accent { color: var(--caramel); }
+  .panel-head.cool .ph-title .accent { color: var(--mint); }
+  .panel-head .ph-sub {
+    margin-top: 4px; font-size: 13px;
+    color: var(--ink-soft); letter-spacing: 2px;
+  }
+  .panel-head.cool .ph-sub { color: var(--ink-cool-soft); }
+  .ph-action {
+    background: var(--ink); color: var(--cream);
+    border: none; padding: 12px 22px;
+    border-radius: 999px; font-size: 14px;
+    letter-spacing: 2px; cursor: pointer;
+    font-family: inherit; box-shadow: var(--shadow);
+    transition: all .25s ease;
+  }
+  .ph-action.cool { background: var(--mint-deep); }
+  .ph-action:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); }
+
+  /* ============ 第一板块 · 暖色 ============ */
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .person {
+    background: var(--card-warm);
+    border-radius: 22px;
+    padding: 28px 26px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--line-warm);
+    position: relative; overflow: hidden;
+  }
+  .person::before {
+    content: ""; position: absolute;
+    top: -40px; right: -40px;
+    width: 140px; height: 140px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(232, 159, 110, 0.18), transparent 70%);
+  }
+  .person.mi::before { background: radial-gradient(circle, rgba(216, 92, 74, 0.18), transparent 70%); }
+  .person.dou::before { background: radial-gradient(circle, rgba(143, 166, 126, 0.18), transparent 70%); }
+
+  .person-head {
+    display: flex; align-items: center; gap: 14px;
+    margin-bottom: 22px; padding-bottom: 18px;
+    border-bottom: 1px dashed var(--line-warm);
+  }
+  .avatar {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: var(--soft-warm);
+    display: grid; place-items: center;
+    font-size: 26px;
+    border: 2px solid var(--cream);
+    box-shadow: 0 2px 6px rgba(139, 90, 43, 0.10);
+    cursor: pointer; transition: transform .2s ease;
+  }
+  .avatar:hover { transform: scale(1.06); }
+  .person-name {
+    font-size: 24px; font-weight: 600;
+    letter-spacing: 3px; color: var(--ink);
+    cursor: pointer; padding: 2px 6px; border-radius: 6px;
+    transition: background .2s ease;
+  }
+  .person-name:hover { background: var(--soft-warm); }
+  .person-name .tag {
+    display: inline-block; font-size: 12px;
+    letter-spacing: 1px;
+    padding: 3px 10px; border-radius: 999px;
+    margin-left: 8px; vertical-align: middle; font-weight: 400;
+    cursor: pointer; transition: opacity .2s ease;
+  }
+  .person-name .tag:hover { opacity: .75; }
+  .person-name .edit-hint {
+    font-size: 11px; color: var(--ink-soft);
+    opacity: .55; letter-spacing: 1px;
+    margin-left: 6px; vertical-align: middle;
+    font-weight: 400;
+  }
+  .person-meta { margin-left: auto; text-align: right; }
+  .person-meta .num {
+    font-size: 28px; font-weight: 600;
+    color: var(--caramel-deep); line-height: 1;
+  }
+  .person-meta .lbl {
+    font-size: 12px; color: var(--ink-soft);
+    letter-spacing: 2px; margin-top: 4px; line-height: 1.45;
+  }
+
+  .list { display: flex; flex-direction: column; gap: 12px; min-height: 80px; }
+  .empty {
+    text-align: center; color: var(--ink-soft);
+    padding: 40px 0; font-size: 14px;
+    letter-spacing: 2px; opacity: .65;
+  }
+  .row {
+    display: grid;
+    grid-template-columns: 32px minmax(0, 1fr) auto auto;
+    align-items: center; gap: 12px;
+    padding: 13px 16px;
+    background: var(--cream);
+    border-radius: 14px;
+    border: 1px solid transparent;
+    transition: all .2s ease;
+  }
+  .row:hover { border-color: var(--line-warm); transform: translateX(2px); }
+  .row .ic {
+    font-size: 20px; text-align: center;
+    width: 32px; height: 32px;
+    display: grid; place-items: center;
+  }
+  .row-name {
+    font-size: 16px; font-weight: 500;
+    color: var(--ink); letter-spacing: 1px;
+    min-width: 0; word-break: keep-all; overflow-wrap: anywhere;
+  }
+  .row-name .qty { color: var(--ink-soft); font-size: 13px; margin-left: 6px; font-weight: 400; }
+  .row-date {
+    font-size: 13px; color: var(--ink-soft);
+    letter-spacing: 1px;
+    font-family: "Source Han Mono", "Consolas", monospace;
+  }
+  .age-pill {
+    padding: 4px 12px; border-radius: 999px;
+    font-size: 12px; letter-spacing: 1px;
+    font-weight: 500; white-space: nowrap;
+  }
+  .age-fresh { background: rgba(143, 166, 126, 0.18); color: #5F7A4D; }
+  .age-okay  { background: rgba(232, 159, 110, 0.20); color: #A8643A; }
+  .age-hurry { background: rgba(216, 92, 74, 0.18);  color: #B33D2A; }
+  .age-expired { background: rgba(102, 102, 102, 0.18); color: #5A5A5A; text-decoration: line-through; }
+  .del {
+    background: transparent; border: none;
+    color: var(--ink-soft); cursor: pointer;
+    font-size: 18px; width: 28px; height: 28px;
+    border-radius: 50%; transition: all .2s ease; line-height: 1;
+  }
+  .del:hover { background: rgba(216, 92, 74, 0.12); color: var(--tomato); }
+  .del.armed {
+    width: auto; padding: 0 10px; font-size: 12px; border-radius: 14px;
+    background: var(--berry); color: #fff; animation: armedPulse 1s ease-in-out infinite;
+  }
+  @keyframes armedPulse { 0%,100%{ transform: scale(1);} 50%{ transform: scale(1.08);} }
+  /* 「吐出来」撤销按钮：吃掉的记录可以退回去（小吐司 + 返回箭头） */
+  .uneat-btn {
+    background: transparent; border: 1px dashed var(--line-warm);
+    color: var(--ink-cool-soft); cursor: pointer;
+    width: 38px; height: 30px; padding: 0;
+    border-radius: 999px;
+    display: grid; place-items: center;
+    transition: all .2s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .uneat-btn svg { display: block; transition: transform .22s ease; }
+  .uneat-btn:hover {
+    background: var(--soft-cool); color: var(--mint-deep);
+    border-style: solid; border-color: var(--mint);
+  }
+  /* 悬停时吐司往"回去"的方向轻轻挪一下 */
+  .uneat-btn:hover svg { transform: translateX(-1.5px) rotate(-5deg); }
+
+  /* ============ 第二板块 · 冷色库存 ============ */
+  .inv-bar {
+    display: flex; gap: 18px; margin-bottom: 22px; padding: 0 4px;
+  }
+  .inv-stat {
+    background: var(--card-cool);
+    border: 1px solid var(--line-cool);
+    border-radius: 16px;
+    padding: 16px 22px;
+    flex: 1;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: var(--shadow);
+  }
+  .inv-stat .ic {
+    width: 42px; height: 42px; border-radius: 12px;
+    background: var(--soft-cool);
+    display: grid; place-items: center;
+    font-size: 22px;
+  }
+  .inv-stat .v {
+    font-size: 24px; font-weight: 600;
+    color: var(--ink-cool); line-height: 1;
+  }
+  .inv-stat .l {
+    font-size: 12px; color: var(--ink-cool-soft);
+    letter-spacing: 2px; margin-top: 4px;
+  }
+
+  .pool {
+    background: var(--card-cool);
+    border: 1px solid var(--line-cool);
+    border-radius: 22px;
+    padding: 22px;
+    box-shadow: var(--shadow);
+    position: relative; overflow: hidden;
+  }
+  .pool::before {
+    content: ""; position: absolute;
+    top: -50px; left: -50px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(107, 155, 94, 0.14), transparent 70%);
+  }
+  .pool-list { display: flex; flex-direction: column; gap: 10px; position: relative; }
+  .pool-row {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr) auto auto;
+    align-items: center; gap: 14px 12px;
+    padding: 13px 16px;
+    background: rgba(255, 255, 255, 0.55);
+    border-radius: 14px;
+    border: 1px solid transparent;
+    transition: all .2s ease;
+  }
+  .pool-row:hover { border-color: var(--line-cool); transform: translateX(2px); }
+  .pool-row.zero { opacity: .55; background: rgba(255, 255, 255, 0.30); }
+  /* 「👁 已隐藏」toggle 按钮：推靠右，已隐藏状态高亮（绿） */
+  .inv-shops .empty-toggle { margin-left: auto; }
+  .inv-shops .empty-toggle.on {
+    background: var(--mint-deep); color: #fff; border-color: var(--mint-deep);
+    box-shadow: 0 4px 12px rgba(107,155,94,.28);
+  }
+  .pool-row .ic {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: var(--soft-cool);
+    display: grid; place-items: center;
+    font-size: 18px;
+  }
+  .pool-name {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    font-size: 16px; font-weight: 500;
+    color: var(--ink-cool); letter-spacing: 1px;
+    min-width: 0;
+  }
+  .pool-name-text { word-break: keep-all; overflow-wrap: anywhere; }
+  .pool-info {
+    font-size: 12px; color: var(--ink-cool-soft);
+    font-family: "Source Han Mono", "Consolas", monospace;
+    letter-spacing: 1px;
+    margin-left: auto;
+    white-space: nowrap;
+    cursor: pointer; border-radius: 6px;
+    transition: all .18s ease;
+  }
+  .pool-info:hover { background: var(--soft-cool); color: var(--ink-cool); }
+  .pool-actions { display: flex; gap: 6px; align-items: center; }
+  .pool-qty {
+    font-size: 22px; font-weight: 600;
+    color: var(--mint-deep); line-height: 1;
+    min-width: 36px; text-align: center;
+  }
+  .pool-qty small {
+    display: block; font-size: 11px;
+    color: var(--ink-cool-soft);
+    letter-spacing: 1px; margin-top: 2px; font-weight: 400;
+    cursor: pointer; border-radius: 6px;
+    transition: all .18s ease;
+  }
+  .pool-qty:hover small { color: var(--mint-deep); background: var(--soft-cool); }
+  .pool-row.zero .pool-qty { color: var(--ink-cool-soft); }
+  .shelf-pill {
+    font-size: 11px; letter-spacing: 1px;
+    padding: 3px 10px; border-radius: 999px;
+    background: var(--soft-cool); color: var(--ink-cool-soft);
+    white-space: nowrap; cursor: pointer;
+    transition: all .2s ease;
+  }
+  .shelf-pill:hover { background: var(--line-cool); }
+  .pool-date {
+    font-size: 13px; color: var(--ink-cool-soft);
+    font-family: "Source Han Mono", "Consolas", monospace;
+    letter-spacing: 1px;
+  }
+  .inv-shops {
+    display: flex; flex-wrap: nowrap; gap: 8px;
+    margin: 0 0 14px;
+    padding: 2px 4px 10px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .inv-shops::-webkit-scrollbar { display: none; }
+  .shop-chip {
+    flex: 0 0 auto;
+    font-family: inherit; font-size: 13px; letter-spacing: 1px;
+    padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--line-cool);
+    background: rgba(255,255,255,0.5);
+    color: var(--ink-cool-soft);
+    cursor: pointer; transition: all .18s ease;
+    -webkit-tap-highlight-color: rgba(107,155,94,.15);
+  }
+  .shop-chip:hover { border-color: var(--mint-deep); color: var(--ink-cool); }
+  .shop-chip.on {
+    background: var(--mint-deep); color: #fff; border-color: var(--mint-deep);
+    box-shadow: 0 4px 12px rgba(107,155,94,.28);
+  }
+  .shop-chip:last-child { margin-right: 12px; }
+  .shop-tag {
+    display: inline-block;
+    font-size: 11px; letter-spacing: 1px;
+    color: var(--ink-cool-soft);
+    background: var(--soft-cool); border-radius: 999px;
+    padding: 1px 9px;
+    white-space: nowrap;
+  }
+  .shop-tag.clickable { cursor: pointer; transition: all .18s ease; }
+  .shop-tag.clickable:hover { background: var(--mint); color: #fff; }
+  /* 改店铺按钮（冰箱里每一行的 🏪） */
+  .shop-btn {
+    background: #fff; color: var(--ink-cool);
+    border: 1px solid var(--line-cool); padding: 6px 11px;
+    border-radius: 999px;
+    font-size: 13px; line-height: 1;
+    cursor: pointer; font-family: inherit; white-space: nowrap;
+    transition: all .2s ease;
+  }
+  .shop-btn:hover { background: var(--soft-cool); border-color: var(--mint); transform: translateY(-1px); }
+  .eat-btn {
+    background: var(--mint-deep); color: #F1F5EE;
+    border: none; padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 12px; letter-spacing: 2px;
+    cursor: pointer; font-family: inherit;
+    transition: all .2s ease;
+  }
+  .eat-btn:hover { background: var(--mint); transform: translateY(-1px); }
+  .eat-btn:disabled { background: var(--soft-cool); color: var(--ink-cool-soft); cursor: not-allowed; transform: none; }
+  .take-btn {
+    background: #fff; color: var(--ink-cool);
+    border: 1px solid var(--line-cool); padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 12px; letter-spacing: 2px;
+    cursor: pointer; font-family: inherit; white-space: nowrap;
+    transition: all .2s ease;
+  }
+  .take-btn:hover { background: var(--soft-cool); color: var(--mint-deep); border-color: var(--mint); }
+  .take-btn:disabled { color: var(--ink-cool-soft); cursor: not-allowed; opacity: .55; }
+  /* 冷冻按钮（背包 → 仓库）：跟「带走」同一套描边样式，只是换成冷色 */
+  .freeze-btn {
+    background: #fff; color: var(--ink);
+    border: 1px solid var(--line-warm); padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 13px; line-height: 1;
+    cursor: pointer; font-family: inherit; white-space: nowrap;
+    transition: all .2s ease;
+  }
+  .freeze-btn:hover { background: var(--soft-warm); border-color: var(--caramel); transform: translateY(-1px); }
+  .freeze-btn:disabled { color: var(--ink-cool-soft); cursor: not-allowed; opacity: .5; transform: none; }
+  .pool-row .del { color: var(--ink-cool-soft); }
+  .pool-row .del:hover { background: rgba(198, 107, 107, 0.14); color: var(--berry); }
+
+  /* 在库数量步进器 */
+  .qty-stepper { display: inline-flex; align-items: center; gap: 6px; }
+  .qbtn {
+    width: 26px; height: 26px; border-radius: 50%;
+    border: 1px solid var(--line-cool); background: rgba(255,255,255,0.6);
+    color: var(--mint-deep); font-size: 16px; line-height: 1;
+    cursor: pointer; transition: all .15s ease; font-family: inherit;
+  }
+  .qbtn:hover { background: var(--mint-deep); color: #fff; border-color: var(--mint-deep); }
+  .qbtn:active { transform: scale(.92); }
+  .qbtn:disabled { opacity: .35; cursor: not-allowed; }
+
+  /* 吃过记录（给谁吃移到谁头像下） */
+  .eaten-block { margin-top: 14px; padding-top: 14px; border-top: 1px dashed var(--line-warm); }
+  .eaten-title {
+    font-size: 12px; letter-spacing: 2px; color: var(--ink-soft);
+    margin-bottom: 8px; opacity: .85;
+    cursor: pointer; user-select: none;
+    display: flex; align-items: center; gap: 6px;
+    transition: opacity .15s ease;
+  }
+  .eaten-title:hover { opacity: 1; }
+  .eaten-title .arrow { display: inline-block; width: 12px; font-size: 10px; transition: transform .2s ease; }
+  .eaten-title .eaten-meta {
+    margin-left: auto; font-size: 11px; letter-spacing: .5px;
+    color: var(--ink-cool-soft); opacity: .7; font-weight: 400;
+  }
+  .eaten-list {
+    display: grid; gap: 6px;
+    overflow: hidden;
+    max-height: 1500px;
+    transition: max-height .3s ease, opacity .25s ease, margin-top .25s ease;
+    opacity: 1;
+  }
+  .eaten-block.collapsed .eaten-list {
+    max-height: 0; opacity: 0; margin-top: 0;
+  }
+  .eaten-block.collapsed .eaten-title { margin-bottom: 0; }
+  .eaten-block.collapsed .eaten-title .arrow { transform: rotate(0deg); }
+  .row.eaten { background: transparent; border: 1px dashed var(--line-warm); }
+  .row.eaten .row-name { color: var(--ink-soft); }
+  .row.eaten .ic { opacity: .8; }
+
+  /* 月份筛选条 */
+  .eaten-filter { margin-bottom: 8px; }
+  .month-chips {
+    display: flex; gap: 6px; flex-wrap: nowrap;
+    overflow-x: auto; padding-bottom: 2px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .month-chips::-webkit-scrollbar { display: none; }
+  .mchip {
+    flex: 0 0 auto;
+    padding: 4px 12px; border-radius: 999px;
+    font-size: 11.5px; letter-spacing: .5px;
+    font-family: inherit; cursor: pointer;
+    border: 1px solid var(--line-warm);
+    background: transparent; color: var(--ink-soft);
+    transition: all .18s ease;
+  }
+  .mchip:hover { border-color: var(--caramel); color: var(--ink); }
+  .mchip.on {
+    background: var(--caramel-deep); border-color: var(--caramel-deep);
+    color: #fff; font-weight: 600;
+  }
+  /* 每条吃过记录右侧的金额 */
+  .eaten-amt {
+    margin-left: 8px; font-size: 11.5px; font-weight: 600;
+    color: var(--caramel-deep);
+    font-family: "Source Han Mono", "Consolas", monospace;
+  }
+
+  /* 月份分组标题 */
+  .month-group { margin-top: 10px; }
+  .month-group:first-child { margin-top: 0; }
+  .month-title {
+    font-size: 11px; letter-spacing: 1.5px;
+    color: var(--caramel-deep);
+    padding-left: 8px;
+    border-left: 2px solid var(--mint);
+    line-height: 1.4;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+
+  /* 卡片上的图标可点：点一下直接换 */
+  .ic.clickable { cursor: pointer; transition: transform .15s ease, box-shadow .15s ease; }
+  .ic.clickable:hover {
+    transform: scale(1.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .10);
+  }
+  .ic.clickable:active { transform: scale(.94); }
+  .pool-row .ic.clickable:hover { background: var(--mint); }
+  .row .ic.clickable:hover { background: var(--soft-warm); }
+
+  /* 换图标弹窗里的网格默认展开 */
+  #II-icon-grid { max-height: 46vh; overflow-y: auto; padding: 2px; }
+
+  /* ============ 星级打分 ============ */
+  .star-row { display: flex; align-items: center; gap: 3px; flex-wrap: wrap; }
+  .star-btn {
+    background: transparent; border: none; cursor: pointer;
+    font-size: 27px; line-height: 1; padding: 0 1px;
+    color: var(--line-warm); font-family: inherit;
+    transition: transform .12s ease, color .12s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .star-btn.on { color: var(--melon); }
+  .star-btn:hover { transform: scale(1.16); }
+  .star-btn:active { transform: scale(.92); }
+  .star-tip { margin-left: 8px; font-size: 12px; color: var(--ink-soft); letter-spacing: .5px; }
+  .star-clear {
+    margin-left: 8px; font-size: 11.5px; font-family: inherit; cursor: pointer;
+    padding: 3px 11px; border-radius: 999px;
+    border: 1px solid var(--line-warm); background: transparent; color: var(--ink-soft);
+    transition: all .18s ease;
+  }
+  .star-clear:hover { border-color: var(--caramel); color: var(--ink); }
+
+  /* 吃过记录行内的小星星（点一下就打分 / 改分） */
+  .rate-mini { display: inline-flex; align-items: center; gap: 1px; margin-left: 8px; vertical-align: middle; }
+  .mini-star {
+    background: none; border: none; padding: 0 1px; cursor: pointer;
+    font-size: 13px; line-height: 1; color: var(--line-warm);
+    font-family: inherit;
+    transition: color .12s ease, transform .12s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .mini-star.on { color: var(--melon); }
+  .mini-star:hover { transform: scale(1.3); }
+
+  /* 顶部「咪豆榜」入口按钮 */
+  .rank-btn {
+    border: 1px dashed var(--line-warm);
+    background: linear-gradient(135deg, var(--cream), var(--soft-warm));
+    padding: 9px 18px; border-radius: 999px;
+    font-family: inherit; font-size: 13.5px; font-weight: 600;
+    letter-spacing: 1px; cursor: pointer;
+    color: var(--ink); box-shadow: var(--shadow);
+    transition: all .22s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .rank-btn .t-ic { display: inline-block; transition: transform .32s cubic-bezier(.34,1.56,.64,1); }
+  .rank-btn .t-pets {
+    display: inline-block; font-size: 12px; letter-spacing: 0;
+    margin-left: 5px; margin-right: 1px;
+    transition: transform .3s cubic-bezier(.34,1.56,.64,1);
+  }
+  .rank-btn:hover .t-pets { transform: scale(1.18); }
+  .rank-modal h2 .h-pets { font-size: 15px; letter-spacing: 0; margin-left: 2px; vertical-align: 1px; }
+  .rank-btn:hover {
+    transform: translateY(-2px); box-shadow: var(--shadow-hover);
+    border-style: solid; border-color: var(--melon);
+  }
+  .rank-btn:hover .t-ic { transform: rotate(-14deg) scale(1.2); }
+  .rank-btn:active { transform: translateY(0) scale(.97); }
+
+  /* 给某一款打分弹窗里的每一条吃过记录 */
+  .rate-list { display: flex; flex-direction: column; gap: 8px; max-height: 56vh; overflow-y: auto; padding: 2px; }
+  .rate-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 11px 14px; background: var(--cream);
+    border-radius: 12px; border: 1px dashed var(--line-warm);
+  }
+  .rate-info { min-width: 0; }
+  .rate-when { font-size: 13px; font-weight: 600; color: var(--ink); }
+  .rate-what { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; letter-spacing: .5px; }
+  .rate-stars { flex: 0 0 auto; }
+  .rate-stars .star-btn { font-size: 22px; }
+
+  /* ============ 咪豆榜 ============ */
+  .rank-modal .rank-list { max-height: 56vh; overflow-y: auto; padding: 2px; }
+  .rank-row:hover { transform: none; }
+  .rank-bar { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; }
+  .rank-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+  .rank-chips .chip-label {
+    font-size: 11px; color: var(--ink-soft); letter-spacing: 1px;
+    align-self: center; margin-right: 2px;
+  }
+  .rchip {
+    padding: 4px 12px; border-radius: 999px;
+    font-size: 11.5px; letter-spacing: .5px;
+    font-family: inherit; cursor: pointer;
+    border: 1px solid var(--line-warm);
+    background: transparent; color: var(--ink-soft);
+    transition: all .18s ease;
+  }
+  .rchip:hover { border-color: var(--caramel); color: var(--ink); }
+  .rchip.on {
+    background: var(--caramel-deep); border-color: var(--caramel-deep);
+    color: #fff; font-weight: 600;
+  }
+  .shop-pick { display: flex; flex-wrap: wrap; gap: 7px; }
+  .shop-pick .none-tip { font-size: 12px; color: var(--ink-cool-soft); letter-spacing: 1px; }
+  .rank-list { display: flex; flex-direction: column; gap: 7px; }
+  .rank-row {
+    display: grid;
+    grid-template-columns: 34px 32px minmax(0, 1fr) auto;
+    align-items: center; gap: 10px;
+    padding: 11px 14px;
+    background: var(--cream);
+    border-radius: 14px;
+    border: 1px solid transparent;
+    transition: all .2s ease;
+  }
+  .rank-row:hover { border-color: var(--line-warm); transform: translateX(2px); }
+  .rank-row.top1 { background: linear-gradient(90deg, #FFF0D2, var(--cream)); border-color: var(--line-warm); }
+  .rank-row.top2 { background: linear-gradient(90deg, #F8F1E4, var(--cream)); }
+  .rank-row.top3 { background: linear-gradient(90deg, #F5EEE6, var(--cream)); }
+  .rank-no {
+    font-size: 14px; text-align: center; font-weight: 700;
+    color: var(--ink-soft);
+    font-family: "Source Han Mono", "Consolas", monospace;
+  }
+  .rank-row.top1 .rank-no, .rank-row.top2 .rank-no, .rank-row.top3 .rank-no { font-size: 19px; }
+  .rank-ic { font-size: 20px; text-align: center; width: 32px; display: grid; place-items: center; }
+  .rank-name {
+    min-width: 0; font-size: 14.5px; font-weight: 600;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .rank-sub {
+    display: block; font-size: 11.5px; color: var(--ink-soft);
+    font-weight: 400; margin-top: 2px; letter-spacing: .5px;
+  }
+  .rank-right {
+    text-align: right; white-space: nowrap;
+    /* 是个按钮：点一下就能给这款打分 / 改分 */
+    background: transparent; border: 1px dashed transparent;
+    font-family: inherit; cursor: pointer;
+    padding: 4px 8px; border-radius: 10px;
+    transition: all .18s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .rank-right:hover { border-color: var(--melon); background: var(--soft-warm); }
+  .rank-right:active { transform: scale(.96); }
+  .rank-stars { font-size: 13px; color: var(--melon); letter-spacing: 1px; line-height: 1; }
+  .rank-stars .off { color: var(--line-warm); }
+  .rank-avg {
+    display: block; font-size: 11px; color: var(--ink-soft); margin-top: 3px;
+    font-family: "Source Han Mono", "Consolas", monospace;
+  }
+  .rank-avg.none { color: #B5A08C; }
+  .rank-empty {
+    text-align: center; padding: 42px 0;
+    color: var(--ink-soft); font-size: 13.5px;
+    letter-spacing: 1.5px; opacity: .75;
+  }
+  .rank-more { margin-top: 10px; text-align: center; }
+  .rank-more button {
+    font-family: inherit; font-size: 12px; cursor: pointer;
+    padding: 6px 16px; border-radius: 999px;
+    border: 1px dashed var(--line-warm);
+    background: transparent; color: var(--ink-soft);
+    transition: all .18s ease;
+  }
+  .rank-more button:hover { border-color: var(--caramel); color: var(--caramel-deep); }
+
+  /* ============ 弹窗（共用） ============ */
+  .modal-mask {
+    position: fixed; inset: 0;
+    background: rgba(59, 42, 26, 0.32);
+    backdrop-filter: blur(4px);
+    display: none; align-items: center; justify-content: center;
+    z-index: 10; animation: fade .2s ease;
+  }
+  .modal-mask.show { display: flex; }
+  @keyframes fade { from { opacity: 0 } to { opacity: 1 } }
+  @keyframes pop  { from { transform: translateY(12px) scale(.96); opacity: 0 } to { transform: none; opacity: 1 } }
+
+  .modal {
+    background: var(--card-warm);
+    border-radius: 22px;
+    padding: 30px;
+    width: min(480px, 92vw);
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 60px rgba(59, 42, 26, 0.30);
+    animation: pop .25s ease;
+  }
+  .modal.cool { background: var(--card-cool); }
+  .modal h2 {
+    font-size: 22px; letter-spacing: 3px;
+    margin-bottom: 6px; color: var(--ink);
+  }
+  .modal.cool h2 { color: var(--ink-cool); }
+  .modal .modal-sub {
+    color: var(--ink-soft); font-size: 13px;
+    letter-spacing: 2px; margin-bottom: 20px;
+  }
+  .modal.cool .modal-sub { color: var(--ink-cool-soft); }
+
+  .field { margin-bottom: 14px; }
+  .field label {
+    display: block; font-size: 13px;
+    color: var(--ink-soft); letter-spacing: 2px; margin-bottom: 8px;
+  }
+  .modal.cool .field label { color: var(--ink-cool-soft); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 11px 14px;
+    border-radius: 12px;
+    border: 1px solid var(--line-warm);
+    background: var(--cream);
+    font-family: inherit; font-size: 15px;
+    color: var(--ink); outline: none; transition: border .2s ease;
+  }
+  .modal.cool .field input, .modal.cool .field select, .modal.cool .field textarea {
+    border-color: var(--line-cool); background: #fff; color: var(--ink-cool);
+  }
+  .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--caramel); }
+  .modal.cool .field input:focus, .modal.cool .field select:focus, .modal.cool .field textarea:focus { border-color: var(--mint); }
+  .field textarea { resize: vertical; min-height: 120px; font-family: "Source Han Mono", "Consolas", monospace; font-size: 12px; line-height: 1.6; }
+
+  .name-with-icon {
+    display: grid; grid-template-columns: 50px 1fr; gap: 10px; align-items: stretch;
+  }
+  .icon-trigger {
+    background: var(--cream);
+    border: 1px solid var(--line-warm);
+    border-radius: 12px;
+    font-size: 22px; cursor: pointer;
+    display: grid; place-items: center;
+    transition: all .2s ease;
+  }
+  .modal.cool .icon-trigger { background: #fff; border-color: var(--line-cool); }
+  .icon-trigger:hover { border-color: var(--caramel); }
+  .modal.cool .icon-trigger:hover { border-color: var(--mint); }
+
+  .shelf-life-row { display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: end; }
+  .shelf-presets { display: flex; gap: 6px; }
+  .shelf-presets button {
+    padding: 6px 10px; border-radius: 999px;
+    border: 1px solid var(--line-warm);
+    background: var(--cream);
+    font-family: inherit; font-size: 12px;
+    color: var(--ink-soft); cursor: pointer;
+    letter-spacing: 1px; transition: all .2s ease;
+  }
+  .modal.cool .shelf-presets button {
+    border-color: var(--line-cool); background: #fff; color: var(--ink-cool-soft);
+  }
+  .shelf-presets button:hover { background: var(--soft-warm); color: var(--ink); }
+  .modal.cool .shelf-presets button:hover { background: var(--soft-cool); color: var(--ink-cool); }
+
+  /* ============ 单位/时段胶囊 ============ */
+  .unit-row, .slot-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .slices-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .slices-row input[type="number"] {
+    width: 72px; padding: 7px 10px; border-radius: 8px;
+    border: 1px solid var(--line-warm); font-family: inherit; font-size: 14px;
+  }
+  .slices-presets { display: flex; gap: 5px; }
+  .slices-presets button {
+    min-width: 30px; padding: 5px 8px; border-radius: 7px;
+    border: 1px solid var(--line-warm); background: transparent;
+    color: var(--ink-soft); font-family: inherit; font-size: 12.5px; cursor: pointer;
+    transition: all .18s ease;
+  }
+  .slices-presets button:hover { background: var(--soft-warm); color: var(--ink); }
+  .modal.cool .slices-presets button:hover { background: var(--soft-cool); color: var(--ink-cool); }
+  .slices-hint {
+    font-size: 12.5px; color: var(--caramel-deep); font-weight: 600;
+    font-family: "Source Han Mono", "Consolas", monospace;
+  }
+  .unit-chip, .slot-chip {
+    padding: 7px 14px; border-radius: 999px;
+    border: 1px solid var(--line-warm);
+    background: var(--cream);
+    font-family: inherit; font-size: 13px;
+    color: var(--ink-soft); cursor: pointer;
+    transition: all .2s ease;
+  }
+  .modal.cool .unit-chip, .modal.cool .slot-chip { border-color: var(--line-cool); background: #fff; color: var(--ink-cool-soft); }
+  .unit-chip.on, .slot-chip.on {
+    background: var(--caramel-deep); color: #fff; border-color: var(--caramel-deep);
+    font-weight: 600;
+  }
+  .modal.cool .unit-chip.on, .modal.cool .slot-chip.on {
+    background: var(--mint-deep); border-color: var(--mint-deep); color: #fff;
+  }
+  .unit-chip:hover:not(.on), .slot-chip:hover:not(.on) { background: var(--soft-warm); }
+  .modal.cool .unit-chip:hover:not(.on), .modal.cool .slot-chip:hover:not(.on) { background: var(--soft-cool); }
+  .eat-time-row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .eat-time-row input[type="date"] { padding: 7px 10px; border-radius: 8px; border: 1px solid var(--line-cool); font-family: inherit; font-size: 13px; }
+
+  /* 吃弹窗：3 列（咪 / 豆 / 一起） */
+  #modal-eat .who-row { grid-template-columns: 1fr 1fr 1fr; }
+  .who-card.who-card-both .emo { font-size: 20px; }
+  .who-card.who-card-both { background: var(--soft-warm); border-color: var(--line-warm); }
+  .modal.cool .who-card.who-card-both { background: var(--soft-cool); border-color: var(--line-cool); }
+  /* 一起吃的记录加个 emoji 标记 */
+  .eaten-both-tag { font-size: 11px; color: var(--caramel-deep); margin-left: 4px; font-weight: 600; }
+
+  /* ============ 图标选择器 ============ */
+  .icon-grid {
+    display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px;
+    padding: 12px; background: var(--cream);
+    border-radius: 12px; border: 1px solid var(--line-warm);
+    margin-top: 8px;
+  }
+  .modal.cool .icon-grid { background: #fff; border-color: var(--line-cool); }
+  /* 图标多了要能滚：三个弹窗里的网格统一限高 + 滚动 */
+  #L-icon-grid, #I-icon-grid, #P-emo-grid { max-height: 40vh; overflow-y: auto; }
+  /* 分组小标题 / 搜索框：占满整行 */
+  .icon-group-title {
+    grid-column: 1 / -1;
+    font-size: 11px; letter-spacing: 1px; font-weight: 700;
+    color: var(--ink-cool-soft); margin: 8px 0 0; padding-left: 2px;
+  }
+  .icon-group-title:first-of-type { margin-top: 2px; }
+  .icon-group-empty {
+    grid-column: 1 / -1; text-align: center; font-size: 12px;
+    color: var(--ink-cool-soft); padding: 14px 0;
+  }
+  .icon-search {
+    grid-column: 1 / -1;
+    padding: 7px 10px; font-size: 13px; font-family: inherit;
+    border: 1px solid var(--line-warm); border-radius: 9px;
+    background: var(--bg-warm); color: var(--ink); outline: none;
+  }
+  .modal.cool .icon-search { border-color: var(--line-cool); background: var(--bg-cool); color: var(--ink-cool); }
+  .icon-search:focus { border-color: var(--caramel); }
+  .modal.cool .icon-search:focus { border-color: var(--mint); }
+  .icon-grid button {
+    aspect-ratio: 1;
+    border: 2px solid transparent;
+    background: var(--bg-warm);
+    border-radius: 10px;
+    font-size: 22px;
+    cursor: pointer;
+    transition: all .15s ease;
+    font-family: inherit;
+  }
+  .modal.cool .icon-grid button { background: var(--bg-cool); }
+  .icon-grid button:hover { background: var(--soft-warm); transform: scale(1.08); }
+  .modal.cool .icon-grid button:hover { background: var(--soft-cool); }
+  .icon-grid button.active {
+    border-color: var(--caramel); background: var(--soft-warm);
+  }
+  .modal.cool .icon-grid button.active { border-color: var(--mint); background: var(--soft-cool); }
+  /* 价格 / 店铺 / 重量 三连输入 */
+  .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .trio .field { margin-bottom: 0; }
+
+  /* 文字图标（如「包」= 包子）单独排版，字号字重跟 emoji 对齐 */
+  .icon-grid button.glyph {
+    font-size: 17px; font-weight: 700; line-height: 1;
+    color: var(--ink);
+  }
+  /* 自绘图标（包子） */
+  .ic-img { width: 84%; height: 84%; display: block; object-fit: contain; }
+  .glyph-ic {
+    font-size: 0.78em; font-weight: 700; line-height: 1;
+    letter-spacing: 0;
+  }
+
+  /* ============ 口味编辑 ============ */
+  .pref-row { display: grid; grid-template-columns: 70px 1fr; gap: 10px; align-items: center; }
+  .color-row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .color-dot {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer; transition: all .2s ease;
+  }
+  .color-dot:hover { transform: scale(1.1); }
+  .color-dot.active { border-color: var(--ink); box-shadow: 0 0 0 2px var(--cream); }
+
+  /* ============ 同步说明弹窗 ============ */
+  .sync-modal { width: min(620px, 94vw); }
+  .sync-modal .sync-block {
+    background: var(--cream);
+    border: 1px solid var(--line-warm);
+    border-radius: 14px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+  }
+  .modal.cool .sync-modal .sync-block {
+    background: #fff; border-color: var(--line-cool);
+  }
+  .sync-modal .sync-block h4 {
+    font-size: 14px; letter-spacing: 3px;
+    margin-bottom: 8px; color: var(--ink);
+    font-weight: 600;
+  }
+  .modal.cool .sync-modal .sync-block h4 { color: var(--ink-cool); }
+  .sync-modal .sync-block p {
+    font-size: 13px; color: var(--ink-soft);
+    line-height: 1.8; letter-spacing: 1px;
+  }
+  .modal.cool .sync-modal .sync-block p { color: var(--ink-cool-soft); }
+  .sync-modal code {
+    background: rgba(185, 117, 59, 0.12); padding: 2px 8px; border-radius: 6px;
+    font-family: "Source Han Mono", monospace; font-size: 12px; color: var(--caramel-deep);
+  }
+  .sync-modal .badge {
+    display: inline-block; font-size: 10px;
+    padding: 2px 8px; border-radius: 999px;
+    margin-left: 8px; vertical-align: middle;
+    letter-spacing: 1px;
+  }
+  .badge-recommend { background: rgba(143, 166, 126, 0.25); color: #5F7A4D; }
+  .badge-active    { background: rgba(107, 155, 94, 0.25); color: #467A3C; }
+  .badge-fast      { background: rgba(232, 159, 110, 0.25); color: #A8643A; }
+
+  /* ============ 通用 ============ */
+  .who-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .who-card {
+    border: 2px solid var(--line-warm);
+    background: var(--cream);
+    border-radius: 14px; padding: 14px;
+    text-align: center; cursor: pointer;
+    font-size: 14px; letter-spacing: 2px;
+    color: var(--ink-soft); transition: all .2s ease;
+  }
+  .modal.cool .who-card { border-color: var(--line-cool); background: #fff; color: var(--ink-cool-soft); }
+  .who-card.active {
+    border-color: var(--caramel);
+    background: var(--soft-warm); color: var(--ink); font-weight: 600;
+  }
+  .modal.cool .who-card.active { border-color: var(--mint); background: var(--soft-cool); color: var(--ink-cool); }
+  .who-card .emo { font-size: 22px; display: block; margin-bottom: 4px; }
+
+  .modal-actions { display: flex; gap: 12px; margin-top: 22px; }
+  .btn {
+    flex: 1; padding: 12px; border-radius: 12px;
+    border: none; font-family: inherit;
+    font-size: 14px; letter-spacing: 3px;
+    cursor: pointer; transition: all .2s ease;
+  }
+  .btn-cancel { background: var(--soft-warm); color: var(--ink-soft); }
+  .modal.cool .btn-cancel { background: var(--soft-cool); color: var(--ink-cool-soft); }
+  .btn-cancel:hover { background: var(--line-warm); }
+  .modal.cool .btn-cancel:hover { background: var(--line-cool); }
+  .btn-ok { background: var(--ink); color: var(--cream); }
+  .btn-ok:hover { background: var(--caramel-deep); }
+  .modal.cool .btn-ok { background: var(--mint-deep); color: #F1F5EE; }
+  .modal.cool .btn-ok:hover { background: var(--mint); }
+
+  .foot {
+    text-align: center; color: var(--ink-soft);
+    font-size: 12px; letter-spacing: 4px;
+    margin-top: 56px; opacity: .65;
+  }
+
+  .last-sync {
+    font-size: 12px; color: var(--ink-soft);
+    letter-spacing: 1px; text-align: right;
+    padding: 0 8px; margin-top: -10px; margin-bottom: 16px;
+  }
+
+/* ============ 手机端（≤760px）============ */
+  @media (max-width: 760px) {
+    body { padding: 20px 12px 48px; }
+    .frame { padding: 0; }
+
+    /* ---- 顶部 ---- */
+    .site-top { flex-direction: column; align-items: stretch; gap: 14px; margin-bottom: 20px; padding: 0 2px; }
+    .title-block .eyebrow { font-size: 11px; letter-spacing: 4px; margin-bottom: 6px; }
+    .title-block h1 { font-size: 30px; letter-spacing: 2px; }
+    .title-block .sub { font-size: 12px; letter-spacing: 1px; margin-top: 6px; }
+    .top-actions { width: 100%; gap: 8px; }
+    .top-actions > * { flex: 1; }
+    .sync-bar { justify-content: space-between; padding: 5px 6px; }
+    .sync-bar .lbl { font-size: 11px; padding: 0 4px; letter-spacing: 1px; }
+    .sync-btn { padding: 7px 8px; font-size: 12px; flex: 1; }
+    .add-btn { padding: 10px 14px; font-size: 13px; letter-spacing: 1px; flex: 1; }
+
+    /* ---- 板块标题 ---- */
+    .panel { margin-bottom: 34px; }
+    .panel-head { margin-bottom: 14px; padding: 0 2px; gap: 10px; }
+    .ph-title { font-size: 20px; letter-spacing: 1px; }
+    .ph-title span { font-size: 12px !important; margin-left: 6px !important; letter-spacing: 1px !important; }
+    .ph-sub { font-size: 10px !important; letter-spacing: 1px !important; }
+    .ph-action { padding: 7px 14px; font-size: 12px; letter-spacing: 1px; }
+
+    /* ---- 第一板块：背包卡片 ---- */
+    .pair { grid-template-columns: 1fr; gap: 16px; }
+    .person { padding: 16px 14px; border-radius: 18px; }
+    .person-head { gap: 10px; margin-bottom: 14px; padding-bottom: 12px; }
+    .avatar { width: 44px; height: 44px; font-size: 22px; }
+    .person-name { font-size: 19px; letter-spacing: 2px; }
+    .person-name .tag { font-size: 11px; padding: 2px 8px; margin-left: 6px; }
+    .person-name .edit-hint { display: none; }
+    .person-meta .num { font-size: 22px; }
+    .person-meta .lbl { font-size: 11px; letter-spacing: 1px; }
+    .list { gap: 8px; min-height: 60px; }
+
+    /* 背包条目：两行布局，跟库存卡片一致 */
+    .row {
+      grid-template-columns: 34px minmax(0, 1fr) auto;
+      grid-template-areas:
+        "ic   name  act"
+        "ic   date  date";
+      column-gap: 10px; row-gap: 4px;
+      padding: 12px 13px;
+      border-radius: 12px;
+    }
+    .row .ic {
+      grid-area: ic; align-self: start;
+      width: 32px; height: 32px;
+      display: grid; place-items: center;
+      font-size: 19px;
+    }
+    .row-name {
+      grid-area: name; font-size: 15px; line-height: 1.35;
+      min-width: 0; word-break: keep-all; overflow-wrap: anywhere;
+    }
+    .row-name .qty { font-size: 12px; margin-left: 5px; }
+    .row-date { grid-area: date; font-size: 11.5px; letter-spacing: .5px; }
+    .row-actions { grid-area: act; align-self: start; }
+    .row-actions .eat-btn { padding: 5px 12px; font-size: 11.5px; letter-spacing: 1px; }
+    .row-actions .freeze-btn { padding: 5px 9px; font-size: 12px; }
+    .eaten-title { font-size: 11px; letter-spacing: 1px; margin-bottom: 6px; }
+
+    /* ---- 咪豆榜（顶部按钮 + 弹窗） ---- */
+    .rank-btn { padding: 10px 12px; font-size: 13px; }
+    .rank-btn .t-full { display: none; }
+    .rank-modal .rank-list { max-height: 62vh; }
+    .rank-row {
+      grid-template-columns: 26px 28px minmax(0, 1fr) auto;
+      gap: 8px; padding: 10px 12px; border-radius: 12px;
+    }
+    .rank-no { font-size: 13px; }
+    .rank-row.top1 .rank-no, .rank-row.top2 .rank-no, .rank-row.top3 .rank-no { font-size: 17px; }
+    .rank-ic { width: 28px; font-size: 18px; }
+    .rank-name {
+      font-size: 13.5px; white-space: normal;
+      word-break: keep-all; overflow-wrap: anywhere;
+    }
+    .rank-sub { font-size: 11px; }
+    .rank-stars { font-size: 12px; }
+    .star-btn { font-size: 24px; }
+    .mini-star { font-size: 12px; padding: 0 1.5px; }
+
+    /* ---- 第二板块：库存 ---- */
+    .inv-bar { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    .inv-stat { padding: 12px 14px; gap: 10px; border-radius: 13px; }
+    .inv-stat .ic { width: 34px; height: 34px; font-size: 18px; }
+    .inv-stat .v { font-size: 20px; }
+    .inv-stat .l { font-size: 11px; }
+    .pool { padding: 13px; border-radius: 18px; }
+    .pool-row {
+      grid-template-columns: 38px minmax(0, 1fr) auto;
+      grid-template-areas:
+        "ic    name  qty"
+        "ic    info  info"
+        "act   act   act";
+      column-gap: 10px; row-gap: 8px;
+      padding: 13px;
+    }
+    .pool-row .ic { grid-area: ic; align-self: start; width: 36px; height: 36px; font-size: 19px; }
+    .pool-name { grid-area: name; font-size: 15px; line-height: 1.35; }
+    .pool-info { grid-area: info; margin-left: 0; font-size: 11.5px; }
+    .qty-stepper { grid-area: qty; align-self: start; gap: 4px; }
+    .pool-qty { font-size: 19px; min-width: 30px; }
+    .qbtn { width: 24px; height: 24px; font-size: 15px; }
+    .pool-actions { grid-area: act; justify-content: flex-end; flex-wrap: wrap; }
+    .eat-btn, .take-btn { padding: 6px 13px; font-size: 11.5px; letter-spacing: 1px; }
+
+    /* ---- 弹窗 ---- */
+    .modal {
+      width: calc(100vw - 28px) !important;
+      max-height: 88vh; overflow-y: auto;
+      padding: 20px 16px;
+      border-radius: 18px;
+    }
+    .modal h2 { font-size: 20px; }
+    .trio { grid-template-columns: 1fr; gap: 8px; }
+    .who-row { gap: 8px; }
+    .who-card { padding: 10px 12px; font-size: 14px; }
+    .icon-grid { grid-template-columns: repeat(6, 1fr); gap: 5px; padding: 10px; }
+    .icon-grid button { font-size: 19px; }
+    .icon-grid button.glyph { font-size: 15px; }
+
+    .foot { font-size: 11px; letter-spacing: 2px; }
+  }
+</style>
+</head>
+<body data-page-node-id="P3QKF0itFXRfNFMQ8xFW1L">
+  <div class="frame" data-page-node-id="YITCr6U6tjbrFGcSWIEuUk">
+
+    <header class="site-top" data-page-node-id="lk2mAmwPOGvS0wLVyUuii7">
+      <div class="title-block" data-page-node-id="64bHQ2zdEFUExQhmWLEQhE">
+        <div class="eyebrow" data-page-node-id="jjDbFZjHTYBvI3gzDqe6dK">DAILY LEDGER · 生活工作台</div>
+        <h1 data-page-node-id="UHv0MaGTqtZ09BNPadHMTA">早饭吃什么<span class="dot" data-page-node-id="pNSzg9722XrSDwFpUEko1d">·</span></h1>
+        <div class="sub" data-page-node-id="wtyD1JXHWd5D3GNUgHxcvM">咪 & 豆 · 家里大冰箱 · 共享台账</div>
+      </div>
+      <div class="top-actions" data-page-node-id="Z3lMKpUdPATF25uQbQsYzf">
+        <div class="sync-bar" data-page-node-id="FBlUpHhP4nVTHn9PGvo26W">
+          <span class="lbl" data-page-node-id="bQTejqQtCJgm2EhKYUUHUF">数据</span>
+          <button class="sync-btn primary" onclick="triggerSync()" title="立刻拉取最新（改动会自动上传）" data-page-node-id="XtEL54yQ85Hj9ALEgcPKPq">🔄 同步</button>
+          <button class="sync-btn" onclick="exportJSON()" title="导出 JSON 文件" data-page-node-id="ktpDiFCTpMrew3eWPcvpFA">↓ 备份</button>
+          <button class="sync-btn" onclick="openSyncGuide()" data-page-node-id="KWhFpQr8jj6RlFnCKOzXQ4">说明</button>
+        </div>
+        <button class="rank-btn" type="button" onclick="openRank()" title="看看吃过的排名" data-page-node-id="GsSm0JtFk2ffAI8mOdBWS5"><span class="t-ic" data-page-node-id="T0FAaSRUH7LpV4RB1lGgXF">🏆</span><span class="t-pets" data-page-node-id="vExXX1eV3i3A62XkEBiv22">🐱🐶</span> <span class="t-full" data-page-node-id="XoBd1Uh2ciolBH1NGQBbFM">咪豆</span>榜</button>
+        <button class="add-btn" onclick="openLedgerModal()" data-page-node-id="5BaD9wd4EbpxEqPq2W6XSW">＋ 记一笔</button>
+      </div>
+    </header>
+    <div class="last-sync" id="last-sync" data-page-node-id="gYH9yd4RlicoF5XcN0xROf">最后同步 · 本机</div>
+
+    <!-- ============ 第一板块 ============ -->
+    <section class="panel" data-page-node-id="wC5F9mgtJTyn2dMkU1IWHm">
+      <div class="panel-head" data-page-node-id="v4UBtsE1uQG20aFEoMveij">
+        <div data-page-node-id="XWpgsC5GtopMWEj50ZdlGZ">
+          <div class="ph-title" data-page-node-id="LpLOuUTk3MmUDxsxmfXnDW">早饭吃什么<span class="accent" data-page-node-id="rsv2TjCH15chlQ64cTlRkG">·</span><span style="color:var(--ink-soft); font-weight:400; font-size:16px; margin-left:10px; letter-spacing:2px;" data-page-node-id="SkzymiNOGifvFMkvPndfra">各自的背包</span></div>
+          <div class="ph-sub" data-page-node-id="r1nj8VhHjZHoKbIh1OE6TK">BREAKFAST BACKPACK · 点头像或名字改口味 · 点面包「吃」记下时间</div>
+        </div>
+      </div>
+
+      <main class="pair" data-page-node-id="vFVfCN60VaHMlRzOGNk3Db">
+        <section class="person mi" data-page-node-id="qlR0a4hE3IfbPxI8he7g74">
+          <div class="person-head" data-page-node-id="d7ZXJych6gPxSH1ZNoOeEe">
+            <div class="avatar" onclick="openPref('mi')" id="avatar-mi" data-page-node-id="DfG6HWEBsCuqv3D4iuuIdo">🐱</div>
+            <div data-page-node-id="fOl1BC273gykNidUCCMXAy">
+              <div class="person-name" onclick="openPref('mi')" data-page-node-id="KjX5eW5EEaT1CExePRUje2">
+                <span id="name-mi" data-page-node-id="jvx0xkXeG69uZqT8Sr4x2U">咪</span>
+                <span class="tag" id="tag-mi" onclick="event.stopPropagation();openPref('mi')" data-page-node-id="O8W7qRGhYx72V4IGPZ9nSl">喜甜</span>
+                <span class="edit-hint" data-page-node-id="88iUttUoZtFS7T8mbSSjxH">✎ 编辑</span>
+              </div>
+            </div>
+            <div class="person-meta" data-page-node-id="HM6HZu42TBIYwhs002HzSj">
+              <div class="num" id="count-mi" data-page-node-id="ZE3avvqS0d6VS9FfTXorwu">0</div>
+              <div class="lbl" id="unit-mi" data-page-node-id="yk466o0jC6ZLAtlo4vh0Er">共 0 件</div>
+            </div>
+          </div>
+          <div class="list" id="list-mi" data-page-node-id="0JQEZdXjfS7FKGn5rbOlx4"></div>
+          <div class="eaten-block" id="eaten-mi" data-page-node-id="JVFtMS0hZaH95WDnBzys8g"></div>
+        </section>
+
+        <section class="person dou" data-page-node-id="E2SzJRrisgReqNFQDEvGZD">
+          <div class="person-head" data-page-node-id="kZqqaL2aWK6gr6sbBlwa4R">
+            <div class="avatar" onclick="openPref('dou')" id="avatar-dou" data-page-node-id="FekVRz946NPXiDJgULvIc6">🐶</div>
+            <div data-page-node-id="HGJhMJQsTfR1hJU4G4qvAj">
+              <div class="person-name" onclick="openPref('dou')" data-page-node-id="zjh60ENBertnbSOwjf2ujK">
+                <span id="name-dou" data-page-node-id="KfrXbkcQGDjRhbWEDklBdo">豆</span>
+                <span class="tag" id="tag-dou" onclick="event.stopPropagation();openPref('dou')" data-page-node-id="F1eTkRivjIJWXMoVFFEDFQ">爱咸</span>
+                <span class="edit-hint" data-page-node-id="qCBRIvYkAaEsPEc2ZjtjhA">✎ 编辑</span>
+              </div>
+            </div>
+            <div class="person-meta" data-page-node-id="PCBqdqezI1XE8z2pokDPH8">
+              <div class="num" id="count-dou" data-page-node-id="2ss9PghdOUlVgnPbLjMQdE">0</div>
+              <div class="lbl" id="unit-dou" data-page-node-id="VatLhs7mxqn3YhqP0S94tt">共 0 件</div>
+            </div>
+          </div>
+          <div class="list" id="list-dou" data-page-node-id="D17Xtyzzv6UbLAkNn3Fcj0"></div>
+          <div class="eaten-block" id="eaten-dou" data-page-node-id="9aMu7qnO01mjXb9HckDPJr"></div>
+        </section>
+      </main>
+    </section>
+
+    <!-- ============ 第二板块 · 库存 ============ -->
+    <section class="panel" data-page-node-id="bgzbgiqBvPsEqT2Pbp8K0I">
+      <div class="panel-head cool" data-page-node-id="LaFAIZeCs1L4FAdfzuEZRu">
+        <div data-page-node-id="XGBU26XFSeiRBV1Wdnk2G2">
+          <div class="ph-title" data-page-node-id="82HGJYVGGzqFtnjSdJIy6j">库存<span class="accent" data-page-node-id="TCUu2qlF2XKYJVvweFy8Qe">·</span><span style="color:var(--ink-cool-soft); font-weight:400; font-size:16px; margin-left:10px; letter-spacing:2px;" data-page-node-id="i1wjOXUhMLV84vg61rTygF">家里大冰箱</span></div>
+          <div class="ph-sub" data-page-node-id="rWVDVJVLm4ChLBg7g1IyBN">HOME INVENTORY · 放进冰箱的东西没有过期</div>
+        </div>
+        <button class="ph-action cool" onclick="openInvModal()" data-page-node-id="bp376S3rCyKECEFRrhchht">＋ 补货</button>
+      </div>
+
+      <div class="inv-bar" data-page-node-id="SQQt79gNswbBlHTiY1pO9k">
+        <div class="inv-stat" data-page-node-id="fX9mlmfMxRskOtUt8MIeUf">
+          <div class="ic" data-page-node-id="K0wO1ePG8CGCJrFrDRP7ap">🍞</div>
+          <div data-page-node-id="oCMnc2cqt9aIxJaqByKGpJ">
+            <div class="v" id="stat-sku" data-page-node-id="So1vwDeRPGbkUPo0tBEZFI">0</div>
+            <div class="l" data-page-node-id="mvF2wgxBRDopb4UVGJaXcy">款 · SKU</div>
+          </div>
+        </div>
+        <div class="inv-stat" data-page-node-id="4VYxUmPAB1mDg86CLTdRlQ">
+          <div class="ic" data-page-node-id="YG3nZO9iOyozkERcsrGBt6">📦</div>
+          <div data-page-node-id="ieVkAwQegkIDNZNxu47jQi">
+            <div class="v" id="stat-total" data-page-node-id="H2DRJ1MTPzT3vWt4IWXwc0">0</div>
+            <div class="l" data-page-node-id="wELRN9RaHtx0FIRJD9a9d0">总件数</div>
+          </div>
+        </div>
+        <div class="inv-stat" data-page-node-id="UFUEpdjkyyFgquH7yrlYnq">
+          <div class="ic" data-page-node-id="IhGqZsNexMsIU8wZDuAQec">💰</div>
+          <div data-page-node-id="ZptvNK9ghu4XJFC2qo3MEb">
+            <div class="v" id="stat-value" data-page-node-id="WFf1h2Kh0hlSqWnoWCzKa9">¥0</div>
+            <div class="l" data-page-node-id="Zqe6KuBUKn7cE3f5u4JZIB">总价值</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="inv-shops" id="inv-shops" data-page-node-id="a8qVXwjsQ02q2CGhuOG26V"></div>
+
+      <div class="pool" data-page-node-id="QD6iIrU7KvpdlD2tYO2eNl">
+        <div class="pool-list" id="pool-list" data-page-node-id="RJb3fdAmLCIysUr8hG48wV"></div>
+      </div>
+    </section>
+
+    <div class="foot" data-page-node-id="DNRWSlOgtblsfDRE8DmqMl">— 今日面包，明日早餐 —</div>
+  </div>
+
+  <!-- ============ 录入弹窗 · 第一板块 ============ -->
+  <div class="modal-mask" id="modal-ledger" data-page-node-id="EqHSymzs4nA7GwuRws1ySh">
+    <div class="modal" data-page-node-id="d9f5u1wKKlySIOK4vFvtRg">
+      <h2 data-page-node-id="CGryXxjNkA5qgFm3QMIDUv">记一笔</h2>
+      <div class="modal-sub" data-page-node-id="He9ZiHLpMByybFdfM1x3GT">放进谁的背包</div>
+      <div class="field" data-page-node-id="IDan4DiolkCooMJ0TRaX9C">
+        <label data-page-node-id="s6tH6vJdhUmOEjoBH2YAwl">放进谁的背包</label>
+        <div class="who-row" data-page-node-id="ZHquuvunSIuXSr6dlaLcz5">
+          <div class="who-card" data-who="mi" onclick="pickWho(this,'ledger')" data-page-node-id="lo5XwtRFDxcGubATnfksaB"><span class="emo" id="who-emo-mi" data-page-node-id="P8TbNEEsyhwNZXSa2VUe2u">🐱</span><span id="who-name-mi" data-page-node-id="Uq8ZlmjHmM9STmqY1fdE1g">咪</span></div>
+          <div class="who-card" data-who="dou" onclick="pickWho(this,'ledger')" data-page-node-id="bqVPOIvJ0hspTDQUdgJ45J"><span class="emo" id="who-emo-dou" data-page-node-id="6ILWcMioP9hCL1E8sgJfcz">🐶</span><span id="who-name-dou" data-page-node-id="f7iDI5SsE5MjzcNqVZnvqS">豆</span></div>
+        </div>
+      </div>
+      <div class="field" data-page-node-id="ZQkgUloGEEG26jOY8CBvXI">
+        <label data-page-node-id="tkYQRiJQDCWuClfiEyLd7j">面包款式 + 图标</label>
+        <div class="name-with-icon" data-page-node-id="19YkDcyWFj0qRlIJmvj89a">
+          <button class="icon-trigger" id="L-icon-btn" type="button" onclick="toggleIconPicker('ledger')" data-page-node-id="nVOlPvkx9PWjnZIg4c1zoi">🍞</button>
+          <input id="L-name" placeholder="比如：全麦吐司 / 牛角 / 贝果" data-page-node-id="GSIEODrjcOHpCZKWESBmez" />
+        </div>
+        <div class="icon-grid" id="L-icon-grid" style="display:none;" data-page-node-id="MAs8e8RRExKCS8B2MWw3Jp"></div>
+      </div>
+      <div class="field" data-page-node-id="ltQH0EnNXR6MbGK9s3mz2P"><label data-page-node-id="zywH1tbxLImcvkLSz6OyGD">数量</label><input id="L-qty" type="number" min="1" value="1" data-page-node-id="PHdmXfpyZAXyB8I4QpMIVW" /></div>
+      <div class="field" data-page-node-id="rv1s9cvUzGQMhHoxowPKIe">
+        <label data-page-node-id="Fo9GQG4AqVkgyLeBzTK5WH">单位</label>
+        <div class="unit-row" id="L-unit-row" data-page-node-id="fVgH80iiv3f0W4Hsp83CsF">
+          <button type="button" class="unit-chip on" data-unit="件" onclick="setUnit('L','件')" data-page-node-id="YiRSTSDK1PEzsP7mpl8f5W">件</button>
+          <button type="button" class="unit-chip" data-unit="份" onclick="setUnit('L','份')" data-page-node-id="2IkY9k2xDgYGZEGCT502fE">份</button>
+          <span class="hint" style="margin-left:6px; color:var(--ink-cool-soft); font-size:12px;" data-page-node-id="d1ZhisPirIBhQIu0c9R9Ch">一个面包切开来吃选份</span>
+        </div>
+      </div>
+      <div class="field slices-field" id="L-slices-field" style="display:none;" data-page-node-id="nw77RHf9DA1CzRAjxkt11c">
+        <label data-page-node-id="CceazNtGtovpjT5VkFUqLL">一个切成几份</label>
+        <div class="slices-row" id="L-slices-row" data-page-node-id="A6u2Ewu5qW6evJAkzXWIVK">
+          <input id="L-slices" type="number" min="1" max="24" value="4" oninput="updateSlicesHint('L')" data-page-node-id="68qKSyMU8E8tjH6nA5aLd2" />
+          <div class="slices-presets" data-page-node-id="uWwRVK3q3S3OrtmGURTX6H">
+            <button type="button" onclick="setSlices('L',2)" data-page-node-id="OONOtyuDUKdX6nVr5jhHoN">2</button>
+            <button type="button" onclick="setSlices('L',3)" data-page-node-id="WVGDTs9CiXywuD8CuwA9VJ">3</button>
+            <button type="button" onclick="setSlices('L',4)" data-page-node-id="82wj0iKyYSNxJ55QZXCkWR">4</button>
+            <button type="button" onclick="setSlices('L',6)" data-page-node-id="LyeOw7r7FBhxu6dGc3WEGU">6</button>
+            <button type="button" onclick="setSlices('L',8)" data-page-node-id="dGKL4giMABWGxJB4ZMEauT">8</button>
+          </div>
+          <span class="slices-hint" id="L-slices-hint" data-page-node-id="YcYEynvygHl8m3pCR0Qx7A"></span>
+        </div>
+        <p style="margin-top:6px; font-size:12px; color:var(--ink-cool-soft); line-height:1.5;" data-page-node-id="EFh9260IDPZCCAx6sMfwiK">份数按第一次切的时候定，之后不再变</p>
+      </div>
+      <div class="trio" data-page-node-id="fMfpBOkUjRBELU7je9En1b">
+        <div class="field" data-page-node-id="yyxc8xwCavwsKUbdN87krR"><label data-page-node-id="wHu189DAfy5hwoN5qFJH0p">价格 ¥</label><input id="L-price" type="number" step="0.1" min="0" placeholder="选填" oninput="updateSlicesHint('L')" data-page-node-id="K6mVMRYJzv376pGALQoE4w" /></div>
+        <div class="field" data-page-node-id="4isiO6LW2y6Voj1Fa945Fk"><label data-page-node-id="nhvJEePdEAWEXCj715CZ3l">店铺</label><input id="L-shop" list="shop-list" placeholder="选填" data-page-node-id="kxC0hHHREucHrzX0sEFZtk" /></div>
+        <div class="field" data-page-node-id="NN9NMGfewpCYJ1cayZuhMq"><label data-page-node-id="lVBWovSKDoctIXG1S67xEH">重量</label><input id="L-weight" placeholder="如 120g" data-page-node-id="H9AMu8OMm29AgxahH3LWEf" /></div>
+      </div>
+      <div class="field" data-page-node-id="uDwF858VqGhuFgRBNN2Ykh"><label data-page-node-id="KdPF95cMa3JilKzcXESgfl">放入日期</label><input id="L-date" type="date" data-page-node-id="2HDUQsQ4loWnvXHRrbdvg3" /></div>
+      <div class="modal-actions" data-page-node-id="5CTRS3ybRvplZiUpqrOLOa">
+        <button class="btn btn-cancel" onclick="closeModal('modal-ledger')" data-page-node-id="luzyEZOHMvSOCeodjMKwYh">取消</button>
+        <button class="btn btn-ok" onclick="saveLedger()" data-page-node-id="fI180H8QKa8kZAeizkIAXo">放进背包</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 补货弹窗 ============ -->
+  <div class="modal-mask" id="modal-inv" data-page-node-id="33K5RylNQgbVzaFx4juu5l">
+    <div class="modal cool" data-page-node-id="OxanhORYwAX3zpiKr0a5Xn">
+      <h2 data-page-node-id="s4x0o9Jy10ZzHNiXqxDEDm">补货入库</h2>
+      <div class="modal-sub" data-page-node-id="rR6DNIwCcGSjYCa9zCHKXp">家里大冰箱 · 加一份</div>
+      <div class="field" data-page-node-id="Ugd0HePMzW3VsDFZjpQBZI">
+        <label data-page-node-id="EHH3fFZ3L0zSJSkyD2yHR6">面包款式 + 图标</label>
+        <div class="name-with-icon" data-page-node-id="YCyBSBVZNjXxORuoMffT0E">
+          <button class="icon-trigger" id="I-icon-btn" type="button" onclick="toggleIconPicker('inv')" data-page-node-id="EXPhNW1xMl441RAq3hYELa">🍞</button>
+          <input id="I-name" placeholder="比如：全麦吐司 / 牛角 / 贝果" data-page-node-id="Z5AiWTF9CTdPXYjiw6KbBG" />
+        </div>
+        <div class="icon-grid" id="I-icon-grid" style="display:none;" data-page-node-id="WiyGG7FiGI7N9QECYOiv6i"></div>
+      </div>
+      <div class="field" data-page-node-id="yQIIiyIH9ILFyQGNjjnsI6"><label data-page-node-id="xPAbIqC6ntLShkHdwz4YYo">数量</label><input id="I-qty" type="number" min="1" value="1" data-page-node-id="fDmOAW3B8OSHfBumUxEZcD" /></div>
+      <div class="field" data-page-node-id="cdhPENMtkoTCCmW7tLMQyL">
+        <label data-page-node-id="QWyiAYED4RgyjT3hwpzbeq">单位</label>
+        <div class="unit-row" id="I-unit-row" data-page-node-id="rq0JHBcY6MBJvWXj5CG7a2">
+          <button type="button" class="unit-chip on" data-unit="件" onclick="setUnit('I','件')" data-page-node-id="0WWjVbWpPdoWBXAdyFZxhv">件</button>
+          <button type="button" class="unit-chip" data-unit="份" onclick="setUnit('I','份')" data-page-node-id="zmqvD2jUdVnc3JgYgIDzhu">份</button>
+          <span class="hint" style="margin-left:6px; color:var(--ink-cool-soft); font-size:12px;" data-page-node-id="xAD4qlkiEunFqq5KQS6cSp">一个面包切开来吃选份</span>
+        </div>
+      </div>
+      <div class="field slices-field" id="I-slices-field" style="display:none;" data-page-node-id="6YTnGCHH0Sa1HMnKcuI631">
+        <label data-page-node-id="rbt8PfUWcQuiKoiNM1sBxC">一个切成几份</label>
+        <div class="slices-row" id="I-slices-row" data-page-node-id="TtJd6QCjhEGbtMreg0W9D8">
+          <input id="I-slices" type="number" min="1" max="24" value="4" oninput="updateSlicesHint('I')" data-page-node-id="MgoUmTN6ioDpyJwmdBe3mG" />
+          <div class="slices-presets" data-page-node-id="t0cUHDBR01zJRoHMRr7uvZ">
+            <button type="button" onclick="setSlices('I',2)" data-page-node-id="yO4mzBkJkn6w8WflBBAHH7">2</button>
+            <button type="button" onclick="setSlices('I',3)" data-page-node-id="uiUoyVYXCgZrTxL3cdZeb8">3</button>
+            <button type="button" onclick="setSlices('I',4)" data-page-node-id="7VoO6X8t9J3jrKDnqYVv9F">4</button>
+            <button type="button" onclick="setSlices('I',6)" data-page-node-id="R06Mjf1DYkEzF4mfrqswBJ">6</button>
+            <button type="button" onclick="setSlices('I',8)" data-page-node-id="Wrl7hzDnzRnJDrpzdzOC51">8</button>
+          </div>
+          <span class="slices-hint" id="I-slices-hint" data-page-node-id="rJVyvbXEIVKuiBJgLvyrpG"></span>
+        </div>
+        <p style="margin-top:6px; font-size:12px; color:var(--ink-cool-soft); line-height:1.5;" data-page-node-id="dRFsHLmDbsuyyi6eLibgcz">份数按第一次切的时候定，之后不再变</p>
+      </div>
+      <div class="trio" data-page-node-id="EIiUVRuoMtH5EfyC5SsRSr">
+        <div class="field" data-page-node-id="RoRYLXXhwVLV1ElO4psUa7"><label data-page-node-id="Y9IKyRRDuGmSNy9wtNOz8x">价格 ¥</label><input id="I-price" type="number" step="0.1" min="0" placeholder="选填" oninput="updateSlicesHint('I')" data-page-node-id="4PFOQtDgFW919C8cV6aZRB" /></div>
+        <div class="field" data-page-node-id="AyKc3jqR2hlpK3sSmYY0kU"><label data-page-node-id="CeorxA9feHEkMaof0QcRim">店铺</label><input id="I-shop" list="shop-list" placeholder="选填" data-page-node-id="TYusufvJvdmGwKloJ4sTUh" /></div>
+        <div class="field" data-page-node-id="A6H3S4QkL8Mku0tn9uQAtX"><label data-page-node-id="GKw8pPncHAcbpP6EOPkniL">重量</label><input id="I-weight" placeholder="如 120g" data-page-node-id="ay9BAwunfHJMtrWEnN55KC" /></div>
+      </div>
+      <div class="field" data-page-node-id="Ix3FPERek5Z75VZrzOc96W"><label data-page-node-id="PFOmNrf2puFdJHWhmAa6bB">放入冰箱日期</label><input id="I-date" type="date" data-page-node-id="ODKAVoz1362ENaoDhS5Wwz" /></div>
+      <div class="modal-actions" data-page-node-id="KNQAm8XhDMDRjP8u9XrjXJ">
+        <button class="btn btn-cancel" onclick="closeModal('modal-inv')" data-page-node-id="tghHeARGwcTwBpdAXJiE5w">取消</button>
+        <button class="btn btn-ok" onclick="saveInv()" data-page-node-id="CB6aDWK7Gg6RDNKa8Kh7C6">入库</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 吃面包弹窗 ============ -->
+  <div class="modal-mask" id="modal-eat" data-page-node-id="sNDhPR6HWBzDAF2eZGv4Ez">
+    <div class="modal cool" data-page-node-id="DEpcdEqRP6GdQvsGrAjkqE">
+      <h2 data-page-node-id="f8mNAFxnfg8AWY5LHYfw98">开吃</h2>
+      <div class="modal-sub" id="eat-sub" data-page-node-id="1RjBksiuwyhyBi07VDDwhX">谁 · 几个 · 什么时候</div>
+      <div class="field" id="eat-who-field" data-page-node-id="IXiWv0akIUzlBvzYHud6iH">
+        <label data-page-node-id="qj8865Z6anDYhlQ5CyJjuF">谁吃</label>
+        <div class="who-row" data-page-node-id="k0zRCY296XHA8u8wv2yeJO">
+          <div class="who-card" data-who="mi" onclick="pickWho(this,'eat')" data-page-node-id="R7gzDSa0Wv1NOxa4DMwiIG"><span class="emo" id="eat-emo-mi" data-page-node-id="27lFLRVyas7VWwJwD4PwXF">🐱</span><span id="eat-name-mi" data-page-node-id="4zonzWNPNj545O6wwW1KKM">咪</span></div>
+          <div class="who-card" data-who="dou" onclick="pickWho(this,'eat')" data-page-node-id="2tUvddECGQaXc1jUFbauPY"><span class="emo" id="eat-emo-dou" data-page-node-id="J9Ey8cncAnQtFn0KeVgb3c">🐶</span><span id="eat-name-dou" data-page-node-id="I7ZMb4aqiz7OCbKzw49yGK">豆</span></div>
+          <div class="who-card who-card-both" data-who="both" onclick="pickWho(this,'eat')" data-page-node-id="bFl48NAbJfRjKPQj9CGwT4"><span class="emo" data-page-node-id="BZZzVCmpVUANcSsWlj9OZK">👫</span><span data-page-node-id="Jrzx3m4NKABp6jrRuHG2cD">一起</span></div>
+        </div>
+      </div>
+      <div class="field" data-page-node-id="Wu1YWIRBgCaWv4di8LjE9h"><label data-page-node-id="4EyTDSLCYCr7BSWakI75l3">吃几个</label><input id="E-qty" type="number" min="1" value="1" data-page-node-id="ADR7v8FhZWO3VLtVlF9xbf" /></div>
+      <div class="field" data-page-node-id="GFKuU1ZaNEY8znx5yBUvg0">
+        <label data-page-node-id="BxQX3p2UzA6nxVmFPvXZ0M">味道打分 <span style="font-weight:400; color:var(--ink-soft); font-size:11px; letter-spacing:1px;" data-page-node-id="DJhEPKbQWnCaP1BHdVoFlI">选填 · 好吃就多给一颗</span></label>
+        <div class="star-row" id="E-star-row" data-page-node-id="xQ1oAexku9VYw67zU5bBkl">
+          <button type="button" class="star-btn" data-star="1" onclick="setEatRating(1)" data-page-node-id="Ern8c5fxAEHdTkZYtwfxpM">★</button>
+          <button type="button" class="star-btn" data-star="2" onclick="setEatRating(2)" data-page-node-id="XxVjCES0K02LZHsCxQQLMK">★</button>
+          <button type="button" class="star-btn" data-star="3" onclick="setEatRating(3)" data-page-node-id="FyiTVNuhIjavLuSzM8D8SW">★</button>
+          <button type="button" class="star-btn" data-star="4" onclick="setEatRating(4)" data-page-node-id="7QkEk023wqGYCpINIYSgVv">★</button>
+          <button type="button" class="star-btn" data-star="5" onclick="setEatRating(5)" data-page-node-id="YFAMCfKlF63aHjuTmjy68j">★</button>
+          <button type="button" class="star-clear" onclick="setEatRating(0)" data-page-node-id="1oKRrqE6bIhruiYGozH9rV">跳过</button>
+          <span class="star-tip" id="E-star-tip" data-page-node-id="NXG3xJnM4DA4j1Eg1gvdI5"></span>
+        </div>
+      </div>
+      <div class="field" data-page-node-id="swnclTyQBDFRGFtQuVU07M">
+        <label data-page-node-id="rKe27vplbSG5SbxG6NqnWL">吃的日期 + 时段</label>
+        <div class="eat-time-row" data-page-node-id="sVd5i1CvJ86Gjhw18UJKCG">
+          <input id="E-date" type="date" data-page-node-id="9pd09RQ7spVJ84tRQyLMbs" />
+          <div class="slot-row" id="E-slot-row" data-page-node-id="gxbtjfGjbCpn1sE7o4DLW6">
+            <button type="button" class="slot-chip" data-slot="早上" onclick="setSlot('早上')" data-page-node-id="aO40xm4vLOmrMsLEW6T8OS">🌅 早上</button>
+            <button type="button" class="slot-chip" data-slot="中午" onclick="setSlot('中午')" data-page-node-id="y7ZCcx1F45Er9IhO5F3ZTO">☀️ 中午</button>
+            <button type="button" class="slot-chip" data-slot="晚上" onclick="setSlot('晚上')" data-page-node-id="zEY6fOpY3cFvHdDxG6Ubst">🌙 晚上</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-actions" data-page-node-id="4aMl9tzPpLzl7HB23SPrcf">
+        <button class="btn btn-cancel" onclick="closeModal('modal-eat')" data-page-node-id="SeVNNj8YRl2au3tBnZTNty">取消</button>
+        <button class="btn btn-ok" onclick="confirmEat()" data-page-node-id="lLk5NyNI7tmx9qKWki2xjq">开吃</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 口味编辑弹窗 ============ -->
+  <div class="modal-mask" id="modal-pref" data-page-node-id="EeFENJ69290xGHjTFR833x">
+    <div class="modal" data-page-node-id="na0qfO20QHx6Yakc0Fs95W">
+      <h2 data-page-node-id="xbtOZpXqAiqE5U5iJzbY8U">改口味</h2>
+      <div class="modal-sub" data-page-node-id="H2UzrYGaVKqWlryJIYRj19">头像 · 名字 · 标签 · 配色</div>
+      <div class="field" data-page-node-id="0pE09V1tFHNR1AoDRiJ2EP">
+        <label data-page-node-id="lLfmrG6JdoOVQGY2Czq7HX">头像</label>
+        <button class="icon-trigger" id="P-emo-btn" type="button" onclick="toggleIconPicker('pref')" style="width:60px;height:60px;font-size:28px;" data-page-node-id="zuwCSEtti7RnaaoV4pNh9Z">🐱</button>
+        <div class="icon-grid" id="P-emo-grid" style="display:none;" data-page-node-id="Z9BkPifwA9gX5a1kGzyB7e"></div>
+      </div>
+      <div class="field" data-page-node-id="4yeBkBwdypavNONaMMMMAZ">
+        <label data-page-node-id="l39BgRHNZIZ9dKxVNzJbzh">名字</label>
+        <input id="P-name" placeholder="比如：咪 / 阿咪 / 咪酱" data-page-node-id="enrOJtl64Ouxa6QqCqTvGR" />
+      </div>
+      <div class="field" data-page-node-id="3JChZ1SVTGClWHjB1VopQN">
+        <label data-page-node-id="a4b5pL67WJRQfMOj0vuQUF">口味标签</label>
+        <input id="P-tag" placeholder="比如：喜甜 / 不吃葱 / 咖啡党" data-page-node-id="ApxmRxSAH2OspgEcIjWseW" />
+      </div>
+      <div class="field" data-page-node-id="WEji8mcWtgatexTkkGbNHG">
+        <label data-page-node-id="DsZqo3pUFhiGizbACfAqHE">主题色</label>
+        <div class="color-row" id="P-colors" data-page-node-id="RE8ePYE2T2Ac7OQtRJUoB0"></div>
+      </div>
+      <div class="modal-actions" data-page-node-id="QC0bE2yINzv5OsC4FFkAqi">
+        <button class="btn btn-cancel" onclick="closeModal('modal-pref')" data-page-node-id="bzmSqNuP2SjRI0WFEKn4A7">取消</button>
+        <button class="btn btn-ok" onclick="savePref()" data-page-node-id="AixW4QoEoJZNClK8peLkLF">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 保质期编辑弹窗 ============ -->
+  <div class="modal-mask" id="modal-shelf" data-page-node-id="rO0aOh6HyWjXKnbRUF7g8D">
+    <div class="modal cool" data-page-node-id="CQHTUnuLgi6xU4jz3zF6vL">
+      <h2 data-page-node-id="UxPOrAGH3AeS0PDoIttuXR">改保质期</h2>
+      <div class="modal-sub" id="shelf-sub" data-page-node-id="JK6TmXD3HZo6BnxKtJQ05Z">设置这一款几天内吃完</div>
+      <div class="field" data-page-node-id="CbE4iIF4iEYeV8RtklPP3V">
+        <label data-page-node-id="B63iWTGVvzSeYJObnVsWAR">保质期（天）</label>
+        <input id="S-shelf" type="number" min="1" max="60" data-page-node-id="ljFQ87EFRZtyCkBXEAKiLG" />
+      </div>
+      <div class="field" data-page-node-id="2v1sfxMa7ZjT88BN8eauFQ">
+        <label data-page-node-id="zWiL9KHAyw26rNhg7sJNEL">快速设置</label>
+        <div class="shelf-presets" data-page-node-id="smawS8AaMECghNpGKLOhcz">
+          <button onclick="setShelf('S',3)" data-page-node-id="pwvWWBZXKlHHb4gTvqfAVs">3天</button>
+          <button onclick="setShelf('S',5)" data-page-node-id="slBjNWCBJAYyMBh55JogIk">5天</button>
+          <button onclick="setShelf('S',7)" data-page-node-id="3ntvF0fuzHyHuAdH7xwavP">7天</button>
+          <button onclick="setShelf('S',14)" data-page-node-id="jUwSzaLFNjSGSMClgXKqCv">14天</button>
+          <button onclick="setShelf('S',30)" data-page-node-id="9xU0iGq4nLLVjWSBAIAVSf">30天</button>
+        </div>
+      </div>
+      <div class="modal-actions" data-page-node-id="3OfWN4ECI4W6gmIWy2ZKef">
+        <button class="btn btn-cancel" onclick="closeModal('modal-shelf')" data-page-node-id="K0sWiXmOFIDQlmkPuAB5mW">取消</button>
+        <button class="btn btn-ok" onclick="saveShelf()" data-page-node-id="OAyxVjuaJQFrB6VvTs3aPa">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 改日期弹窗 ============ -->
+  <div class="modal-mask" id="modal-date" data-page-node-id="40xsZZvDqTA8SEx5U1MBGC">
+    <div class="modal cool" data-page-node-id="uV2fXxJm29kdIRgMcSNy0I">
+      <h2 data-page-node-id="Kzf6r5jBO7Jcmq3etsrLZz">改放入日期</h2>
+      <div class="modal-sub" id="date-sub" data-page-node-id="yO3FuE7gtL57zpnz8oXG4c">设置这一款哪天放入冰箱</div>
+      <div class="field" data-page-node-id="LVIQ06yD1y3GoOyjE5BxWF">
+        <label data-page-node-id="64ZiRtkf7By5cxNEnyHDxI">放入冰箱日期</label>
+        <input id="D-date" type="date" data-page-node-id="2A4AoxJpmh4KaLR8VqRxhU" />
+      </div>
+      <div class="modal-actions" data-page-node-id="JbsHFugHoimpiY0Th9aXof">
+        <button class="btn btn-cancel" onclick="closeModal('modal-date')" data-page-node-id="dGNb4kT08zUoKFp6Z5tGfg">取消</button>
+        <button class="btn btn-ok" onclick="saveDate()" data-page-node-id="f0wFTQgnmsiT7hNBgyD4qB">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 带走弹窗（库存 → 某人的背包） ============ -->
+  <div class="modal-mask" id="modal-take" data-page-node-id="n1YFGHuSsanBrQHmwp4Q7V">
+    <div class="modal cool" data-page-node-id="rbAG04E8CmGctKFdsBgG11">
+      <h2 data-page-node-id="vnGACnurcUbcDDgVKYjGhv">带走</h2>
+      <div class="modal-sub" id="take-sub" data-page-node-id="dKJ1ixWT6jrRYqF27pKlO3">从冰箱带走 · 放进谁的背包</div>
+      <div class="field" data-page-node-id="koEVFTKjVWC0sS7KdfgZVR">
+        <label data-page-node-id="mJeHkY9xse32QxETM7bbtg">谁带走</label>
+        <div class="who-row" data-page-node-id="KRec5aZbryInB30ZAWM9Op">
+          <div class="who-card" data-who="mi" onclick="pickWho(this,'take')" data-page-node-id="lExm6Z8GbZsRT84zCZce3p"><span class="emo" id="take-emo-mi" data-page-node-id="titURH6ixM5tBNfY6c3Qqk">🐱</span><span id="take-name-mi" data-page-node-id="nOEoPynwqvmOB1wYYV0CJ9">咪</span></div>
+          <div class="who-card" data-who="dou" onclick="pickWho(this,'take')" data-page-node-id="uANWwaQgb3YmnPJYIAnlT2"><span class="emo" id="take-emo-dou" data-page-node-id="iBfpLlIvrFH6DSybUJIQ5j">🐶</span><span id="take-name-dou" data-page-node-id="g5yuXoDrVbDMj9ChLJyDmL">豆</span></div>
+        </div>
+      </div>
+      <div class="field" data-page-node-id="rSErxcS3DXBua25t1nIB0n"><label data-page-node-id="FxgZJufBJFhmHyVU7NkAfW">带走几个</label><input id="T-qty" type="number" min="1" value="1" data-page-node-id="w9hE3hMAOjVbDs8Zg0emWJ" /></div>
+      <div class="modal-actions" data-page-node-id="nbjffCoRIwcJiGR0epFapA">
+        <button class="btn btn-cancel" onclick="closeModal('modal-take')" data-page-node-id="NHsSLINoHBhahBdHlfNhwX">取消</button>
+        <button class="btn btn-ok" onclick="confirmTake()" data-page-node-id="CayvfEFblcnhtQh7ozPgCF">带走</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 冷冻弹窗（背包 → 仓库） ============ -->
+  <div class="modal-mask" id="modal-freeze" data-page-node-id="0D94MDVyjF1VGimmqwqsmT">
+    <div class="modal" data-page-node-id="0Cn1jZGRFMvT1rkUoeFccU">
+      <h2 data-page-node-id="1W2JGBhG0LOXsrYujpoPAY">冷冻</h2>
+      <div class="modal-sub" id="freeze-sub" data-page-node-id="YiWNlEiq5BYSA35EgXqL79">从背包放进仓库冷冻</div>
+      <div class="field" data-page-node-id="fGJL33BDrqQZP3Fp56QDug"><label data-page-node-id="ZUtAMnefpdZpmQ2tYv0VQN">冷冻几个</label><input id="F-qty" type="number" min="1" value="1" data-page-node-id="qpDT9yaoz0j2V8zNW1nsKB" /></div>
+      <div class="modal-actions" data-page-node-id="VdyKJpQFo5VEtjsmXFF318">
+        <button class="btn btn-cancel" onclick="closeModal('modal-freeze')" data-page-node-id="YcqMxYs9jcVrTQTUELxe8X">取消</button>
+        <button class="btn btn-ok" onclick="confirmFreeze()" data-page-node-id="SBBxD4BD8rqSXzcH0tuG72">冷冻</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 切成几份弹窗 ============ -->
+  <div class="modal-mask" id="modal-slices" data-page-node-id="Ca6nxkU38iXTVvdsSngzdi">
+    <div class="modal cool" data-page-node-id="I8YQHC83ral6MAIm8uLbqM">
+      <h2 data-page-node-id="GFppddaKILsAVTM080GjHZ">切成几份</h2>
+      <div class="modal-sub" id="slices-sub" data-page-node-id="Fo10RXMY886BWwSdgpqsqg">一个面包切成几份</div>
+      <div class="field" data-page-node-id="ZYClpfNGCVLnlRCNWIxNty">
+        <label data-page-node-id="biHozDS3SPrY3gA6obVf2U">一个切成几份</label>
+        <div class="slices-row" id="S-slices-row" data-page-node-id="VVIDLh8CqnnzE1LmRlnh5d">
+          <input id="S-slices" type="number" min="1" max="24" value="4" oninput="updateSlicesHint('S')" data-page-node-id="xeS4USpoWHVtxEFORRDaaa" />
+          <div class="slices-presets" data-page-node-id="MGxbAS39iu8tR4u0WSM2M3">
+            <button type="button" onclick="setSlicesFor(2)" data-page-node-id="riuQEc4F7IRVPCpHEOowrA">2</button>
+            <button type="button" onclick="setSlicesFor(3)" data-page-node-id="3L38a8H8ydDyEsB02an7e3">3</button>
+            <button type="button" onclick="setSlicesFor(4)" data-page-node-id="W0hzGejizGw93JnbTDfpIj">4</button>
+            <button type="button" onclick="setSlicesFor(6)" data-page-node-id="APM2t8KMPSG7CxaTFByrHC">6</button>
+            <button type="button" onclick="setSlicesFor(8)" data-page-node-id="pmd8OnTsRJ2uH6iu7gJY6i">8</button>
+          </div>
+          <span class="slices-hint" id="S-slices-hint" data-page-node-id="synxdtoNub1Ci9kMtgBB7o"></span>
+        </div>
+        <p style="margin-top:8px; font-size:12px; color:var(--ink-cool-soft); line-height:1.6;" data-page-node-id="NklXRzMRWQZpRsUZbZArHk">
+          金额 = 单价 ÷ 份数 × 吃了几份。份数按「第一次切的时候」定，定下就锁死 —— 吃着吃着变少了、以后再改份数，都不会改掉之前的账
+        </p>
+      </div>
+      <div class="modal-actions" data-page-node-id="DicoNxBvaFgoB0W2ZFHXnu">
+        <button class="btn btn-cancel" id="S-to-unit" onclick="revertToUnit()" data-page-node-id="AvGSdKCXngJTxqD5Bq0s6W">改回件</button>
+        <button class="btn btn-cancel" onclick="closeModal('modal-slices')" data-page-node-id="YMMEYdqa3gN5Q6ARcMMkHd">取消</button>
+        <button class="btn btn-ok" onclick="confirmSlices()" data-page-node-id="wy2LaDB5tnShF25pu9TtyU">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 改店铺（冰箱里每一行） ============ -->
+  <div class="modal-mask" id="modal-shop" data-page-node-id="7gPCLRHw1Ym93A6unhVFar">
+    <div class="modal cool" data-page-node-id="Dtf2UHAG6duGzROhVudkND">
+      <h2 data-page-node-id="IiJrV7thgd8xYvHjVJ8R3t">🏪 改店铺</h2>
+      <div class="modal-sub" id="shop-sub" data-page-node-id="3eNNM9NanNfDfuOoKiO8bM"></div>
+      <div class="field" data-page-node-id="G0PDoEn2yIXYn7NHVxMNTt">
+        <label data-page-node-id="ZVifgFVfMSEuA5q4gTxkYg">选一家</label>
+        <div class="shop-pick" id="shop-pick" data-page-node-id="dKm6RGAzGWlI9K84yI1Vlh"></div>
+      </div>
+      <div class="field" data-page-node-id="69GLuWDJRaqf9zGGfBB7dS">
+        <label data-page-node-id="ufn5ZaImKyHTQmwkTqEuYh">或者自己写</label>
+        <input id="S-shop" list="shop-list" placeholder="留空 = 不标店铺" oninput="markShopChips()" onkeydown="if(event.key==='Enter')confirmShop()" data-page-node-id="QNOSq8p8yuyKs1BrnwHdM1" />
+      </div>
+      <div class="modal-actions" data-page-node-id="ZY4x7doXAt0EKHPkEguJzV">
+        <button class="btn btn-cancel" onclick="clearShop()" data-page-node-id="SfoUMtkMJHM9gxmIrW9hud">清掉店铺</button>
+        <button class="btn btn-cancel" onclick="closeModal('modal-shop')" data-page-node-id="4ZTIutJD2lA5brnkxMCSx1">取消</button>
+        <button class="btn btn-ok" onclick="confirmShop()" data-page-node-id="5cPSdIAXsMEg1tP6j4cZt8">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 吐出来（撤销吃记录）============ -->
+  <div class="modal-mask" id="modal-uneat" data-page-node-id="ZonzkCe5ZJT7R1BSFfS0IF">
+    <div class="modal cool" data-page-node-id="vFxaIA1M6Dc7YaulCASMcS">
+      <h2 data-page-node-id="Q9HDGLL3luVG1IjkWb6iMG">↩ 吐出来</h2>
+      <div class="modal-sub" id="uneat-sub" data-page-node-id="GSj5ihtq03hFEgtqrHyI5K"></div>
+      <div class="field" data-page-node-id="9pzUDl3LAlviMUIuXfjeft">
+        <label data-page-node-id="gsqPP7Rl3bNZ62XZPcHFR4">吐回哪里？</label>
+        <div class="slot-row" id="uneat-dest-row" data-page-node-id="HXyu8cjaSKFie5LMUFqsXy">
+          <button type="button" class="slot-chip" data-dest="inv" onclick="pickUneatDest('inv')" data-page-node-id="4HeYRfc55YH5h6GF4y9moZ">🧊 大冰箱</button>
+          <button type="button" class="slot-chip" data-dest="mi" onclick="pickUneatDest('mi')" data-page-node-id="N1UUmlBpeFoWWdh2MIKAIH">🎒 咪的背包</button>
+          <button type="button" class="slot-chip" data-dest="dou" onclick="pickUneatDest('dou')" data-page-node-id="z88UC1yuZ9GGZLllp5DLWr">🎒 豆的背包</button>
+        </div>
+      </div>
+      <div class="modal-actions" data-page-node-id="2G4b7gJR6veWMPBYsTI7RC">
+        <button class="btn btn-cancel" onclick="closeModal('modal-uneat')" data-page-node-id="od1w7YKUayCsVuEoWuwsUs">取消</button>
+        <button class="btn btn-ok" onclick="confirmUneat()" data-page-node-id="RGUHDJDC1vQ05KrTRFqrIB">↩ 吐出来</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 给某一款打分 / 改分弹窗 ============ -->
+  <div class="modal-mask" id="modal-rate" data-page-node-id="npionLtzzBYMCMVgblCBh7">
+    <div class="modal" data-page-node-id="SxSqdlOPX6e4GfEdngX1eL">
+      <h2 data-page-node-id="bf2jyP3tHbWcIM6wtw5OcY">⭐ 打分</h2>
+      <div class="modal-sub" id="rate-sub" data-page-node-id="DyZlmqUBKDqHwmEOqUgcI2"></div>
+      <div class="rate-list" id="rate-list" data-page-node-id="e4dTgmSSaBEytf6Fq4BbIW"></div>
+      <div class="modal-actions" data-page-node-id="0KQsygZbLqwDedbSmS9kK6">
+        <button class="btn btn-ok" onclick="closeModal('modal-rate')" data-page-node-id="w1Hv6S8iAJwtFUEsCN7Wkg">完成</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 咪豆榜弹窗 ============ -->
+  <div class="modal-mask" id="modal-rank" data-page-node-id="CrsmUHkRvsvzH8JWUtSnVp">
+    <div class="modal rank-modal" data-page-node-id="dfLnVH4mgbBQhhcDGcipnG">
+      <h2 data-page-node-id="VBvkU4tBIFJ71VwXI0MX10">🏆 咪豆榜 <span class="h-pets" data-page-node-id="av1DQqK8HuEAZNFtnx3QKm">🐱🐶</span></h2>
+      <div class="modal-sub" id="rank-sub" data-page-node-id="kBnzGOujH7vF7WVFhu5FRC">吃过的排名</div>
+      <div class="rank-bar" data-page-node-id="IU5TeWgOB4yQ7vY1CZR7Qn">
+        <div class="rank-chips" data-page-node-id="akE9VOCNK4E0cXSC2UQSBs">
+          <span class="chip-label" data-page-node-id="Qw2Z3LPUnONbD9oVTLZq6b">谁</span>
+          <button type="button" class="rchip" data-who="all" onclick="setRankWho('all')" data-page-node-id="atZnTs1NfWm8qMYxv1WDrm">全部</button>
+          <button type="button" class="rchip" data-who="mi" onclick="setRankWho('mi')" data-page-node-id="haVkFS4EswOQknYF6bFp7k">咪</button>
+          <button type="button" class="rchip" data-who="dou" onclick="setRankWho('dou')" data-page-node-id="mQODUxGFmDTRLZKaoUUsnF">豆</button>
+        </div>
+        <div class="rank-chips" data-page-node-id="MVWOjjkYL5IIQBZm7bb2iT">
+          <span class="chip-label" data-page-node-id="NoePd9IUQF6Pab1AZVqtEi">按</span>
+          <button type="button" class="rchip" data-by="rating" onclick="setRankBy('rating')" data-page-node-id="aWd1TmVaDi0C31Vb4QGFSr">⭐ 评分</button>
+          <button type="button" class="rchip" data-by="count" onclick="setRankBy('count')" data-page-node-id="g1lUzkwp0HgpxlN5aR4PoU">🔢 回购次数</button>
+          <button type="button" class="rchip" data-by="amount" onclick="setRankBy('amount')" data-page-node-id="q0biii5Q3AvI5Fp6oBwoii">💰 花销</button>
+        </div>
+      </div>
+      <div class="rank-list" id="rank-list" data-page-node-id="G0lzzJc6vhtmR2LUMIYQH1"></div>
+      <div class="modal-actions" data-page-node-id="ZviWMLhyCxqJURxGvx6trJ">
+        <button class="btn btn-ok" onclick="closeModal('modal-rank')" data-page-node-id="QMxgikJ8fnBjFSnUheWYTJ">知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 换图标弹窗（点卡片上的图标直接改） ============ -->
+  <div class="modal-mask" id="modal-itemicon" data-page-node-id="MIbb6Dnof7TQB2GZXsnzbd">
+    <div class="modal" data-page-node-id="FNtEu3K6fy67x7JB7Vjxgc">
+      <h2 data-page-node-id="XNPGi4pPQdniKqGr0pyCF2">换个图标</h2>
+      <div class="modal-sub" id="itemicon-sub" data-page-node-id="5XN2WhqA9hZUBjTKC6ZhXZ">选一个</div>
+      <div class="field" data-page-node-id="JpPTW9eBTTzfy8DERlFwCb">
+        <div class="icon-grid" id="II-icon-grid" style="display:grid;" data-page-node-id="74NpdYeSrMI3K9sMSgqsSD"></div>
+      </div>
+      <div class="modal-actions" data-page-node-id="BZDAfPRKdUs5U5aCQJn3jS">
+        <button class="btn btn-cancel" onclick="closeModal('modal-itemicon')" data-page-node-id="thJTLCxrqXmhz7nSyHeMaD">取消</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ CSV 粘贴导入弹窗 ============ -->
+  <div class="modal-mask" id="modal-csv" data-page-node-id="i1Z1KF9J6P6jd285BAWx46">
+    <div class="modal cool" data-page-node-id="9sOxeBdKhktocuPf2aswMz">
+      <h2 data-page-node-id="ZpvjeBr1SiX5GMmb7T2bOz">导入 CSV</h2>
+      <div class="modal-sub" data-page-node-id="jdvw2sBbwCwzhwNmLY6dj7">从 Excel / 表格复制后粘贴到这里</div>
+      <div class="field" data-page-node-id="5GWFrv19xbPSBtyUc7xfz1">
+        <label data-page-node-id="DcpKscK1yj0qRZc3me5DOo">CSV 内容</label>
+        <textarea id="csv-text" placeholder="# 咪的冰箱&#10;款式,图标,数量,放入日期,保质期_天&#10;全麦吐司,🍞,6,2026-09-01,7&#10;&#10;# 豆的冰箱&#10;..."></textarea>
+      </div>
+      <div class="field" style="font-size:12px; color:var(--ink-cool-soft); line-height:1.7;" data-page-node-id="ZS39qDPzxog05t2uBdRJkb">
+        支持的格式：用 <code data-page-node-id="QMcFJhrrZNk148b6tNVktX"># sheet 名</code> 开头分段，第一行是表头。每行一条记录，逗号分隔。
+      </div>
+      <div class="modal-actions" data-page-node-id="avt3Li9geIM1Tn1YrkiTFh">
+        <button class="btn btn-cancel" onclick="closeModal('modal-csv')" data-page-node-id="cmUfgLpzpIMwu3DXhRCv7o">取消</button>
+        <button class="btn btn-ok" onclick="applyCSV()" data-page-node-id="aALVPCQOekA0OJa4qukp1R">覆盖导入</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 同步说明弹窗 ============ -->
+  <div class="modal-mask" id="modal-sync" data-page-node-id="0LAWHtngvA6Mt8DxaEQwri">
+    <div class="modal cool sync-modal" data-page-node-id="PB1NQyUmjoWdGSX0AXZjDC">
+      <h2 data-page-node-id="rA6ME5dtjlRNfzkTUFIloz">两个人一起用 · 同步说明</h2>
+      <div class="modal-sub" data-page-node-id="b6r0UMGx95UB9e7javNNAD">数据存在云端服务器，两个人看到的是同一份</div>
+
+      <div class="sync-block" style="border: 2px solid var(--mint); background: linear-gradient(135deg, var(--soft-cool), var(--card-cool));" data-page-node-id="PkJbUIMnHf5sQoqNABl7XI">
+        <h4 data-page-node-id="xKzNUfoEr1dbIiDBD48zwJ">☁️ 当前：所有人共用一个云端数据 <span class="badge badge-active" data-page-node-id="epE29JKcIqBTf6RontPAtu">已激活</span></h4>
+        <p data-page-node-id="4eCv7Al1DtKP49SBIyOVhu">数据存在服务器上，不再依赖某一台手机。<b data-page-node-id="ZksWPq0UIBQ0iEZyxAek6Y">谁改的，所有人打开链接看到的都是改后的结果。</b></p>
+        <p style="margin-top:6px;" data-page-node-id="a74CI9XKqgTMkJLCBU9iVY">★ 怎么用：</p>
+        <p data-page-node-id="Kp2FlKJ3slvWVzWYvnHERA">① 直接在看板上改 —— ＋记一笔 / 数量 ± / 删除 / 改日期 / 开吃，<b data-page-node-id="EZ0z7Lg8XuYGOTXMb5gzCC">改动会自动上传</b></p>
+        <p data-page-node-id="OKcNk7573MOb3FQ6iAV5TE">② 对方那边最多 8 秒自动刷新；也可以点顶部「🔄 同步」立刻拉最新</p>
+        <p data-page-node-id="qaYGjwX3DFjtrznc4Bnrhv">③ 顶部显示「最后同步 · MM-DD HH:mm（服务器）」= 这次改动已存到云端</p>
+        <div style="margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;" data-page-node-id="uaj4k5twB7agjHZBAJUimi">
+          <button class="btn btn-ok" onclick="triggerSync()" data-page-node-id="OaN8LWhOufgyRyozfq53Ty">🔄 立刻拉最新</button>
+          <button class="btn" onclick="closeModal('modal-sync')" data-page-node-id="skadQRFXYKVr6FJP6SWSDU">关闭</button>
+        </div>
+      </div>
+
+      <div class="sync-block" style="opacity:0.75;" data-page-node-id="n8XXPwufmGDDNtIWbKANuq">
+        <h4 data-page-node-id="uwLQ960Xfqo3glcz42b1Id">↓ 备份（本地副本导出） <span class="badge badge-fast" data-page-node-id="KP6ehuSmeAmTjIiAPHFJhG">万一用</span></h4>
+        <p data-page-node-id="Fqzen5vnw86UGszC93JpJk">导出 <code data-page-node-id="SolrkxeYJ5A7hpb0lurKFS">bread-data-*.json</code> 当兜底备份；用不上就放着。系统也会每天 22:00 自动备份一份到 <code data-page-node-id="wFYFFufw4HuXpermGYImGl">backups/</code>。</p>
+      </div>
+
+      <div style="margin-top:18px; padding:14px; background:var(--cream); border-radius:12px; border:1px dashed var(--line-warm); font-size:13px; color:var(--ink-soft);" data-page-node-id="VjPQ5bOXUXBemNnntrUBGh">
+        <b style="color:var(--caramel-deep);" data-page-node-id="I6OhCOHOnawehkaL1AWKQb">⚠ 用法约定</b><br data-page-node-id="CY6TA1kupBxoN1DOYIjIYD">
+        · 数据存在服务器上，两个人（咪 / 豆）打开同一个链接 = 看到同一份数据<br data-page-node-id="H7GH1sgpiNVBi2qC3gTjxY">
+        · 所有改动自动上传（约 0.3 秒后），每 8 秒自动拉取对方的改动<br data-page-node-id="AYOopc9xHV7uVutLjbCCqE">
+        · 两人<b data-page-node-id="1ciFn5FojlSPJf99HKwqLt">同时</b>改同一条时：后提交的会看到「对方刚改过，已刷新为最新」，以先提交的那份为准<br data-page-node-id="QtpmDKkhbahbWnemhOOFuC">
+        · 断网时改动只存本机，恢复联网后下一次操作会自动补传
+      </div>
+
+      <div class="modal-actions" data-page-node-id="NYvVAOFB30UGY1goAqEDZA">
+        <button class="btn btn-ok" onclick="closeModal('modal-sync')" data-page-node-id="1kPBbcdi0L12lRbYn9dCLn">知道了</button>
+      </div>
+    </div>
+  </div>
+
+  <input type="file" id="file-input" style="display:none;" accept=".json,.csv" data-page-node-id="2YDNpX4gZKYUsdoGHZSe2B" />
+
+  <!-- 店铺名候选（自动来自已有库存） -->
+  <datalist id="shop-list" data-page-node-id="a0viLaHYWsfS7xLHvsxaPa"></datalist>
+
+<script>
+// ===================== 数据 =====================
+const STORE = 'bread-ledger-v3';
+
+/* 图标库：按类别分组（换图标弹窗里分组显示 + 可搜索）
+   中文名用来做搜索关键词，输入「抹茶」「芝士」「咖啡」都能找到。 */
+const ICON_GROUPS = [
+  { name: '面包 · 主食', icons: ['🍞','🥐','🥯','🥖','🥨','🫓','🥪','🥙','🌮','🌯','🍕','🥟','包','🥮','🍙','🍥','🥧','🧇','🥞','🍚','🍘','🥠','🍜'] },
+  { name: '甜点 · 奶香', icons: ['🧁','🍰','🎂','🍩','🍪','🍫','🍬','🍭','🍮','🍧','🍨','🍦','🥛','🧈','🍯'] },
+  { name: '水果',       icons: ['🍓','🍒','🍑','🍅','🥭','🍍','🥝','🍇','🍉','🍊','🍋','🍌','🍎','🍏','🫐','🍈','🍐','🥥'] },
+  { name: '谷物 · 薯类', icons: ['🌰','🥜','🌾','🌽','🍠','🥔','🫘','🌿','🍃'] },
+  { name: '咸口 · 配料', icons: ['🧀','🥚','🍳','🥓','🧄','🧅','🥩','🍗','🐔','🐟','🍤','🦐','🌭','🫒','🧆','🥕','🫑','🧂','🫙','🥄'] },
+  { name: '饮品',       icons: ['☕','🍵','🧋','🥤','🧉','🍶','🍺','🍷','🥂','🍹','🍾','🧊'] },
+  { name: '口味 · 象形', icons: ['🌹','🍄','🎃','🐷','🐮','🐙','🟢','🌶️'] },
+  { name: '小动物 · 头像', icons: ['🐱','🐶','🐰','🐻','🐼','🦊','🐹','🐣','🐤','🦁','🐯','🐨','🐸','🐵'] },
+  { name: '其他',       icons: ['⭐','🌟','✨','❤️','🔥','🍴','🧺','🎁'] },
+];
+const ICON_TAGS = {
+  '🍞':'面包 吐司 toast','🥐':'可颂 牛角','🥯':'贝果','🥖':'法棍','🥨':'碱水 结','🫓':'饼 恰巴塔 馕','🥪':'三明治 sandwich','🥙':'卷饼','🌮':'塔可','🌯':'卷','🍕':'披萨','🥟':'饺子 包子','包':'包子','🥮':'月饼','🍙':'饭团','🍥':'鱼板','🥧':'派 pie','🧇':'华夫','🥞':'松饼','🍚':'米饭','🍘':'米果 仙贝','🥠':'幸运饼','🍜':'面 拉面',
+  '🧁':'纸杯蛋糕','🍰':'蛋糕 芝士','🎂':'生日蛋糕','🍩':'甜甜圈','🍪':'饼干','🍫':'巧克力','🍬':'糖','🍭':'棒棒糖','🍮':'布丁','🍧':'刨冰','🍨':'冰淇淋','🍦':'冰淇淋 冰激凌','🥛':'牛奶','🧈':'黄油','🍯':'蜂蜜',
+  '🍓':'草莓','🍒':'樱桃','🍑':'桃子','🍅':'番茄 西红柿','🥭':'芒果 榴莲','🍍':'菠萝 凤梨','🥝':'奇异果 猕猴桃','🍇':'葡萄 黑醋栗','🍉':'西瓜','🍊':'橘子 橙 柚子','🍋':'柠檬','🍌':'香蕉','🍎':'苹果','🍏':'青苹果','🫐':'蓝莓','🍈':'哈密瓜 蜜瓜','🍐':'梨','🥥':'椰子',
+  '🌰':'栗子 坚果 核桃','🥜':'花生 坚果','🌾':'麦 谷物 全麦','🌽':'玉米','🍠':'红薯 地瓜 蜜薯 芋','🥔':'土豆','🫘':'豆 红豆','🌿':'香草 草本','🍃':'叶 抹茶 茶',
+  '🧀':'芝士 奶酪 乳酪','🥚':'蛋','🍳':'煎蛋','🥓':'培根','🧄':'蒜','🧅':'洋葱','🥩':'肉 牛肉','🍗':'鸡腿','🐔':'鸡','🐟':'鱼','🍤':'虾 天妇罗','🦐':'虾','🌭':'热狗 香肠','🫒':'橄榄','🧆':'丸子','🥕':'胡萝卜','🫑':'青椒 彩椒','🧂':'盐','🫙':'罐子','🥄':'勺',
+  '☕':'咖啡 拿铁 提拉米苏','🍵':'茶 抹茶','🧋':'奶茶','🥤':'饮料 杯','🧉':'马黛','🍶':'清酒 酒','🍺':'啤酒','🍷':'红酒','🥂':'香槟','🍹':'鸡尾酒','🍾':'起泡酒','🧊':'冰',
+  '🌹':'玫瑰 花','🍄':'蘑菇 菌菇','🎃':'南瓜','🐷':'猪肉脯 猪 肉松','🐮':'牛奶 牛 牛肉','🐙':'章鱼 鱿鱼','🟢':'绿色 圆','🌶️':'辣 辣椒',
+  '🐱':'猫 咪','🐶':'狗 豆','🐰':'兔','🐻':'熊','🐼':'熊猫','🦊':'狐狸','🐹':'仓鼠','🐣':'小鸡','🐤':'小鸡','🦁':'狮子','🐯':'老虎','🐨':'考拉','🐸':'青蛙','🐵':'猴',
+  '⭐':'星','🌟':'星星','✨':'闪','❤️':'心 爱','🔥':'火 热','🍴':'餐具 叉','🧺':'篮子 面包篮','🎁':'礼物',
+};
+const ICONS = ICON_GROUPS.reduce((a, g) => a.concat(g.icons), []);
+
+// 台账里已经出现过的图标（首次打开时用，之后由 collectUsedIcons() 实时补充）
+const ICONS_SEED = ['🧀','🍵','🫐','🐷','☕','🍊','🌹','🥩','🎃','🍫','🐙','🥪','🍓','🍒','🍑','🍅','🥭','🌽','🍠','🍄','🐔','🐮','🌾','🌭','🥥','🟢','🥯','🍪'];
+
+/* 把「内置图标」+「台账里正在用的图标」合并去重，保证任何一条库存/背包
+   条目上换图标时，它现在用的那个一定能在可选列表里找得到。 */
+function allIcons() {
+  const seen = new Set();
+  const out = [];
+  ICONS.concat(ICONS_SEED, collectUsedIcons()).forEach(ic => {
+    if (ic && !seen.has(ic)) { seen.add(ic); out.push(ic); }
+  });
+  return out;
+}
+// 实时扫描数据里出现过的所有图标
+function collectUsedIcons() {
+  const set = new Set();
+  try {
+    (data.inventory || []).forEach(x => { if (x.icon) set.add(x.icon); });
+    ['mi','dou'].forEach(w => (data.ledger?.[w] || []).forEach(x => { if (x.icon) set.add(x.icon); }));
+  } catch(e){}
+  return Array.from(set);
+}
+
+const COLORS = [
+  { name: '番茄红', value: '#D85C4A' },
+  { name: '蜜瓜橙', value: '#E89F6E' },
+  { name: '焦糖棕', value: '#B9753B' },
+  { name: '鼠尾草', value: '#8FA67E' },
+  { name: '薄荷绿', value: '#6B9B5E' },
+  { name: '薰衣草', value: '#9D89B5' },
+  { name: '深咖',   value: '#6B4A2E' },
+  { name: '墨黑',   value: '#3B2A1A' },
+];
+
+const defaultData = () => {
+  const today = new Date();
+  const d = (offset) => { const x = new Date(today); x.setDate(x.getDate() - offset); return x.toISOString().slice(0,10); };
+  return {
+    version: 3,
+    prefs: {
+      mi:  { emoji: '🐱', name: '咪', tag: '喜甜', color: '#D85C4A' },
+      dou: { emoji: '🐶', name: '豆', tag: '爱咸', color: '#8FA67E' },
+    },
+    ledger: {
+      mi: [
+        { id: id(), name: '北海道牛奶吐司', icon: '🍞', qty: 6, date: d(2), shelf: 7 },
+        { id: id(), name: '蔓越莓软欧',     icon: '🥖', qty: 2, date: d(5), shelf: 5 },
+      ],
+      dou: [
+        { id: id(), name: '全麦吐司',   icon: '🍞', qty: 8, date: d(1), shelf: 7 },
+        { id: id(), name: '芝士碱水包', icon: '🥨', qty: 3, date: d(4), shelf: 5 },
+        { id: id(), name: '蒜香法棍',   icon: '🥖', qty: 1, date: d(7), shelf: 3 },
+      ],
+    },
+    inventory: [
+      { id: id(), name: '全麦吐司',       icon: '🍞', qty: 12, date: d(2), shelf: 7 },
+      { id: id(), name: '北海道牛奶吐司', icon: '🍞', qty: 6,  date: d(3), shelf: 7 },
+      { id: id(), name: '芝士碱水包',     icon: '🥨', qty: 4,  date: d(5), shelf: 5 },
+      { id: id(), name: '蔓越莓软欧',     icon: '🥖', qty: 2,  date: d(7), shelf: 5 },
+    ],
+    eatLog: [],
+  };
+};
+
+function id(){ return Math.random().toString(36).slice(2,9); }
+function load() {
+  // 数据源只有两个：本机 localStorage（离线兜底）→ 服务端（权威，启动时拉取覆盖）
+  try {
+    const raw = localStorage.getItem(STORE);
+    if (raw) {
+      const d = JSON.parse(raw);
+      if (!d.version) return migrate(d);
+      return d;
+    }
+  } catch(e){}
+  const s = defaultData();
+  localStorage.setItem(STORE, JSON.stringify(s));
+  return s;
+}
+function migrate(oldData) {
+  const fresh = defaultData();
+  fresh.ledger = oldData || { mi: [], dou: [] };
+  fresh.ledger.mi  = (fresh.ledger.mi  || []).map(x => ({ ...x, icon: x.icon || '🍞', shelf: x.shelf || 7 }));
+  fresh.ledger.dou = (fresh.ledger.dou || []).map(x => ({ ...x, icon: x.icon || '🍞', shelf: x.shelf || 7 }));
+  fresh.inventory = (fresh.inventory || []).map(x => ({ ...x, icon: x.icon || '🍞', shelf: x.shelf || 7 }));
+  return fresh;
+}
+function save(d) { localStorage.setItem(STORE, JSON.stringify(d)); schedulePush(); }
+
+let data = load();
+
+// ===================== 工具 =====================
+function ageInDays(s){ const a=new Date(s), b=new Date(); return Math.max(0, Math.floor((b-a)/86400000)); }
+function ageState(d, shelf){
+  if (d >= shelf) return ['age-expired', '已过期'];
+  if (d >= shelf * 0.7) return ['age-hurry', '尽快吃'];
+  if (d >= shelf * 0.3) return ['age-okay',  '还行'];
+  return ['age-fresh', '新鲜'];
+}
+function fmt(s){ const d=new Date(s); return `${d.getMonth()+1}.${d.getDate()}`; }
+function esc(s){ return String(s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function lightenHex(hex, amt = 0.85) {
+  const r = parseInt(hex.slice(1,3),16), g = parseInt(hex.slice(3,5),16), b = parseInt(hex.slice(5,7),16);
+  const lr = Math.round(r + (255 - r) * amt);
+  const lg = Math.round(g + (255 - g) * amt);
+  const lb = Math.round(b + (255 - b) * amt);
+  return `rgb(${lr}, ${lg}, ${lb})`;
+}
+
+// ===================== 顶部同步条 =====================
+// 数据源已全部迁到 Node 服务端，同步时间以「服务端 stamp」为准
+let serverSyncAt = 0;                       // 最后一次成功读写服务端的时间戳(ms)
+function fmtStamp(ms) {
+  if (!ms) return '';
+  const d = new Date(ms);
+  const p = n => String(n).padStart(2, '0');
+  return `${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+function updateLastSync() {
+  let ts = '本机';
+  if (serverSyncAt) ts = fmtStamp(serverSyncAt) + '（服务器）';
+  else ts = localStorage.getItem(STORE + '-lastsync') || '本机';
+  document.getElementById('last-sync').textContent = '最后同步 · ' + ts;
+}
+function bumpLastSync(t = '本机') {
+  localStorage.setItem(STORE + '-lastsync', t);
+  updateLastSync();
+}
+
+// ===================== 渲染 · 通用 =====================
+function applyPrefs() {
+  ['mi','dou'].forEach(who => {
+    const p = data.prefs[who];
+    document.getElementById('avatar-' + who).textContent = p.emoji;
+    document.getElementById('name-'   + who).textContent = p.name;
+    const tag = document.getElementById('tag-' + who);
+    tag.textContent = p.tag;
+    tag.style.background = lightenHex(p.color);
+    tag.style.color = p.color;
+    document.getElementById('who-emo-' + who).textContent = p.emoji;
+    document.getElementById('who-name-' + who).textContent = p.name;
+    document.getElementById('eat-emo-' + who).textContent = p.emoji;
+    document.getElementById('eat-name-' + who).textContent = p.name;
+    const te = document.getElementById('take-emo-' + who);
+    if (te) te.textContent = p.emoji;
+    const tn = document.getElementById('take-name-' + who);
+    if (tn) tn.textContent = p.name;
+  });
+}
+
+function renderLedger() {
+  applyPrefs();
+  ['mi','dou'].forEach(who => {
+    const box = document.getElementById('list-' + who);
+    // 大数字 = 总量；下面按实际单位拆开写，件是件、份是份
+    const items = (data.ledger[who] || []).slice().sort((a,b) => a.date < b.date ? 1 : -1);
+    const nJian = items.filter(x => (x.unit || '件') !== '份').reduce((s,x) => s + Number(x.qty||0), 0);
+    const nFen  = items.filter(x => x.unit === '份').reduce((s,x) => s + Number(x.qty||0), 0);
+    document.getElementById('count-' + who).textContent = fmtNum(nJian + nFen);
+    const parts = [];
+    if (nJian > 0) parts.push(`共 ${fmtNum(nJian)} 件`);
+    if (nFen  > 0) parts.push(`共 ${fmtNum(nFen)} 份`);
+    document.getElementById('unit-' + who).innerHTML = parts.length ? parts.join('<br>') : '共 0 件';
+    if (items.length === 0) {
+      box.innerHTML = `<div class="empty">背包空空的，去买点吧～</div>`; return;
+    }
+    box.innerHTML = items.map(it => {
+      const zero = it.qty <= 0;
+      const unit = it.unit || '件';
+      const armed = armedDel.has('L:'+who+':'+it.id);
+      // 份装要显示「每份价」，不能只写整条价（否则 1 份看起来像 ¥19.8，实际是 ¥3.3）
+      const slices = Number(it.slices) || 0;
+      const perTxt = (unit === '份' && slices > 0 && Number(it.price))
+        ? ` · 切成${slices}份 · ¥${fmtMoney(Number(it.price) / slices)}/份` : '';
+      const info = [
+        it.price ? `¥${fmtMoney(it.price)}${perTxt}` : '',
+        it.weight ? esc(it.weight) : '',
+      ].filter(Boolean).join(' · ');
+      const shopTag = it.note ? `<span class="shop-tag">${esc(it.note)}</span>` : '';
+      return `
+        <div class="row ${zero ? 'zero' : ''}">
+          <div class="ic clickable" onclick="openItemIcon('${who}','${it.id}')" title="点一下换图标">${icHtml(it.icon)}</div>
+          <div class="row-name">${esc(it.name)}<span class="qty">× ${it.qty} ${unit}</span>${shopTag}</div>
+          <div class="row-date">${fmt(it.date)}${info ? ' · ' + info : ''}</div>
+          <div class="row-actions">
+            <button class="freeze-btn" ${zero?'disabled':''} onclick="openFreeze('${who}','${it.id}')" title="放进仓库冷冻">❄️</button>
+            <button class="eat-btn" ${zero?'disabled':''} onclick="openEat('${it.id}','${who}')">吃</button>
+            <button class="del ${armed?'armed':''}" onclick="delLedger('${who}','${it.id}')" title="移出背包">${armed?'确认?':'×'}</button>
+          </div>
+        </div>`;
+    }).join('');
+  });
+}
+
+function renderInv() {
+  // all = 全部库存（店铺 chips、金额统计用，不受"隐藏已吃完"开关影响）
+  // list = 当前要渲染的库存（=全量 或 滤掉 qty<=0 的，看开关）
+  const all  = data.inventory.slice().sort((a,b) => a.date < b.date ? 1 : -1);
+  const list = hideEmptyInv ? all.filter(x => Number(x.qty||0) > 0) : all;
+  const emptyCount = all.filter(x => Number(x.qty||0) <= 0).length;
+  const totalQty   = list.reduce((s,x) => s + Number(x.qty||0), 0);
+  // 总价值：件 → 件数×单价；份 →（单价÷总份数）×剩余份数。0 qty 贡献 0，all/list 等价
+  const totalValue = list.reduce((s,x) => {
+    const p = Number(x.price)||0;
+    if ((x.unit||'件') === '份') {
+      const n = Number(x.slices)||0;
+      return s + (n > 0 ? (p / n) * (Number(x.qty)||0) : p);
+    }
+    return s + (Number(x.qty)||0)*p;
+  }, 0);
+
+  document.getElementById('stat-sku').textContent    = list.length;
+  document.getElementById('stat-total').textContent = totalQty;
+  document.getElementById('stat-value').textContent = (totalValue>0 ? '¥'+fmtMoney(totalValue) : '¥0');
+
+  // 店铺筛选条（始终用全量 → 永辉这种只剩 0 qty 的店 chip 还在，方便点回去删/补）
+  const shops = ['全部', ...Array.from(new Set(all.map(x => x.note).filter(Boolean)))];
+  if (!shops.includes(curShop)) curShop = '全部';
+  document.getElementById('inv-shops').innerHTML = shops.map(s =>
+    `<button class="shop-chip ${s===curShop?'on':''}" onclick="setShop(${JSON.stringify(s)})">${esc(s)}</button>`
+  ).join('') +
+    // 👁 切换按钮 — 推到最右；已隐藏状态高亮（绿）
+    `<button class="shop-chip empty-toggle ${hideEmptyInv ? 'on' : ''}" onclick="toggleHideEmpty()" title="${hideEmptyInv ? '已隐藏 qty=0 的库存，点击显示全部' : '当前显示着全部库存，点击隐藏已吃完的'}">👁 ${hideEmptyInv ? `已隐藏 ${emptyCount}` : '显示全部'}</button>`;
+
+  // 视图：店铺筛选 + qty<=0 过滤（仅在隐藏模式下）
+  let view = list;
+  if (curShop !== '全部') view = view.filter(x => x.note === curShop);
+
+  const box = document.getElementById('pool-list');
+  if (view.length === 0) {
+    const tip = curShop !== '全部' ? '这家暂时没库存～'
+              : hideEmptyInv ? (emptyCount>0 ? `已隐藏 ${emptyCount} 个吃完的，点右上角「👁 显示全部」查看 →` : '家里冰箱空空的，去买点吧～')
+              : '家里冰箱空空的，去买点吧～';
+    box.innerHTML = `<div style="text-align:center; padding:48px 0; color:var(--ink-cool-soft); font-size:14px; letter-spacing:2px; opacity:.7;">${tip}</div>`;
+    return;
+  }
+
+  box.innerHTML = view.map(it => {
+    const zero = it.qty <= 0;
+    const unit = it.unit || '件';
+    const armed = armedDel.has('I:'+it.id);
+    const tag = it.note
+      ? `<span class="shop-tag clickable" onclick="openShop('${it.id}')" title="点一下改店铺">${esc(it.note)}</span>`
+      : '';
+    // 份装：显示「总份数」和「每份单价」，一眼看出金额怎么算的
+    const slices = Number(it.slices) || 0;
+    const perTxt = (unit === '份' && slices > 0 && Number(it.price))
+      ? ` · 切成${slices}份 · ¥${fmtMoney(Number(it.price) / slices)}/份` : '';
+    const meta = [
+      it.price ? `¥${fmtMoney(it.price)}${perTxt}` : '',
+      it.weight ? esc(it.weight) : '',
+    ].filter(Boolean).join(' · ');
+    const info = [meta, fmt(it.date)].filter(Boolean).join(' · ');
+    const unitSmall = unit === '份' ? `份 ⇄` : `件 ⇄`;
+    return `
+      <div class="pool-row ${zero ? 'zero' : ''}">
+        <div class="ic clickable" onclick="openItemIcon('inv','${it.id}')" title="点一下换图标">${icHtml(it.icon)}</div>
+        <div class="pool-name">
+          <span class="pool-name-text">${esc(it.name)}</span>${tag}
+          <span class="pool-info" onclick="openDate('${it.id}')" title="点改放入日期">${info}</span>
+        </div>
+        <div class="qty-stepper">
+          <button class="qbtn" ${zero ? 'disabled' : ''} onclick="stepQty('${it.id}',-1)" title="减一份">−</button>
+          <div class="pool-qty" onclick="toggleUnit('${it.id}')" title="${unit === '份' ? '点这里改切成几份' : '点这里切成份'}">${it.qty}<small>${unitSmall}</small></div>
+          <button class="qbtn" onclick="stepQty('${it.id}',1)" title="加一份">＋</button>
+        </div>
+        <div class="pool-actions">
+          <button class="shop-btn" onclick="openShop('${it.id}')" title="改店铺">🏪</button>
+          <button class="eat-btn" ${zero ? 'disabled' : ''} onclick="openEat('${it.id}','inv')">开吃</button>
+          <button class="take-btn" ${zero ? 'disabled' : ''} onclick="openTake('${it.id}')" title="从冰箱带走，放进背包">带走</button>
+          <button class="del ${armed?'armed':''}" onclick="delInv('${it.id}')" title="删除">${armed?'确认删除?':'×'}</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+let curShop = '全部';
+function setShop(name) { curShop = name; renderInv(); }
+
+/* 是否隐藏库存 qty<=0 的已吃完条目（默认开） */
+let hideEmptyInv = (() => { try { return localStorage.getItem('bread-ledger-hideEmpty') !== '0'; } catch(e){ return true; } })();
+function toggleHideEmpty() {
+  hideEmptyInv = !hideEmptyInv;
+  try { localStorage.setItem('bread-ledger-hideEmpty', hideEmptyInv ? '1' : '0'); } catch(e){}
+  renderInv();
+}
+
+function renderAll() { renderLedger(); renderInv(); renderEaten(); renderRank(); }
+
+// ===================== 吃过记录（给谁吃就移到谁头像下） =====================
+
+// 单价：记录里没有就按名字回查库存（历史记录兜底）
+function eatPrice(e) {
+  if (Number(e.price)) return Number(e.price);
+  const hit = (data.inventory || []).find(x => x.name === e.name && Number(x.price));
+  return hit ? Number(hit.price) : 0;
+}
+// 每份单价：件 → 单价本身；份 → 单价 ÷ 总份数
+// 有 unitPrice 快照就用快照 —— 份数定下那一刻的每份价就锁死了，以后改份数/改价都不影响已经吃过的账
+function eatUnitPrice(e) {
+  if (Number(e.unitPrice)) return Number(e.unitPrice);
+  const p = eatPrice(e);
+  if (!p) return 0;
+  const n = Number(e.slices) || 0;
+  if (e.unit === '份' && n > 0) return p / n;
+  return p;
+}
+// 给定「单价 / 单位 / 总份数」，算出此刻的每份单价（写记录时存成快照）
+function unitPriceOf(price, unit, slices) {
+  const p = Number(price) || 0;
+  if (!p) return 0;
+  if (unit === '份' && Number(slices) > 0) return p / Number(slices);
+  return p;
+}
+// 金额：件 → 单价 × 数量；份 →（单价 ÷ 总份数）× 吃的份数
+function eatAmount(e) {
+  const up = eatUnitPrice(e);
+  if (!up) return 0;
+  return up * Number(e.qty || 0);
+}
+function eatUnitOf(e) { return e.unit || (e.unit === '份' ? '份' : '件'); }
+
+// 👫 一起吃 → 金额 / 数量两人各一半（两边加起来 = 实际总量，账不会重复算）
+function isShared(e) { return e.who === 'both'; }
+function eatAmountFor(e, who) {
+  const a = eatAmount(e);
+  return (isShared(e) && who) ? a / 2 : a;
+}
+function eatQtyFor(e, who) {
+  const q = Number(e.qty || 0);
+  return (isShared(e) && who) ? q / 2 : q;
+}
+// 整数就不带小数，半份才显示 .5
+function fmtNum(n) {
+  return Math.abs(n - Math.round(n)) < 1e-9 ? String(Math.round(n)) : n.toFixed(1);
+}
+// 金额显示：7.9 就是 7.9，绝不四舍五入成 8（原来是 toFixed(0)，会把角抹掉）
+// 整数 → 8；一位小数 → 7.9；两位以上 → 3.33
+function fmtMoney(n) {
+  const v = Math.round(Number(n || 0) * 100) / 100;
+  if (Math.abs(v - Math.round(v)) < 1e-9) return String(Math.round(v));
+  if (Math.abs(v * 10 - Math.round(v * 10)) < 1e-9) return v.toFixed(1);
+  return v.toFixed(2);
+}
+let curEatMonth = { mi: null, dou: null };
+function setEatMonth(who, ym) { curEatMonth[who] = ym; renderEaten(); }
+
+function renderEaten() {
+  ['mi','dou'].forEach(who => {
+    const box = document.getElementById('eaten-' + who);
+    if (!box) return;
+    // who='both' 的记录两边都显示
+    const allLog = (data.eatLog || [])
+      .filter(x => x.who === who || x.who === 'both')
+      .slice()
+      .sort((a, b) => (b.date || '').localeCompare(a.date || ''));   // 日期降序
+
+    if (!allLog.length) { box.innerHTML = ''; return; }
+
+    const curYM = new Date().toISOString().slice(0, 7);
+    let sel = curEatMonth[who];
+    if (sel === null || sel === undefined) {
+      sel = allLog.some(e => (e.date || '').slice(0, 7) === curYM) ? curYM : 'all';
+      curEatMonth[who] = sel;
+    }
+
+    // 该人吃过的所有月份（已按日期倒序 → 月份天然倒序）
+    const months = [];
+    allLog.forEach(e => { const ym = (e.date || '').slice(0, 7); if (ym && !months.includes(ym)) months.push(ym); });
+
+    let view = sel === 'all' ? allLog : allLog.filter(e => (e.date || '').slice(0, 7) === sel);
+    if (sel !== 'all' && !view.length) { curEatMonth[who] = 'all'; return renderEaten(); }   // 该月被清空 → 退回汇总
+
+    const collapsed = !!(data.prefs && data.prefs['eatenCollapsed_' + who]);
+    const arrow = collapsed ? '▸' : '▾';
+
+    // 汇总：次数 / 件数 / 金额（按当前筛选范围算）
+    const cnt    = view.length;
+    const qtySum = view.reduce((s, e) => s + eatQtyFor(e, who), 0);
+    const amtSum = view.reduce((s, e) => s + eatAmountFor(e, who), 0);
+    const unit   = view.some(e => (e.unit || '件') === '份') ? '份' : '件';
+    const metaText = `${cnt} 次 · ${fmtNum(qtySum)} ${unit}` + (amtSum > 0 ? ` · ¥${fmtMoney(amtSum)}` : '');
+
+    // 月份筛选条
+    const chipsHtml = `<div class="eaten-filter"><div class="month-chips">
+      <button class="mchip ${sel === 'all' ? 'on' : ''}" onclick="setEatMonth('${who}','all')">汇总</button>
+      ${months.map(ym => `<button class="mchip ${ym === sel ? 'on' : ''}" onclick="setEatMonth('${who}','${ym}')">${parseInt(ym.split('-')[1], 10)}月</button>`).join('')}
+    </div></div>`;
+
+    // 汇总模式 → 按月份分组显示月份标题；单月模式 → 不重复显示月份标题
+    let groupsHtml;
+    if (sel === 'all') {
+      const groups = [];
+      view.forEach(e => {
+        const ym = (e.date || '').slice(0, 7);
+        let g = groups.find(x => x.ym === ym);
+        if (!g) { g = { ym, items: [] }; groups.push(g); }
+        g.items.push(e);
+      });
+      groupsHtml = groups.map(g => {
+        const m = g.ym.split('-')[1];
+        const gAmt = g.items.reduce((s, e) => s + eatAmountFor(e, who), 0);
+        const monthTitle = `${parseInt(m, 10)} 月 · ${g.items.length} 次` + (gAmt > 0 ? ` · ¥${fmtMoney(gAmt)}` : '');
+        return `<div class="month-group"><div class="month-title">${monthTitle}</div>${rowsOf(g.items, who)}</div>`;
+      }).join('');
+    } else {
+      groupsHtml = rowsOf(view, who);
+    }
+
+    box.innerHTML = `
+      <div class="eaten-block ${collapsed ? 'collapsed' : ''}">
+        <div class="eaten-title" onclick="toggleEaten('${who}')" title="点开/收起">
+          <span class="arrow">${arrow}</span>🍽 吃过
+          <span class="eaten-meta">${metaText}</span>
+        </div>
+        <div class="eaten-list">${chipsHtml}${groupsHtml}</div>
+      </div>`;
+  });
+}
+
+// 吃过记录的行（含金额小字）
+function rowsOf(items, who) {
+  return items.map(e => {
+    const slotTxt = e.slot ? ` ${e.slot}` : '';
+    const unit = eatUnitOf(e);
+    const full = eatAmount(e);
+    const amt  = eatAmountFor(e, who);
+    // 一起吃的：显示自己那一半，鼠标悬停能看到总价
+    const amtHtml = amt > 0
+      ? `<span class="eaten-amt"${isShared(e) ? ` title="一起吃 · 共 ¥${fmtMoney(full)}，一人一半"` : ''}>${isShared(e) ? '½ ' : ''}¥${fmtMoney(amt)}</span>`
+      : '';
+    const bothTag = e.who === 'both' ? `<span class="eaten-both-tag">👫 一起</span>` : '';
+    // 星级：点第 n 颗打分，再点同一颗清除
+    const r = Number(e.rating) || 0;
+    const starsHtml = `<span class="rate-mini" title="${r ? '当前 ' + r + ' 星 · 点一下改分' : '还没打分 · 点一下打分'}">${
+      [1,2,3,4,5].map(n => `<button type="button" class="mini-star ${n <= r ? 'on' : ''}" onclick="rateEaten('${e.id}',${n})">★</button>`).join('')
+    }</span>`;
+    return `
+      <div class="row eaten">
+        <div class="ic">${icHtml(e.icon)}</div>
+        <div class="row-name">${esc(e.name)}<span class="qty">× ${e.qty} ${unit}</span>${bothTag}</div>
+        <div class="row-date">${fmt(e.date)}${slotTxt}${amtHtml}${starsHtml}</div>
+        <div class="row-actions">
+          <button class="uneat-btn" onclick="openUneat('${e.id}')" title="吃错了？吐出来，数量还回原处">${UNEAT_SVG}</button>
+        </div>
+      </div>`;
+  }).join('');
+}
+function toggleEaten(who) {
+  data.prefs = data.prefs || { mi:{}, dou:{} };
+  const key = 'eatenCollapsed_' + who;
+  data.prefs[key] = !data.prefs[key];
+  save(data); bumpLastSync();
+  renderEaten();
+}
+
+// ===================== 咪豆榜（顶部按钮 → 弹窗） =====================
+let rankWho = 'all';                 // all / mi / dou
+let rankBy  = null;                  // null = 智能默认（有人打过分就按评分，否则按回购次数）
+let rankExpanded = false;            // 是否展开全部（默认只显示前 10）
+
+function openRank() { openModal('modal-rank'); renderRank(); }
+function setRankWho(w) { rankWho = w; renderRank(); }
+function setRankBy(b)  { rankBy = b;  renderRank(); }
+function toggleRankExpand() { rankExpanded = !rankExpanded; renderRank(); }
+
+const mean = a => a.length ? a.reduce((x, y) => x + y, 0) / a.length : 0;
+function starStr(avg) {
+  const full = Math.round(avg);
+  return [1,2,3,4,5].map(n => `<span class="${n <= full ? '' : 'off'}">★</span>`).join('');
+}
+// 把字符串安全地塞进 onclick='...' 里
+function jsq(s) { return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+
+// 按面包名聚合
+// · 一起吃的记录：次数两边各算一次，金额在「全部」里算全额、单人里算一半
+// · 评分：咪 / 豆分开记，两个人都打过分 → 各占一半再平均（不会因为谁吃得多就霸榜）
+function rankAgg() {
+  const map = new Map();
+  (data.eatLog || []).forEach(e => {
+    if (rankWho !== 'all' && !(e.who === rankWho || e.who === 'both')) return;
+    let r = map.get(e.name);
+    if (!r) { r = { name: e.name, icon: e.icon || '🍞', n: 0, amt: 0, rAll: [], rMi: [], rDou: [], last: '' }; map.set(e.name, r); }
+    r.n++;
+    r.amt += (rankWho === 'all') ? eatAmount(e) : eatAmountFor(e, rankWho);
+    const rt = Number(e.rating) || 0;
+    if (rt > 0) {
+      r.rAll.push(rt);
+      if (e.who === 'mi' || e.who === 'both') r.rMi.push(rt);
+      if (e.who === 'dou' || e.who === 'both') r.rDou.push(rt);
+    }
+    if ((e.date || '') > r.last) r.last = e.date || '';
+    if (!r.icon || r.icon === '🍞') r.icon = e.icon || '🍞';
+  });
+  return Array.from(map.values()).map(r => {
+    const aMi = mean(r.rMi), aDou = mean(r.rDou);
+    const parts = [];
+    if (r.rMi.length)  parts.push(aMi);
+    if (r.rDou.length) parts.push(aDou);
+    return {
+      ...r,
+      aMi: r.rMi.length ? aMi : 0,
+      aDou: r.rDou.length ? aDou : 0,
+      avg: mean(parts),                 // 咪豆都打过分 → 两人各占一半
+      rated: r.rAll.length,
+      both: !!(r.rMi.length && r.rDou.length),
+    };
+  });
+}
+
+function renderRank() {
+  const mask = document.getElementById('modal-rank');
+  const list = document.getElementById('rank-list');
+  const sub  = document.getElementById('rank-sub');
+  if (!mask || !list) return;
+  if (!mask.classList.contains('show')) return;      // 弹窗没打开就别白算
+
+  // 智能默认：还没人打过分 → 先按回购次数排（不然满屏「未评分」，看不出名堂）
+  if (!rankBy) rankBy = (data.eatLog || []).some(e => Number(e.rating) > 0) ? 'rating' : 'count';
+
+  document.querySelectorAll('#modal-rank .rchip').forEach(b => {
+    if (b.dataset.who !== undefined) b.classList.toggle('on', b.dataset.who === rankWho);
+    else                             b.classList.toggle('on', b.dataset.by  === rankBy);
+  });
+
+  const rows = rankAgg();
+  const nm = (data.prefs && data.prefs.mi && data.prefs.mi.name) || '咪';
+  const nd = (data.prefs && data.prefs.dou && data.prefs.dou.name) || '豆';
+  if (sub) sub.textContent = rows.length
+    ? `${rows.length} 款 · ${rows.filter(r => r.rated).length} 款已打分`
+    : '';
+
+  if (!rows.length) {
+    list.innerHTML = `<div class="rank-empty">还没吃过东西，榜是空的～</div>`;
+    return;
+  }
+
+  if (rankBy === 'rating') {
+    // 有评分的在前（均分降序），没评分的沉底（按次数降序）
+    rows.sort((a, b) => (b.rated > 0) - (a.rated > 0) || b.avg - a.avg || b.n - a.n || b.amt - a.amt);
+  } else if (rankBy === 'count') {
+    rows.sort((a, b) => b.n - a.n || b.avg - a.avg || b.amt - a.amt);
+  } else {
+    rows.sort((a, b) => b.amt - a.amt || b.n - a.n);
+  }
+
+  const MEDALS = ['🥇', '🥈', '🥉'];
+  const LIMIT  = 10;
+  const shown  = rankExpanded ? rows : rows.slice(0, LIMIT);
+
+  list.innerHTML = shown.map((r, i) => {
+    const isTop = i < 3 && (rankBy !== 'rating' || r.rated > 0);
+    const cls = isTop ? ' top' + (i + 1) : '';
+    const no  = isTop ? MEDALS[i] : (i + 1);
+
+    const rateBtn = (inner) =>
+      `<button type="button" class="rank-right" onclick="openRate('${jsq(r.name)}')" title="点一下打分 / 改分">${inner}</button>`;
+
+    let right;
+    if (!r.rated) {
+      right = rateBtn(`<div class="rank-stars"><span class="off">★★★★★</span></div>
+                 <span class="rank-avg none">未评分 · 点我打分</span>`);
+    } else if (rankWho === 'all' && r.both) {
+      // 咪豆都打过分 → 各占一半取平均
+      right = rateBtn(`<div class="rank-stars">${starStr(r.avg)}</div>
+                 <span class="rank-avg">${nm} ${r.aMi.toFixed(1)} · ${nd} ${r.aDou.toFixed(1)} → 均 ${r.avg.toFixed(1)}</span>`);
+    } else {
+      right = rateBtn(`<div class="rank-stars">${starStr(r.avg)}</div>
+                 <span class="rank-avg">${r.avg.toFixed(1)} · ${r.rated} 评</span>`);
+    }
+
+    const meta = `${r.n} 次 · ¥${fmtMoney(r.amt)}` + (r.last ? ` · 最近 ${fmt(r.last)}` : '');
+    return `
+      <div class="rank-row${cls}">
+        <div class="rank-no">${no}</div>
+        <div class="rank-ic">${icHtml(r.icon)}</div>
+        <div class="rank-name">${esc(r.name)}<span class="rank-sub">${meta}</span></div>
+        ${right}
+      </div>`;
+  }).join('') + (rows.length > LIMIT
+    ? `<div class="rank-more"><button type="button" onclick="toggleRankExpand()">${rankExpanded ? '收起 · 只看前 ' + LIMIT : '展开全部 ' + rows.length + ' 款'}</button></div>`
+    : '');
+}
+
+// ===================== 吐出来（撤销吃记录）=====================
+// 吃错了 → 把数量还回原处，这条记录从「吃过」里消失
+let uneatTarget = null;   // eatLog 记录的 id
+let uneatDest   = 'inv';  // 吐回哪儿：'inv' | 'mi' | 'dou'
+
+const DEST_NAME = { inv: '🧊 大冰箱', mi: '🎒 咪的背包', dou: '🎒 豆的背包' };
+
+function openUneat(logId) {
+  const e = (data.eatLog || []).find(x => x.id === logId);
+  if (!e) { flash('这条记录找不到了'); return; }
+  uneatTarget = logId;
+  // 有 src 就用 src；老记录没记来源 → 默认吐回大冰箱（大多数是从冰箱吃的）
+  uneatDest = e.src || 'inv';
+  const unit = e.unit || '件';
+  const who  = e.who === 'both' ? '👫 咪 & 豆 一起' : (data.prefs[e.who] ? data.prefs[e.who].name : '');
+  document.getElementById('uneat-sub').textContent =
+    `${e.icon || '🍞'} ${e.name} × ${e.qty} ${unit}${e.slot ? '（' + e.slot + '）' : ''} · ${e.date}${who ? ' · ' + who : ''}`;
+  // 高亮当前选择
+  document.querySelectorAll('#uneat-dest-row .slot-chip').forEach(b => {
+    b.classList.toggle('on', b.dataset.dest === uneatDest);
+  });
+  openModal('modal-uneat');
+}
+
+function pickUneatDest(dest) {
+  uneatDest = dest;
+  document.querySelectorAll('#uneat-dest-row .slot-chip').forEach(b => {
+    b.classList.toggle('on', b.dataset.dest === dest);
+  });
+}
+
+// 把数量还回某个列表（库存 or 背包）：同名 + 同单位才合并
+function addBackTo(arr, e, qty, unit) {
+  const exist = arr.find(x => x.name === e.name && (x.unit || '件') === unit);
+  if (exist) {
+    exist.qty = Number(exist.qty || 0) + qty;
+    if (Number(e.price))  exist.price  = Number(e.price);
+    if (unit === '份' && Number(e.slices)) exist.slices = Number(e.slices);
+    if (!exist.icon || exist.icon === '🍞') exist.icon = e.icon;
+  } else {
+    arr.push({
+      id: id(), name: e.name, icon: e.icon || '🍞',
+      qty, unit,
+      date: e.date || new Date().toISOString().slice(0, 10),
+      price:  Number(e.price)  || 0,
+      slices: Number(e.slices) || 0,
+      note:   e.note || '',
+      weight: e.weight || '',
+    });
+  }
+}
+
+function confirmUneat() {
+  const idx = (data.eatLog || []).findIndex(x => x.id === uneatTarget);
+  if (idx < 0) { closeModal('modal-uneat'); return; }
+  const e    = data.eatLog[idx];
+  const qty  = Number(e.qty) || 0;
+  const unit = e.unit || '件';
+
+  // 1) 从吃过里移除（一起吃的记录只有一条，两边一起消失）
+  data.eatLog.splice(idx, 1);
+
+  // 2) 数量还回去
+  if (uneatDest === 'inv') {
+    data.inventory = data.inventory || [];
+    addBackTo(data.inventory, e, qty, unit);
+  } else {
+    data.ledger[uneatDest] = data.ledger[uneatDest] || [];
+    addBackTo(data.ledger[uneatDest], e, qty, unit);
+  }
+
+  save(data); bumpLastSync(); closeModal('modal-uneat'); renderAll();
+  flash(`↩ 吐回${DEST_NAME[uneatDest]}：${e.icon || '🍞'} ${e.name} × ${qty} ${unit}`);
+}
+
+// ===================== 在库数量自由调整 =====================
+function stepQty(iid, delta) {
+  const it = data.inventory.find(x => x.id === iid);
+  if (!it) return;
+  it.qty = Math.max(0, it.qty + delta);
+  save(data); bumpLastSync(); renderInv();
+}
+
+// ===================== 改放入日期 =====================
+let dateEditing = null;
+function openDate(iid) {
+  const it = data.inventory.find(x => x.id === iid);
+  if (!it) return;
+  dateEditing = iid;
+  document.getElementById('D-date').value = it.date;
+  document.getElementById('date-sub').textContent = `改 ${it.name} 的放入日期`;
+  openModal('modal-date');
+}
+function saveDate() {
+  const v = document.getElementById('D-date').value;
+  if (!v) { alert('选一下日期～'); return; }
+  const it = data.inventory.find(x => x.id === dateEditing);
+  if (it) { it.date = v; save(data); bumpLastSync(); closeModal('modal-date'); renderInv(); }
+}
+
+// ===================== 现有 SKU 改单位（件 ⇄ 份） =====================
+function toggleUnit(iid) {
+  const it = data.inventory.find(x => x.id === iid);
+  if (!it) return;
+  const cur = it.unit || '件';
+  if (cur === '件') {
+    // 切成份 → 必须知道「一个切成几份」，否则金额算不准
+    openSlicesEdit(iid);
+    return;
+  }
+  // 份 → 直接改总份数（同一个弹窗里也有「改回件」）
+  openSlicesEdit(iid);
+}
+let slicesTarget = null;
+function setSlicesFor(n) {
+  const el = document.getElementById('S-slices');
+  if (el) { el.value = n; updateSlicesHint('S'); }
+}
+function confirmSlices() {
+  const it = data.inventory.find(x => x.id === slicesTarget);
+  const el = document.getElementById('S-slices');
+  if (!it || !el) { closeModal('modal-slices'); return; }
+  const n = Number(el.value) || 4;
+  if (n < 1) { alert('至少切 1 份哦～'); return; }
+  it.unit = '份';
+  it.slices = n;
+  save(data); bumpLastSync();
+  closeModal('modal-slices'); slicesTarget = null; renderInv();
+  const per = Number(it.price) ? ` · 每份 ¥${fmtMoney(Number(it.price) / n)}` : '';
+  flash(`${it.icon || '🍞'} ${it.name} 切成 ${n} 份${per}（已吃过的金额不变）`);
+}
+// 改回「件」：清掉份数，金额按整件算
+function revertToUnit() {
+  const it = data.inventory.find(x => x.id === slicesTarget);
+  if (!it) { closeModal('modal-slices'); return; }
+  it.unit = '件';
+  it.slices = 0;
+  save(data); bumpLastSync();
+  closeModal('modal-slices'); slicesTarget = null; renderInv();
+  flash(`${it.icon || '🍞'} ${it.name} 改回「件」`);
+}
+// 改已有条目的总份数（卡片上点份数可改）
+function openSlicesEdit(iid) {
+  const it = data.inventory.find(x => x.id === iid);
+  if (!it) return;
+  slicesTarget = iid;
+  const el = document.getElementById('S-slices');
+  if (el) el.value = Number(it.slices) || (it.unit === '份' ? Number(it.qty) : 0) || 4;
+  const sub = document.getElementById('slices-sub');
+  if (sub) sub.textContent = `${it.icon || '🍞'} ${it.name}`;
+  const btn = document.getElementById('S-to-unit');
+  if (btn) btn.style.display = (it.unit === '份') ? '' : 'none';
+  updateSlicesHint('S');
+  openModal('modal-slices');
+}
+
+// ===================== 带走（库存 → 某人的背包） =====================
+let takeTarget = null, takeWho = null;
+function openTake(iid) {
+  const it = data.inventory.find(x => x.id === iid);
+  if (!it) return;
+  if (it.qty <= 0) return;
+  takeTarget = iid; takeWho = null;
+  document.querySelectorAll('#modal-take .who-card').forEach(c => c.classList.remove('active'));
+  const unit = it.unit || '件';
+  document.getElementById('T-qty').max = it.qty;
+  document.getElementById('T-qty').value = 1;
+  document.getElementById('take-sub').textContent =
+    `${it.icon || '🍞'} ${it.name} · 库存 ${it.qty} ${unit} · 放进谁的背包`;
+  openModal('modal-take');
+}
+function confirmTake() {
+  if (!takeWho) { alert('选一下谁带走哦～'); return; }
+  const it = data.inventory.find(x => x.id === takeTarget);
+  if (!it) { closeModal('modal-take'); return; }
+  const qty = Number(document.getElementById('T-qty').value);
+  const unit = it.unit || '件';
+  if (!qty || qty < 1) { alert('至少带走 1 ' + unit + ' 呀～'); return; }
+  if (qty > it.qty) { alert(`库存只剩 ${it.qty} ${unit} 哦～`); return; }
+
+  // 库存减，背包加（同名 + 同单位才合并：件和份不能混着加，否则份数分母就乱了）
+  it.qty -= qty;
+  data.ledger[takeWho] = data.ledger[takeWho] || [];
+  const today = new Date().toISOString().slice(0,10);
+  const exist = data.ledger[takeWho].find(x => x.name === it.name && (x.unit || '件') === unit);
+  if (exist) {
+    exist.qty = Number(exist.qty || 0) + qty;
+    exist.unit = unit;
+    // 把单价 / 份数分母一起带进背包，之后在背包里吃掉也能算准钱
+    if (Number(it.price)) exist.price = Number(it.price);
+    if (unit === '份' && Number(it.slices)) exist.slices = Number(it.slices);
+  } else {
+    data.ledger[takeWho].push({
+      id: id(), name: it.name, icon: it.icon || '🍞',
+      qty, date: today, unit,
+      price: Number(it.price) || 0,
+      slices: Number(it.slices) || 0,
+    });
+  }
+  save(data); bumpLastSync(); closeModal('modal-take'); renderAll();
+  flash(`🎒 ${data.prefs[takeWho].name} 带走 ${it.icon || '🍞'} ${it.name} × ${qty} ${unit}`);
+}
+
+// ===================== 冷冻（背包 → 仓库 / 大冰箱） =====================
+let freezeTarget = null, freezeWho = null;
+function openFreeze(who, iid) {
+  const it = (data.ledger[who] || []).find(x => x.id === iid);
+  if (!it || it.qty <= 0) return;
+  freezeTarget = iid; freezeWho = who;
+  const unit = it.unit || '件';
+  const q = document.getElementById('F-qty');
+  q.max = it.qty;
+  q.value = it.qty;                                  // 默认整包冻进去
+  document.getElementById('freeze-sub').textContent =
+    `${it.icon || '🍞'} ${it.name} · 背包 ${it.qty} ${unit} · 冻几个进仓库`;
+  openModal('modal-freeze');
+}
+function confirmFreeze() {
+  const who = freezeWho;
+  const it = (data.ledger[who] || []).find(x => x.id === freezeTarget);
+  if (!it) { closeModal('modal-freeze'); return; }
+  const unit = it.unit || '件';
+  const qty = Number(document.getElementById('F-qty').value);
+  if (!qty || qty < 1) { alert('至少冷冻 1 ' + unit + ' 呀～'); return; }
+  if (qty > it.qty) { alert(`背包里只有 ${it.qty} ${unit} 哦～`); return; }
+
+  // 背包减，仓库加（同名合并，价格 / 份数 / 店铺 / 重量一并带回去）
+  it.qty -= qty;
+  const today = new Date().toISOString().slice(0, 10);
+  const exist = data.inventory.find(x => x.name === it.name && (x.unit || '件') === unit);
+  if (exist) {
+    exist.qty = Number(exist.qty || 0) + qty;
+    exist.date = today;
+    exist.unit = unit;
+    if (Number(it.price)) exist.price = Number(it.price);
+    if (unit === '份' && Number(it.slices)) exist.slices = Number(it.slices);
+    if (!exist.icon || exist.icon === '🍞') exist.icon = it.icon;
+    if (!exist.note && it.note) exist.note = it.note;
+    if (!exist.weight && it.weight) exist.weight = it.weight;
+  } else {
+    data.inventory.push({
+      id: id(), name: it.name, icon: it.icon || '🍞',
+      qty, date: today, unit,
+      price: Number(it.price) || 0,
+      slices: Number(it.slices) || 0,
+      note: it.note || '', weight: it.weight || '',
+    });
+  }
+  // 全冻走了 → 这条从背包里移走
+  if (it.qty <= 0) data.ledger[who] = (data.ledger[who] || []).filter(x => x.id !== freezeTarget);
+
+  save(data); bumpLastSync(); closeModal('modal-freeze'); renderAll();
+  flash(`❄️ ${data.prefs[who].name} 把 ${it.icon || '🍞'} ${it.name} × ${qty} ${unit} 冻进仓库`);
+}
+
+// ===================== 改店铺（冰箱里的每一行） =====================
+let shopTargetId = null;
+function openShop(id) {
+  const it = (data.inventory || []).find(x => x.id === id);
+  if (!it) return;
+  shopTargetId = id;
+  const sub = document.getElementById('shop-sub');
+  if (sub) sub.textContent = `${it.icon || '🍞'} ${it.name}`;
+  const input = document.getElementById('S-shop');
+  if (input) input.value = it.note || '';
+
+  // 已有店铺做成小胶囊，点一下就填进去
+  const shops = Array.from(new Set((data.inventory || []).map(x => x.note).filter(Boolean)));
+  const pick = document.getElementById('shop-pick');
+  if (pick) {
+    pick.innerHTML = shops.length
+      ? shops.map(s => `<button type="button" class="rchip" data-shop="${esc(s)}" onclick="pickShop(${JSON.stringify(s)})">${esc(s)}</button>`).join('')
+      : `<span class="none-tip">还没有店铺，下面自己写一个～</span>`;
+  }
+  markShopChips();
+  openModal('modal-shop');
+  setTimeout(() => { if (input) input.focus(); }, 60);
+}
+function pickShop(s) {
+  const input = document.getElementById('S-shop');
+  if (input) input.value = s;
+  markShopChips();
+}
+// 输入框内容和胶囊高亮保持同步
+function markShopChips() {
+  const v = (document.getElementById('S-shop') || {}).value || '';
+  document.querySelectorAll('#shop-pick .rchip').forEach(b => {
+    b.classList.toggle('on', b.dataset.shop === v.trim());
+  });
+}
+function shopTarget() { return (data.inventory || []).find(x => x.id === shopTargetId); }
+function confirmShop() {
+  const it = shopTarget();
+  if (!it) { closeModal('modal-shop'); return; }
+  it.note = (document.getElementById('S-shop').value || '').trim();
+  save(data); bumpLastSync();
+  renderAll();
+  closeModal('modal-shop');
+  flash(`🏪 ${it.name} → ${it.note || '（不标店铺）'}`);
+}
+function clearShop() {
+  const it = shopTarget();
+  if (!it) { closeModal('modal-shop'); return; }
+  it.note = '';
+  save(data); bumpLastSync();
+  renderAll();
+  closeModal('modal-shop');
+  flash(`🏪 ${it.name} 的店铺清掉了`);
+}
+
+// ===================== 弹窗 · 通用 =====================
+// 后开的弹窗盖在先开的上面（不然「咪豆榜 → 点我打分」的弹窗会被榜单挡在后面）
+let modalZ = 10;
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  m.style.zIndex = String(modalZ += 2);
+  m.classList.add('show');
+}
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  m.classList.remove('show');
+  m.style.zIndex = '';
+}
+
+// ===================== 图标选择器 =====================
+let pickedIcon = { ledger: '🍞', inv: '🍞', pref: '🐱' };
+
+// ===== 手绘「包子」图标（Unicode 没有包子 emoji，用内联 SVG 画一个）=====
+const BAOZI_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs><radialGradient id="bz" cx="38%" cy="26%" r="80%">
+<stop offset="0%" stop-color="#FFFDF7"/><stop offset="60%" stop-color="#FBF3E4"/><stop offset="100%" stop-color="#EEDFC6"/>
+</radialGradient></defs>
+<ellipse cx="32" cy="53.5" rx="20" ry="3.8" fill="#C9B391" opacity="0.26"/>
+<path d="M32 11 C47 11 57 23 57 37 C57 46.5 46 51 32 51 C18 51 7 46.5 7 37 C7 23 17 11 32 11 Z" fill="url(#bz)" stroke="#DCB98C" stroke-width="2.2" stroke-linejoin="round"/>
+<g fill="none" stroke="#DCC09A" stroke-width="2" stroke-linecap="round" opacity="0.92">
+<path d="M32 14 C27 20 21 27 17.5 33"/><path d="M32 14 C29 21 25.5 30 24 40"/>
+<path d="M32 14 C32 23 32 33 32 45"/>
+<path d="M32 14 C35 21 38.5 30 40 40"/><path d="M32 14 C37 20 43 27 46.5 33"/>
+</g>
+<circle cx="32" cy="12.6" r="3.7" fill="#F7EAD4" stroke="#DCB98C" stroke-width="1.8"/>
+<ellipse cx="21" cy="26" rx="6" ry="3.8" fill="#fff" opacity="0.5" transform="rotate(-28 21 26)"/>
+</svg>`;
+const BAOZI_URI = 'data:image/svg+xml;utf8,' + encodeURIComponent(BAOZI_SVG.replace(/\n/g, ''));
+
+// 「吐出来」按钮的小图标：一片吐司 + 一条返回箭头（线条跟着按钮颜色走，hover 会变绿）
+const UNEAT_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 22" width="19" height="14" fill="none">
+  <path d="M11 5.5a6.5 6.5 0 1 0 0 11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+  <polyline points="11,1.6 11,5.5 7,5.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M17 9.6h8a2 2 0 0 1 2 2v5.8a2 2 0 0 1-2 2h-8a2 2 0 0 1-2-2v-5.8a2 2 0 0 1 2-2z" fill="currentColor" fill-opacity=".16" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+  <path d="M18.6 9.6V8.4a1.75 1.75 0 0 1 3.5 0v1.2M22.9 9.6V8.4a1.75 1.75 0 0 1 3.5 0v1.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+</svg>`;
+
+// 判断是不是真 emoji（"包" 这类文字/自绘图标要单独排版）
+function isEmoji(s) {
+  return /\p{Extended_Pictographic}/u.test(s);
+}
+// 渲染图标：emoji 直接出；包子 → 内联 SVG；其他文字 → 套 span 统一字号
+const GARBAGE = '￼';   // U+FFFD 乱码哨兵（写在常量里避免转义歧义）
+function icHtml(ic) {
+  // 兜底：空值 / 乱码（U+FFFD）/ 非 emoji → 默认 🍞
+  const isGarbage = !ic || ic.indexOf(GARBAGE) >= 0;
+  const v = (!isGarbage && ic !== '包' && isEmoji(ic)) ? ic
+           : (ic === '包' ? '包' : '🍞');
+  if (v === '包') return `<img class="ic-img" src="${BAOZI_URI}" alt="包子" />`;
+  return isEmoji(v) ? v : `<span class="glyph-ic">${esc(v)}</span>`;
+}
+let pickedUnit = { L: '件', I: '件' };   // 记一笔 / 补货弹窗的单位（件 / 份）
+let pickedSlot = '';                     // 吃的时段（早上/中午/晚上/空）
+let eatSource = 'inv';                   // 开吃来源：'inv' 或 'mi' / 'dou'
+let pickerOpen = null;
+
+function setUnit(scope, unit) {
+  pickedUnit[scope] = unit;
+  document.querySelectorAll('#' + scope + '-unit-row .unit-chip').forEach(b => {
+    b.classList.toggle('on', b.dataset.unit === unit);
+  });
+  // 选「份」才需要填「切成几份」
+  const field = document.getElementById(scope + '-slices-field');
+  if (field) field.style.display = (unit === '份') ? '' : 'none';
+  if (unit === '份') updateSlicesHint(scope);
+}
+function setSlices(scope, n) {
+  const el = document.getElementById(scope + '-slices');
+  if (el) { el.value = n; updateSlicesHint(scope); }
+}
+// 实时显示「每份多少钱」，让用户确认切法对不对
+function updateSlicesHint(scope) {
+  const hint = document.getElementById(scope + '-slices-hint');
+  const slicesEl = document.getElementById(scope + '-slices');
+  if (!hint || !slicesEl) return;
+  let p = 0;
+  if (scope === 'S') {                       // 改已有条目：单价从数据里取
+    const it = data.inventory.find(x => x.id === slicesTarget);
+    p = Number(it && it.price) || 0;
+  } else {                                   // 新增弹窗：单价从输入框取
+    const priceEl = document.getElementById(scope + '-price');
+    p = Number((priceEl && priceEl.value) || 0);
+  }
+  const n = Number(slicesEl.value) || 0;
+  if (p > 0 && n > 0) hint.textContent = `→ 每份 ¥${fmtMoney(p / n)}`;
+  else hint.textContent = '';
+}
+function slicesOf(scope) {
+  if (pickedUnit[scope] !== '份') return 0;
+  const el = document.getElementById(scope + '-slices');
+  const n = Number((el && el.value) || 0);
+  return n > 0 ? n : 4;   // 没填就按 4 份
+}
+function setSlot(slot) {
+  pickedSlot = (pickedSlot === slot) ? '' : slot;   // 再次点击可取消
+  document.querySelectorAll('#E-slot-row .slot-chip').forEach(b => {
+    b.classList.toggle('on', b.dataset.slot === pickedSlot);
+  });
+}
+function defaultSlotForNow() {
+  // 按当前时刻给个最贴近的时段：5–11 早，11–14 中，其余晚
+  const h = new Date().getHours();
+  return h < 11 ? '早上' : h < 14 ? '中午' : '晚上';
+}
+
+/* 图标网格：分组渲染 + 搜索 + 「台账在用」兜底
+   之前这里写的是 ICONS.map(...)，只出内置那几十个 —— 账上正在用的图标反而选不到。 */
+let iconSearch = {};                       // 各弹窗各自的搜索词
+let iconCurrent = {};                      // 各弹窗当前选中的图标（搜索重画时保留高亮）
+function iconBtnHtml(prefix, current, ic) {
+  const name = ICON_TAGS[ic] || (ic === '包' ? '包子' : '');
+  return `<button data-icon="${ic}" class="${ic === current ? 'active' : ''}${isEmoji(ic) ? '' : ' glyph'}" title="${esc(name)}" onclick="pickIcon('${prefix}','${ic}')">${icHtml(ic)}</button>`;
+}
+function buildIconGrid(prefix, current) {
+  const grid = document.getElementById(prefix + '-icon-grid');
+  if (!grid) return;
+  iconCurrent[prefix] = current;
+  const kw = (iconSearch[prefix] || '').trim().toLowerCase();
+  const hit = ic => !kw || ic === kw ||
+    (ICON_TAGS[ic] || '').toLowerCase().includes(kw);
+
+  let html = `<input class="icon-search" placeholder="搜图标：抹茶 / 芝士 / 咖啡…" value="${esc(iconSearch[prefix] || '')}" oninput="onIconSearch('${prefix}', this.value)" />`;
+
+  ICON_GROUPS.forEach(g => {
+    const icons = g.icons.filter(hit);
+    if (!icons.length) return;
+    html += `<div class="icon-group-title">${g.name}</div>`;
+    html += icons.map(ic => iconBtnHtml(prefix, current, ic)).join('');
+  });
+
+  // 台账里正在用、但不在任何分组里的图标 → 单列一组，保证当前图标一定选得到
+  const inGroups = new Set(ICONS);
+  const extra = allIcons().filter(ic => !inGroups.has(ic) && hit(ic));
+  if (extra.length) {
+    html += `<div class="icon-group-title">台账在用</div>`;
+    html += extra.map(ic => iconBtnHtml(prefix, current, ic)).join('');
+  }
+  if (!grid.querySelector('.icon-group-title') && !extra.length && kw) {
+    html += `<div class="icon-group-empty">没找到「${esc(kw)}」相关的图标</div>`;
+  }
+  grid.innerHTML = html;
+}
+// 搜索：重画网格，输完把光标留在搜索框里
+function onIconSearch(prefix, val) {
+  iconSearch[prefix] = val;
+  buildIconGrid(prefix, iconCurrent[prefix]);
+  const el = document.querySelector('#' + prefix + '-icon-grid .icon-search');
+  if (el) { el.focus(); el.setSelectionRange(el.value.length, el.value.length); }
+}
+function clearIconSearch() { iconSearch = {}; }
+
+function toggleIconPicker(scope) {
+  const gridId = scope === 'ledger' ? 'L-icon-grid' :
+                 scope === 'inv'    ? 'I-icon-grid' :
+                                      'P-emo-grid';
+  const grid = document.getElementById(gridId);
+  if (pickerOpen === scope) { grid.style.display = 'none'; pickerOpen = null; return; }
+  ['L-icon-grid','I-icon-grid','P-emo-grid'].forEach(id => { const g = document.getElementById(id); if (g) g.style.display = 'none'; });
+  grid.style.display = '';
+  pickerOpen = scope;
+  iconSearch[scope === 'ledger' ? 'L' : scope === 'inv' ? 'I' : 'P'] = '';   // 每次打开重置搜索
+  if (scope === 'ledger') buildIconGrid('L', pickedIcon.ledger);
+  if (scope === 'inv')    buildIconGrid('I', pickedIcon.inv);
+  if (scope === 'pref')   buildIconGrid('P', pickedIcon.pref);
+}
+
+function pickIcon(prefix, ic) {
+  if (prefix === 'L') {
+    pickedIcon.ledger = ic;
+    document.getElementById('L-icon-btn').innerHTML = icHtml(ic);
+    buildIconGrid('L', ic);
+  } else if (prefix === 'I') {
+    pickedIcon.inv = ic;
+    document.getElementById('I-icon-btn').innerHTML = icHtml(ic);
+    buildIconGrid('I', ic);
+  } else if (prefix === 'P') {
+    pickedIcon.pref = ic;
+    document.getElementById('P-emo-btn').innerHTML = icHtml(ic);
+    buildIconGrid('P', ic);
+  } else if (prefix === 'II') {
+    pickItemIcon(ic);
+  }
+}
+
+// ===================== 卡片图标直接换 =====================
+let itemIconTarget = null;   // { scope: 'inv' | 'mi' | 'dou', id }
+function openItemIcon(scope, itemId) {
+  const it = scope === 'inv'
+    ? data.inventory.find(x => x.id === itemId)
+    : (data.ledger[scope] || []).find(x => x.id === itemId);
+  if (!it) return;
+  itemIconTarget = { scope, id: itemId };
+  const sub = document.getElementById('itemicon-sub');
+  if (sub) sub.textContent = it.name || '选一个';
+  iconSearch['II'] = '';
+  buildIconGrid('II', it.icon);
+  openModal('modal-itemicon');
+}
+function pickItemIcon(ic) {
+  if (!itemIconTarget) return;
+  const { scope, id: itemId } = itemIconTarget;
+  const it = scope === 'inv'
+    ? data.inventory.find(x => x.id === itemId)
+    : (data.ledger[scope] || []).find(x => x.id === itemId);
+  if (!it) { closeModal('modal-itemicon'); return; }
+  it.icon = ic;
+  save(data); bumpLastSync();
+  closeModal('modal-itemicon');
+  itemIconTarget = null;
+  renderAll();
+  flash(`🎨 ${it.name} 换成了 ${isEmoji(ic) ? ic : '包子'}`);
+}
+
+// ===================== 弹窗 · 第一板块 =====================
+let ledgerWho = null;
+function openLedgerModal() {
+  ledgerWho = null;
+  pickedIcon.ledger = '🍞';
+  setUnit('L', '件');
+  document.querySelectorAll('#modal-ledger .who-card').forEach(c => c.classList.remove('active'));
+  document.getElementById('L-name').value = '';
+  document.getElementById('L-qty').value = 1;
+  document.getElementById('L-date').value = new Date().toISOString().slice(0,10);
+  document.getElementById('L-icon-btn').textContent = '🍞';
+  document.getElementById('L-icon-grid').style.display = 'none';
+  document.getElementById('L-price').value = '';
+  document.getElementById('L-shop').value = '';
+  document.getElementById('L-weight').value = '';
+  refreshShopList();
+  pickerOpen = null;
+  openModal('modal-ledger');
+}
+function saveLedger() {
+  if (!ledgerWho) { alert('先选一下放进谁的背包～'); return; }
+  const name = document.getElementById('L-name').value.trim();
+  const qty  = Number(document.getElementById('L-qty').value);
+  const date = document.getElementById('L-date').value;
+  const unit = pickedUnit.L;
+  const price  = document.getElementById('L-price').value.trim();
+  const note   = document.getElementById('L-shop').value.trim();
+  const weight = document.getElementById('L-weight').value.trim();
+  if (!name) { alert('写一下款式名呀～'); return; }
+  if (!qty || qty < 1) { alert('数量至少 1 哦～'); return; }
+  if (!date) { alert('选一下日期～'); return; }
+  data.ledger[ledgerWho] = data.ledger[ledgerWho] || [];
+  data.ledger[ledgerWho].push({
+    id: id(), name, icon: pickedIcon.ledger, qty, date, unit,
+    price: price ? Number(price) : 0, note, weight,
+    slices: slicesOf('L'),          // 单位=份 时，一个切成几份
+  });
+  save(data); bumpLastSync(); closeModal('modal-ledger'); renderAll();
+}
+// 删除改为「二次点击确认」：点一下进入 armed（红字"确认删除?"），再点才真删；2 秒不点自动还原。
+// 不依赖原生 confirm —— 内置预览 / 移动端 WebView 的 confirm 常被静默拦截，导致删除"没反应"。
+const armedDel = new Set();
+function delArmed(key, doDelete) {
+  if (!armedDel.has(key)) {
+    armedDel.add(key);
+    renderAll();
+    flash('再点一次确认删除');
+    setTimeout(() => { armedDel.delete(key); renderAll(); }, 2000);
+    return;
+  }
+  armedDel.delete(key);
+  doDelete();
+}
+function delLedger(who, iid) {
+  delArmed('L:' + who + ':' + iid, () => {
+    data.ledger[who] = (data.ledger[who] || []).filter(x => x.id !== iid);
+    save(data); bumpLastSync(); renderAll();
+    flash('🗑 已删除');
+  });
+}
+
+// ===================== 弹窗 · 第二板块 · 补货 =====================
+function openInvModal() {
+  pickedIcon.inv = '🍞';
+  setUnit('I', '件');
+  document.getElementById('I-name').value = '';
+  document.getElementById('I-qty').value = 1;
+  document.getElementById('I-date').value = new Date().toISOString().slice(0,10);
+  document.getElementById('I-icon-btn').textContent = '🍞';
+  document.getElementById('I-icon-grid').style.display = 'none';
+  document.getElementById('I-price').value = '';
+  document.getElementById('I-shop').value = '';
+  document.getElementById('I-weight').value = '';
+  refreshShopList();
+  pickerOpen = null;
+  openModal('modal-inv');
+}
+function saveInv() {
+  const name = document.getElementById('I-name').value.trim();
+  const qty  = Number(document.getElementById('I-qty').value);
+  const date = document.getElementById('I-date').value;
+  const unit = pickedUnit.I;
+  const price  = document.getElementById('I-price').value.trim();
+  const note   = document.getElementById('I-shop').value.trim();
+  const weight = document.getElementById('I-weight').value.trim();
+  if (!name) { alert('写一下款式名呀～'); return; }
+  if (!qty || qty < 1) { alert('数量至少 1 哦～'); return; }
+  if (!date) { alert('选一下日期～'); return; }
+
+  const exist = data.inventory.find(x => x.name === name);
+  if (exist) {
+    exist.qty += qty;
+    exist.date = date;
+    if (!exist.unit) exist.unit = unit;
+    if (!exist.icon || exist.icon === '🍞') exist.icon = pickedIcon.inv;
+    // 选填项：只在填了的时候覆盖，避免把已有价格/店铺/重量清掉
+    if (price)  exist.price  = Number(price);
+    if (note)   exist.note   = note;
+    if (weight) exist.weight = weight;
+    // 份数分母只在「还没定过」的时候写入：一旦定下就锁死，补货不会把之前的每份价改掉
+    if (unit === '份' && slicesOf('I') && !Number(exist.slices)) exist.slices = slicesOf('I');
+  } else {
+    data.inventory.push({
+      id: id(), name, icon: pickedIcon.inv, qty, date, unit,
+      price: price ? Number(price) : 0, note, weight,
+      slices: slicesOf('I'),        // 单位=份 时，一个切成几份
+    });
+  }
+  save(data); bumpLastSync(); closeModal('modal-inv'); renderAll();
+}
+
+// 店铺名候选：自动汇总已有库存里出现过的店铺
+function refreshShopList() {
+  const dl = document.getElementById('shop-list');
+  if (!dl) return;
+  const shops = Array.from(new Set(
+    (data.inventory || []).map(x => (x.note || '').trim()).filter(Boolean)
+  )).sort();
+  dl.innerHTML = shops.map(s => `<option value="${esc(s)}"></option>`).join('');
+}
+function delInv(iid) {
+  delArmed('I:' + iid, () => {
+    data.inventory = data.inventory.filter(x => x.id !== iid);
+    save(data); bumpLastSync(); renderAll();
+    flash('🗑 已删除');
+  });
+}
+
+// ===================== 弹窗 · 吃面包 =====================
+let eatTarget = null, eatWho = null;
+let eatRating = 0;                       // 开吃时打的味道分（0 = 没打）
+const RATING_TIP = { 0: '', 1: '嗯…不太行', 2: '一般般', 3: '还不错', 4: '好吃！', 5: '回购王 👑' };
+
+// 吃弹窗里的星级打分：点第 n 颗 = n 分；再点同一颗 = 取消（0）
+function setEatRating(n) {
+  eatRating = (eatRating === n) ? 0 : n;
+  document.querySelectorAll('#E-star-row .star-btn').forEach(b => {
+    b.classList.toggle('on', Number(b.dataset.star) <= eatRating);
+  });
+  document.getElementById('E-star-tip').textContent = RATING_TIP[eatRating] || '';
+}
+
+// 给吃过记录打分 / 改分（点第 n 颗；再点同一颗 = 清除）
+function rateEaten(logId, n) {
+  const e = (data.eatLog || []).find(x => x.id === logId);
+  if (!e) return;
+  e.rating = (Number(e.rating) === n) ? 0 : n;
+  save(data); bumpLastSync();
+  renderAll();
+  if (document.getElementById('modal-rate').classList.contains('show')) renderRate();
+  if (e.rating > 0) flash(`${'★'.repeat(e.rating)} ${e.name} · ${RATING_TIP[e.rating] || ''}`);
+  else flash(`已清除 ${e.name} 的评分`);
+}
+// 弹窗：给某一款的每一次吃记录打分 / 改分
+let rateName = '';
+function openRate(name) {
+  rateName = name;
+  openModal('modal-rate');
+  renderRate();
+}
+function renderRate() {
+  const sub = document.getElementById('rate-sub');
+  const box = document.getElementById('rate-list');
+  if (!box) return;
+  const items = (data.eatLog || []).filter(e => e.name === rateName);
+  const icon = (items[0] && items[0].icon) || '🍞';
+  if (sub) sub.textContent = `${icon} ${rateName} · 一共吃过 ${items.length} 次`;
+  if (!items.length) { box.innerHTML = `<div class="rank-empty">没有记录～</div>`; return; }
+  box.innerHTML = items.map(e => {
+    const r = Number(e.rating) || 0;
+    const whoTxt = e.who === 'both' ? '👫 一起' : ((data.prefs && data.prefs[e.who] && data.prefs[e.who].name) || e.who || '');
+    const nm = (data.prefs && data.prefs.mi && data.prefs.mi.name) || '咪';
+    const nd = (data.prefs && data.prefs.dou && data.prefs.dou.name) || '豆';
+    const whoName = e.who === 'both' ? '👫 ' + nm + '+' + nd : whoTxt;
+    return `
+      <div class="rate-row">
+        <div class="rate-info">
+          <div class="rate-when">${fmt(e.date)}${e.slot ? ' ' + e.slot : ''} · ${whoName}</div>
+          <div class="rate-what">× ${e.qty} ${eatUnitOf(e)}${r ? ` · <b style="color:var(--caramel-deep)">${RATING_TIP[r]}</b>` : ' · 还没打分'}</div>
+        </div>
+        <div class="star-row rate-stars">
+          ${[1,2,3,4,5].map(n => `<button type="button" class="star-btn ${n <= r ? 'on' : ''}" onclick="rateEaten('${e.id}',${n})">★</button>`).join('')}
+          ${r ? `<button type="button" class="star-clear" onclick="rateEaten('${e.id}',${r})">清除</button>` : ''}
+        </div>
+      </div>`;
+  }).join('');
+}
+// openEat(itemId, source='inv')
+//   source='inv' → 共享库存：弹窗里显示「谁吃」选咪/豆
+//   source='mi' / 'dou' → 来自背包：who 固定，吃完从背包移除
+function openEat(itemId, source) {
+  eatSource = source || 'inv';
+  eatTarget = itemId;
+  pickedSlot = '';
+  eatRating = 0;
+  setEatRating(0);
+  document.querySelectorAll('#E-slot-row .slot-chip').forEach(b => b.classList.remove('on'));
+
+  const whoField = document.getElementById('eat-who-field');
+  let item;
+  if (eatSource === 'inv') {
+    item = data.inventory.find(x => x.id === itemId);
+    whoField.style.display = '';
+    eatWho = null;
+    document.querySelectorAll('#modal-eat .who-card').forEach(c => c.classList.remove('active'));
+  } else {
+    item = (data.ledger[eatSource] || []).find(x => x.id === itemId);
+    whoField.style.display = 'none';
+    eatWho = eatSource;     // 背包物品归属就是 who
+  }
+  document.getElementById('E-qty').max = item ? item.qty : 1;
+  document.getElementById('E-qty').value = 1;
+  document.getElementById('E-date').value = new Date().toISOString().slice(0,10);
+  const defSlot = defaultSlotForNow();
+  document.getElementById('eat-sub').textContent =
+    (eatSource === 'inv' ? '谁吃' : `「${data.prefs[eatWho].name}」的背包`)
+    + ` · ${item.name} · 现在大概是${defSlot}`;
+  openModal('modal-eat');
+}
+function confirmEat() {
+  let item, arr;
+  if (eatSource === 'inv') {
+    if (!eatWho) { alert('选一下谁吃哦～'); return; }
+    item = data.inventory.find(x => x.id === eatTarget);
+    arr  = data.inventory;
+  } else {
+    eatWho = eatSource;
+    item = (data.ledger[eatSource] || []).find(x => x.id === eatTarget);
+    arr  = data.ledger[eatSource];
+  }
+  if (!item) { closeModal('modal-eat'); return; }
+  const unit = item.unit || '件';
+  const qty = Number(document.getElementById('E-qty').value);
+  if (!qty || qty < 1) { alert(`至少吃 1 ${unit} 呀～`); return; }
+  if (qty > item.qty) { alert(`${unit === '份' ? '份数' : '库存'}只剩 ${item.qty} ${unit} 哦～`); return; }
+
+  item.qty -= qty;
+  const date = document.getElementById('E-date').value || new Date().toISOString().slice(0,10);
+  const slot = pickedSlot || '';
+
+  data.eatLog = data.eatLog || [];
+  // 把单价写进吃过记录，后面才能算「这个月吃了多少钱」
+  // 件 → 按 qty 计；份 → 单价 ÷ 总份数 × 份数
+  // unitPrice = 这一刻的「每份单价」快照：以后再改份数 / 改价，这条记录的金额都不动
+  data.eatLog.unshift({
+    id: id(), who: eatWho, name: item.name, icon: item.icon,
+    qty, date, slot, unit,
+    price: Number(item.price) || 0,
+    slices: Number(item.slices) || 0,
+    unitPrice: unitPriceOf(item.price, unit, item.slices),
+    rating: eatRating || 0,          // 味道打分 1–5（0 = 没打）
+    note: item.note || '',
+    src: eatSource,        // 从哪儿吃的（'inv' 大冰箱 / 'mi' / 'dou' 背包）→ 撤销时好还回原处
+  });
+
+  // 背包吃光一条，从背包里移除这条
+  if (eatSource !== 'inv' && item.qty <= 0) {
+    data.ledger[eatSource] = (data.ledger[eatSource] || []).filter(x => x.id !== eatTarget);
+  }
+
+  save(data); bumpLastSync(); closeModal('modal-eat'); renderAll();
+  const slotTxt = slot ? `（${slot}）` : '';
+  const rateTxt = eatRating > 0 ? ` ${'★'.repeat(eatRating)}${RATING_TIP[eatRating] ? ' ' + RATING_TIP[eatRating] : ''}` : '';
+  if (eatWho === 'both') {
+    flash(`👫 咪 & 豆 一起吃掉 ${item.icon} ${item.name} × ${qty} ${unit} ${slotTxt}${rateTxt}`);
+  } else {
+    flash(`🐾 ${data.prefs[eatWho].name} 吃掉 ${item.icon} ${item.name} × ${qty} ${unit} ${slotTxt}${rateTxt}`);
+  }
+}
+
+// ===================== 口味编辑 =====================
+let prefEditing = null;
+let prefColor = '#D85C4A';
+
+function openPref(who) {
+  prefEditing = who;
+  pickedIcon.pref = data.prefs[who].emoji;
+  prefColor = data.prefs[who].color;
+  document.getElementById('P-emo-btn').textContent = data.prefs[who].emoji;
+  document.getElementById('P-name').value = data.prefs[who].name;
+  document.getElementById('P-tag').value  = data.prefs[who].tag;
+  document.getElementById('P-emo-grid').style.display = 'none';
+  pickerOpen = null;
+
+  document.getElementById('P-colors').innerHTML = COLORS.map(c =>
+    `<div class="color-dot ${c.value === prefColor ? 'active' : ''}" data-c="${c.value}" style="background:${c.value}" onclick="pickColor(this)" title="${c.name}"></div>`
+  ).join('');
+
+  openModal('modal-pref');
+}
+function pickColor(el) {
+  prefColor = el.dataset.c;
+  document.querySelectorAll('#P-colors .color-dot').forEach(d => d.classList.remove('active'));
+  el.classList.add('active');
+}
+function savePref() {
+  if (!prefEditing) return;
+  const name = document.getElementById('P-name').value.trim() || data.prefs[prefEditing].name;
+  const tag  = document.getElementById('P-tag').value.trim()  || data.prefs[prefEditing].tag;
+  data.prefs[prefEditing] = {
+    emoji: pickedIcon.pref,
+    name, tag, color: prefColor
+  };
+  save(data); bumpLastSync(); closeModal('modal-pref'); renderAll();
+}
+
+// ===================== 保质期编辑 =====================
+let shelfEditing = null;
+function openShelf(iid) {
+  const item = data.inventory.find(x => x.id === iid);
+  if (!item) return;
+  shelfEditing = iid;
+  document.getElementById('S-shelf').value = item.shelf || 7;
+  document.getElementById('shelf-sub').textContent = `设置 ${item.name} 几天内吃完`;
+  openModal('modal-shelf');
+}
+function saveShelf() {
+  const v = Number(document.getElementById('S-shelf').value);
+  if (!v || v < 1) { alert('保质期至少 1 天哦～'); return; }
+  const item = data.inventory.find(x => x.id === shelfEditing);
+  if (item) { item.shelf = v; save(data); bumpLastSync(); closeModal('modal-shelf'); renderAll(); }
+}
+
+// ===================== 通用 · 选人 =====================
+function pickWho(el, scope) {
+  const root = el.closest('.modal');
+  root.querySelectorAll('.who-card').forEach(c => c.classList.remove('active'));
+  el.classList.add('active');
+  const who = el.dataset.who;
+  if (scope === 'ledger') ledgerWho = who;
+  else if (scope === 'eat') eatWho = who;
+  else if (scope === 'take') takeWho = who;
+}
+
+// ===================== 保质期快捷 =====================
+function setShelf(prefix, v) {
+  document.getElementById(prefix + '-shelf').value = v;
+}
+
+// ===================== 导出 / 导入 / CSV =====================
+// ===================== 同步：服务端实时共享 =====================
+function triggerSync() {
+  flash('🔄 正在拉取最新…');
+  pullFromServer(true).then(r => {
+    if (r === null)      flash('⚠️ 连不上服务器，当前显示的是本机数据');
+    else if (r === false) pushToServer();
+    else                 flash('✅ 已是最新');
+  });
+}
+function openSyncGuide() { openModal('modal-sync'); }
+
+// CSV 工具
+function csvEscape(s) {
+  if (s === null || s === undefined) return '';
+  s = String(s);
+  if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+function toCSV(rows) {
+  return rows.map(r => r.map(csvEscape).join(',')).join('\n');
+}
+
+// 生成同步用的 CSV 字符串（多 sheet 拼接）
+function buildSyncCSV() {
+  const rows = (arr) => arr.map(x => ({
+    款式: x.name, 图标: x.icon || '🍞', 数量: x.qty, 放入日期: x.date, 保质期_天: x.shelf || 7
+  }));
+  const sheets = {
+    '咪的冰箱': rows(data.ledger.mi),
+    '豆的冰箱': rows(data.ledger.dou),
+    '库存':     rows(data.inventory),
+  };
+  return Object.entries(sheets).map(([name, list]) => {
+    const header = '# ' + name + '\n';
+    const cols = list.length ? Object.keys(list[0]) : ['款式','图标','数量','放入日期','保质期_天'];
+    const body = [cols.join(','), ...list.map(r => cols.map(c => csvEscape(r[c])).join(','))].join('\n');
+    return header + body + '\n';
+  }).join('\n');
+}
+
+// 解析多段 CSV（带 # 段名）→ data
+function parseSyncCSV(text) {
+  const segs = {};
+  let cur = null;
+  text.split(/\r?\n/).forEach(line => {
+    const m = line.match(/^#\s*(.+?)\s*$/);
+    if (m) { cur = m[1].trim(); segs[cur] = []; return; }
+    if (!cur) return;
+    if (line.trim() === '') return;
+    segs[cur].push(line);
+  });
+
+  const parseRows = (lines) => {
+    if (!lines || !lines.length) return [];
+    const headerCells = splitCsvLine(lines[0]);
+    return lines.slice(1).map(line => {
+      const cells = splitCsvLine(line);
+      const obj = {};
+      headerCells.forEach((h, i) => obj[h.trim()] = cells[i]);
+      return obj;
+    }).filter(r => r['款式']);
+  };
+
+  const toItem = (r) => ({
+    id: id(),
+    name: r['款式'] || '',
+    icon: r['图标'] || '🍞',
+    qty: Number(r['数量']) || 1,
+    date: r['放入日期'] || new Date().toISOString().slice(0,10),
+    shelf: Number(r['保质期_天']) || 7,
+  });
+
+  const result = { ...defaultData() };
+  if (segs['咪的冰箱']) result.ledger.mi = parseRows(segs['咪的冰箱']).map(toItem);
+  if (segs['豆的冰箱']) result.ledger.dou = parseRows(segs['豆的冰箱']).map(toItem);
+  if (segs['库存'])     result.inventory = parseRows(segs['库存']).map(toItem);
+  return result;
+}
+
+// 简单的 CSV 行拆分（支持引号转义）
+function splitCsvLine(line) {
+  const out = [];
+  let cur = '', inQ = false;
+  for (let i = 0; i < line.length; i++) {
+    const c = line[i];
+    if (inQ) {
+      if (c === '"' && line[i+1] === '"') { cur += '"'; i++; }
+      else if (c === '"') inQ = false;
+      else cur += c;
+    } else {
+      if (c === ',') { out.push(cur); cur = ''; }
+      else if (c === '"') inQ = true;
+      else cur += c;
+    }
+  }
+  out.push(cur);
+  return out;
+}
+
+// ===== JSON =====
+function exportJSON() {
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `bread-data-${new Date().toISOString().slice(0,10)}.json`;
+  a.click();
+  URL.revokeObjectURL(url);
+  bumpLastSync('已导出 JSON');
+  flash('✓ JSON 已下载，发给 TA 吧');
+}
+
+function importJSON() {
+  const fi = document.getElementById('file-input');
+  fi.accept = '.json';
+  fi.onchange = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      try {
+        const obj = JSON.parse(ev.target.result);
+        if (!obj || typeof obj !== 'object') throw new Error('bad');
+        data = obj.version ? obj : migrate(obj);
+        save(data); bumpLastSync('已导入 JSON'); renderAll();
+        flash('✓ 数据已导入');
+      } catch (err) {
+        alert('文件格式不对哦～');
+      }
+    };
+    reader.readAsText(file);
+    fi.value = '';
+  };
+  fi.click();
+}
+
+// ===== CSV =====
+function copyCSV() {
+  const text = buildSyncCSV();
+  const tryClipboard = navigator.clipboard?.writeText(text);
+  if (tryClipboard) {
+    tryClipboard.then(() => {
+      bumpLastSync('已复制 CSV');
+      flash('✓ CSV 已复制到剪贴板，去 Excel / 表格软件粘贴');
+    }).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand('copy');
+  document.body.removeChild(ta);
+  bumpLastSync('已复制 CSV');
+  flash('✓ CSV 已复制到剪贴板');
+}
+
+function importCSV() {
+  // 先问是从文件还是从剪贴板
+  const choice = confirm('点「确定」=从文件上传，点「取消」=从剪贴板粘贴');
+  if (choice) {
+    const fi = document.getElementById('file-input');
+    fi.accept = '.csv,.txt';
+    fi.onchange = (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        try {
+          data = parseSyncCSV(ev.target.result);
+          save(data); bumpLastSync('已导入 CSV'); renderAll();
+          flash('✓ CSV 已导入并覆盖');
+        } catch (err) {
+          alert('CSV 解析失败：' + err.message);
+        }
+      };
+      reader.readAsText(file);
+      fi.value = '';
+    };
+    fi.click();
+  } else {
+    document.getElementById('csv-text').value = '';
+    openModal('modal-csv');
+  }
+}
+
+async function applyCSV() {
+  const text = document.getElementById('csv-text').value;
+  if (!text.trim()) { alert('粘贴点东西进来呀～'); return; }
+  try {
+    data = parseSyncCSV(text);
+    save(data); bumpLastSync('已导入 CSV'); closeModal('modal-csv'); renderAll();
+    flash('✓ CSV 已导入并覆盖');
+  } catch (err) {
+    alert('CSV 解析失败：' + err.message);
+  }
+}
+
+// ===================== 动效 =====================
+function flash(text) {
+  const el = document.createElement('div');
+  el.textContent = text;
+  Object.assign(el.style, {
+    position: 'fixed', left: '50%', bottom: '40px',
+    transform: 'translateX(-50%)',
+    background: 'var(--mint-deep)', color: '#F1F5EE',
+    padding: '12px 22px', borderRadius: '999px',
+    fontSize: '14px', letterSpacing: '2px',
+    boxShadow: '0 8px 24px rgba(74, 53, 42, 0.20)',
+    zIndex: 9999, animation: 'pop .25s ease',
+    fontFamily: 'inherit',
+  });
+  document.body.appendChild(el);
+  setTimeout(() => { el.style.transition = 'opacity .4s'; el.style.opacity = '0'; }, 1600);
+  setTimeout(() => el.remove(), 2100);
+}
+
+// ===================== 弹窗点击外部关闭 =====================
+['modal-ledger','modal-inv','modal-eat','modal-pref','modal-shelf','modal-sync','modal-csv','modal-date','modal-take','modal-freeze','modal-itemicon','modal-slices','modal-uneat','modal-rank','modal-rate','modal-shop'].forEach(mid => {
+  document.getElementById(mid).addEventListener('click', (e) => {
+    if (e.target.id === mid) closeModal(mid);
+  });
+});
+
+// ===================== 店铺筛选条兜底点击 =====================
+document.getElementById('inv-shops').addEventListener('click', (e) => {
+  const chip = e.target.closest('.shop-chip');
+  if (!chip) return;
+  const name = chip.textContent.trim();
+  if (name) setShop(name);
+});
+
+// ===================== 云端同步（多人共享同一个链接） =====================
+// 数据存在服务器上：任何人改动 → 写回服务端 → 别人打开/轮询即看到同一份。
+// fetch 失败时（本地 file:// 打开、断网）静默降级为 localStorage，单机照常用。
+//
+// 两种模式，同一份代码自适应：
+//   A. Gist 模式（ 有值）→ 数据存 GitHub Gist，永不休眠、链接永久
+//   B. 沙箱模式（未配置）        → 走本目录下的 /api/state，跟以前一样
+const GIST_ID   = '';
+const GH_TOKEN  = '';
+const GIST_FILE = 'bread-state.json';
+const useGist   = !!(GIST_ID && GH_TOKEN && GIST_ID.indexOf('__') !== 0);
+
+function ghHeaders() {
+  return {
+    'Authorization': 'Bearer ' + GH_TOKEN,
+    'Accept': 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+  };
+}
+
+// 读 Gist：把 { data, stamp } 从 gist 文件里解出来
+async function gistPull() {
+  const res = await fetch('https://api.github.com/gists/' + GIST_ID + '?t=' + Date.now(), {
+    cache: 'no-store', headers: ghHeaders(),
+  });
+  if (!res.ok) return null;                                  // 403/限流/断网
+  const g = await res.json();
+  const f = g && g.files && g.files[GIST_FILE];
+  if (!f || !f.content) return { ok: true, data: null, stamp: 0 };   // 空 gist → 需要播种
+  let obj = null;
+  try { obj = JSON.parse(f.content); } catch (e) { obj = null; }
+  if (!obj || !obj.data) return { ok: true, data: null, stamp: 0 };
+  return { ok: true, data: obj.data, stamp: obj.stamp || 0 };
+}
+
+// 写 Gist：先比对 stamp 做乐观锁，避免两个人同时改互相覆盖
+async function gistPush(payload) {
+  let cur = null;
+  try { cur = await gistPull(); } catch (e) {}
+  if (cur && cur.stamp && payload && payload.stamp &&
+      String(cur.stamp) !== String(payload.stamp)) {
+    return { ok: false, conflict: true, data: cur.data, stamp: cur.stamp };
+  }
+  const stamp = Date.now();
+  const res = await fetch('https://api.github.com/gists/' + GIST_ID, {
+    method: 'PATCH', cache: 'no-store',
+    headers: Object.assign({ 'Content-Type': 'application/json' }, ghHeaders()),
+    body: JSON.stringify({
+      files: { [GIST_FILE]: { content: JSON.stringify({ data: payload.data, stamp }) } },
+    }),
+  });
+  if (!res.ok) return { ok: false };
+  return { ok: true, stamp };
+}
+
+async function apiGet() {
+  if (useGist) return await gistPull();
+  const res = await fetch('/api/state', { cache: 'no-store' });
+  if (!res.ok) return null;
+  const j = await res.json();
+  return (j && j.ok) ? j : null;
+}
+
+async function apiPost(payload) {
+  if (useGist) return await gistPush(payload);
+  const res = await fetch('/api/state', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+  return await res.json();
+}
+
+let serverStamp = 0;
+let pushTimer = null;
+let pushing = false;
+let pendingPush = false;   // 有改动没传上去（服务器挂了/断网）→ 下次轮询先补传
+
+function schedulePush() { clearTimeout(pushTimer); pushTimer = setTimeout(pushToServer, 300); }
+
+function markSynced() {
+  const el = document.getElementById('last-sync');
+  if (!el) return;
+  const t = new Date();
+  const hh = String(t.getHours()).padStart(2, '0');
+  const mm = String(t.getMinutes()).padStart(2, '0');
+  try { localStorage.setItem(STORE + '-lastsync', '云端 ' + hh + ':' + mm); } catch(e){}
+  el.textContent = '☁️ 已同步 · 所有人可见 · ' + hh + ':' + mm;
+}
+
+async function pullFromServer(force) {
+  try {
+    const j = await apiGet();
+    if (!j) return null;
+    if (!serverStamp) serverStamp = j.stamp || 0;
+    if (!j.data) return false;                       // 服务端还没数据 → 需要播种
+    if (!force && j.stamp === serverStamp) return true;
+    data = j.data;
+    serverStamp = j.stamp;
+    serverSyncAt = j.stamp || Date.now();
+    try { localStorage.setItem(STORE, JSON.stringify(data)); } catch(e){}
+    renderAll();
+    markSynced();
+    return true;
+  } catch (e) {
+    return null;                                     // 离线 / 本地打开 → 用 localStorage
+  }
+}
+
+async function pushToServer() {
+  if (pushing) return false;
+  pushing = true;
+  try {
+    const j = await apiPost({ data, stamp: serverStamp });
+    if (j && j.ok) { pendingPush = false; serverStamp = j.stamp; serverSyncAt = j.stamp || Date.now(); updateLastSync(); markSynced(); return true; }
+    if (j && j.conflict) {                           // 对方刚改过 → 以服务端为准刷新
+      pendingPush = false;
+      data = j.data; serverStamp = j.stamp; serverSyncAt = j.stamp || Date.now();
+      try { localStorage.setItem(STORE, JSON.stringify(data)); } catch(e){}
+      renderAll(); markSynced();
+      flash('⚠️ 对方刚改过，已刷新为最新');
+      return false;
+    }
+  } catch (e) { /* 离线 → 只存本机，不打扰 */ }
+  finally { pushing = false; }
+  // 没传成功 → 记一笔，等服务器回来（8 秒后那次轮询）自动补上去
+  pendingPush = true;
+  return false;
+}
+
+let pullFail = 0;
+function showOfflineHint() {
+  const el = document.getElementById('last-sync');
+  if (el) el.textContent = '⚠️ 连不上服务器 · 改动先存本机，恢复后自动传上去';
+}
+async function pollServer() {
+  // 之前有改动没传上去（服务器停过 / 断网）→ 先补传，再拉别人的
+  if (pendingPush) await pushToServer();
+  const r = await pullFromServer(false);
+  if (r === null) { if (++pullFail >= 3) showOfflineHint(); }
+  else pullFail = 0;
+  if (r === false) await pushToServer();             // 服务端被清空时重新播种
+}
+
+// ===================== 启动 =====================
+updateLastSync();
+renderAll();
+(async () => {
+  const r = await pullFromServer(true);   // 先以服务端为准（保证所有人看到同一份）
+  if (r === false) await pushToServer();  // 服务端空 → 用当前数据播种
+  setInterval(pollServer, useGist ? 15000 : 8000);  // Gist 模式 15 秒一次（省 API 额度，5000 次/小时足够）
+})();
+
+// ===================== 离线兜底（服务器被停也能打开） =====================
+// 装一个 Service Worker：正常时走网络拿最新版，服务器 403/断网就用缓存的页面，
+// 照样能记一笔（存本机），等服务器回来自动补传上去。
+if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js').catch(() => {});
+  });
+}
+</script>
+</body>
+</html>

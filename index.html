@@ -1309,8 +1309,12 @@
       </div>
       <div class="trio" data-page-node-id="fMfpBOkUjRBELU7je9En1b">
         <div class="field" data-page-node-id="yyxc8xwCavwsKUbdN87krR"><label data-page-node-id="wHu189DAfy5hwoN5qFJH0p">价格 ¥</label><input id="L-price" type="number" step="0.1" min="0" placeholder="选填" oninput="updateSlicesHint('L')" data-page-node-id="K6mVMRYJzv376pGALQoE4w" /></div>
-        <div class="field" data-page-node-id="4isiO6LW2y6Voj1Fa945Fk"><label data-page-node-id="nhvJEePdEAWEXCj715CZ3l">店铺</label><input id="L-shop" list="shop-list" placeholder="选填" data-page-node-id="kxC0hHHREucHrzX0sEFZtk" /></div>
+        <div class="field" data-page-node-id="4isiO6LW2y6Voj1Fa945Fk"><label data-page-node-id="nhvJEePdEAWEXCj715CZ3l">店铺</label><input id="L-shop" list="shop-list" placeholder="选填" oninput="markShopQuick('L')" data-page-node-id="kxC0hHHREucHrzX0sEFZtk" /></div>
         <div class="field" data-page-node-id="NN9NMGfewpCYJ1cayZuhMq"><label data-page-node-id="lVBWovSKDoctIXG1S67xEH">重量</label><input id="L-weight" placeholder="如 120g" data-page-node-id="H9AMu8OMm29AgxahH3LWEf" /></div>
+      </div>
+      <div class="field shop-quick" id="L-shop-quick-wrap" style="display:none;" data-page-node-id="LshopQuickW">
+        <label data-page-node-id="LshopQuickL">常去的店 · 点一下填进去</label>
+        <div class="shop-pick" id="L-shop-quick" data-page-node-id="LshopQuickB"></div>
       </div>
       <div class="field" data-page-node-id="uDwF858VqGhuFgRBNN2Ykh"><label data-page-node-id="KdPF95cMa3JilKzcXESgfl">放入日期</label><input id="L-date" type="date" data-page-node-id="2HDUQsQ4loWnvXHRrbdvg3" /></div>
       <div class="modal-actions" data-page-node-id="5CTRS3ybRvplZiUpqrOLOa">
@@ -1359,8 +1363,12 @@
       </div>
       <div class="trio" data-page-node-id="EIiUVRuoMtH5EfyC5SsRSr">
         <div class="field" data-page-node-id="RoRYLXXhwVLV1ElO4psUa7"><label data-page-node-id="Y9IKyRRDuGmSNy9wtNOz8x">价格 ¥</label><input id="I-price" type="number" step="0.1" min="0" placeholder="选填" oninput="updateSlicesHint('I')" data-page-node-id="4PFOQtDgFW919C8cV6aZRB" /></div>
-        <div class="field" data-page-node-id="AyKc3jqR2hlpK3sSmYY0kU"><label data-page-node-id="CeorxA9feHEkMaof0QcRim">店铺</label><input id="I-shop" list="shop-list" placeholder="选填" data-page-node-id="TYusufvJvdmGwKloJ4sTUh" /></div>
+        <div class="field" data-page-node-id="AyKc3jqR2hlpK3sSmYY0kU"><label data-page-node-id="CeorxA9feHEkMaof0QcRim">店铺</label><input id="I-shop" list="shop-list" placeholder="选填" oninput="markShopQuick('I')" data-page-node-id="TYusufvJvdmGwKloJ4sTUh" /></div>
         <div class="field" data-page-node-id="A6H3S4QkL8Mku0tn9uQAtX"><label data-page-node-id="GKw8pPncHAcbpP6EOPkniL">重量</label><input id="I-weight" placeholder="如 120g" data-page-node-id="ay9BAwunfHJMtrWEnN55KC" /></div>
+      </div>
+      <div class="field shop-quick" id="I-shop-quick-wrap" style="display:none;" data-page-node-id="IshopQuickW">
+        <label data-page-node-id="IshopQuickL">常去的店 · 点一下填进去</label>
+        <div class="shop-pick" id="I-shop-quick" data-page-node-id="IshopQuickB"></div>
       </div>
       <div class="field" data-page-node-id="Ix3FPERek5Z75VZrzOc96W"><label data-page-node-id="PFOmNrf2puFdJHWhmAa6bB">放入冰箱日期</label><input id="I-date" type="date" data-page-node-id="ODKAVoz1362ENaoDhS5Wwz" /></div>
       <div class="modal-actions" data-page-node-id="KNQAm8XhDMDRjP8u9XrjXJ">
@@ -1565,6 +1573,27 @@
         <button class="btn btn-cancel" onclick="clearShop()" data-page-node-id="SfoUMtkMJHM9gxmIrW9hud">清掉店铺</button>
         <button class="btn btn-cancel" onclick="closeModal('modal-shop')" data-page-node-id="4ZTIutJD2lA5brnkxMCSx1">取消</button>
         <button class="btn btn-ok" onclick="confirmShop()" data-page-node-id="5cPSdIAXsMEg1tP6j4cZt8">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 改重量（冰箱里每一行） ============ -->
+  <div class="modal-mask" id="modal-weight" data-page-node-id="mdlWeight">
+    <div class="modal cool" data-page-node-id="mdlWeightBox">
+      <h2 data-page-node-id="mdlWeightT">⚖️ 改重量</h2>
+      <div class="modal-sub" id="weight-sub" data-page-node-id="mdlWeightSub"></div>
+      <div class="field" data-page-node-id="mdlWeightQuickF">
+        <label data-page-node-id="mdlWeightQuickL">常写的大小 · 点一下填进去</label>
+        <div class="shop-pick" id="weight-quick" data-page-node-id="mdlWeightQuickB"></div>
+      </div>
+      <div class="field" data-page-node-id="mdlWeightInputF">
+        <label data-page-node-id="mdlWeightInputL">重量</label>
+        <input id="W-weight" placeholder="如 120g" oninput="markWeightChips()" onkeydown="if(event.key==='Enter')confirmWeight()" data-page-node-id="mdlWeightInput" />
+      </div>
+      <div class="modal-actions" data-page-node-id="mdlWeightAct">
+        <button class="btn btn-cancel" onclick="clearWeight()" data-page-node-id="mdlWeightClear">清掉</button>
+        <button class="btn btn-cancel" onclick="closeModal('modal-weight')" data-page-node-id="mdlWeightCancel">取消</button>
+        <button class="btn btn-ok" onclick="confirmWeight()" data-page-node-id="mdlWeightSave">保存</button>
       </div>
     </div>
   </div>
@@ -2001,6 +2030,7 @@ function renderInv() {
         </div>
         <div class="pool-actions">
           <button class="shop-btn" onclick="openShop('${it.id}')" title="改店铺">🏪</button>
+          <button class="shop-btn" onclick="openWeight('${it.id}')" title="改重量">⚖️</button>
           <button class="eat-btn" ${zero ? 'disabled' : ''} onclick="openEat('${it.id}','inv')">开吃</button>
           <button class="take-btn" ${zero ? 'disabled' : ''} onclick="openTake('${it.id}')" title="从冰箱带走，放进背包">带走</button>
           <button class="del ${armed?'armed':''}" onclick="delInv('${it.id}')" title="删除">${armed?'确认删除?':'×'}</button>
@@ -2205,7 +2235,7 @@ function starStr(avg) {
   return [1,2,3,4,5].map(n => `<span class="${n <= full ? '' : 'off'}">★</span>`).join('');
 }
 // 把字符串安全地塞进 onclick='...' 里
-function jsq(s) { return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+function jsq(s) { return String(s == null ? '' : s).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;'); }
 
 // 按面包名聚合
 // · 一起吃的记录：次数两边各算一次，金额在「全部」里算全额、单人里算一半
@@ -2588,7 +2618,7 @@ function openShop(id) {
   const pick = document.getElementById('shop-pick');
   if (pick) {
     pick.innerHTML = shops.length
-      ? shops.map(s => `<button type="button" class="rchip" data-shop="${esc(s)}" onclick="pickShop(${JSON.stringify(s)})">${esc(s)}</button>`).join('')
+      ? shops.map(s => `<button type="button" class="rchip" data-shop="${esc(s)}" onclick="pickShop('${jsq(s)}')">${esc(s)}</button>`).join('')
       : `<span class="none-tip">还没有店铺，下面自己写一个～</span>`;
   }
   markShopChips();
@@ -2625,6 +2655,59 @@ function clearShop() {
   renderAll();
   closeModal('modal-shop');
   flash(`🏪 ${it.name} 的店铺清掉了`);
+}
+
+// ===================== 改重量（冰箱里的每一行） =====================
+let weightTargetId = null;
+const WEIGHT_PRESETS = ['80g', '100g', '120g', '150g', '200g', '250g', '300g', '400g', '500g'];
+function openWeight(id) {
+  const it = (data.inventory || []).find(x => x.id === id);
+  if (!it) return;
+  weightTargetId = id;
+  const sub = document.getElementById('weight-sub');
+  if (sub) sub.textContent = `${it.icon || '🍞'} ${it.name}`;
+
+  // 已经写过的重量也做成胶囊，方便快速回填
+  const used = Array.from(new Set((data.inventory || []).map(x => (x.weight || '').trim()).filter(Boolean)));
+  const opts = used.concat(WEIGHT_PRESETS.filter(w => used.indexOf(w) < 0));
+  const q = document.getElementById('weight-quick');
+  if (q) q.innerHTML = opts.map(w => `<button type="button" class="rchip" data-w="${esc(w)}" onclick="pickWeight('${jsq(w)}')">${esc(w)}</button>`).join('');
+
+  const input = document.getElementById('W-weight');
+  if (input) input.value = it.weight || '';
+  markWeightChips();
+  openModal('modal-weight');
+  setTimeout(() => { if (input) input.focus(); }, 60);
+}
+function pickWeight(w) {
+  const el = document.getElementById('W-weight');
+  if (el) el.value = (el.value.trim() === w) ? '' : w;
+  markWeightChips();
+}
+function markWeightChips() {
+  const v = ((document.getElementById('W-weight') || {}).value || '').trim();
+  document.querySelectorAll('#weight-quick .rchip').forEach(b => {
+    b.classList.toggle('on', b.dataset.w === v);
+  });
+}
+function weightTarget() { return (data.inventory || []).find(x => x.id === weightTargetId); }
+function confirmWeight() {
+  const it = weightTarget();
+  if (!it) { closeModal('modal-weight'); return; }
+  it.weight = (document.getElementById('W-weight').value || '').trim();
+  save(data); bumpLastSync();
+  renderAll();
+  closeModal('modal-weight');
+  flash(`⚖️ ${it.name} → ${it.weight || '（没写重量）'}`);
+}
+function clearWeight() {
+  const it = weightTarget();
+  if (!it) { closeModal('modal-weight'); return; }
+  it.weight = '';
+  save(data); bumpLastSync();
+  renderAll();
+  closeModal('modal-weight');
+  flash(`⚖️ ${it.name} 的重量清掉了`);
 }
 
 // ===================== 弹窗 · 通用 =====================
@@ -2959,13 +3042,43 @@ function saveInv() {
 }
 
 // 店铺名候选：自动汇总已有库存里出现过的店铺
+// datalist 在手机浏览器（微信 / 安卓）里基本弹不出来，所以额外做一排可点的店铺胶囊
 function refreshShopList() {
-  const dl = document.getElementById('shop-list');
-  if (!dl) return;
   const shops = Array.from(new Set(
     (data.inventory || []).map(x => (x.note || '').trim()).filter(Boolean)
   )).sort();
-  dl.innerHTML = shops.map(s => `<option value="${esc(s)}"></option>`).join('');
+
+  const dl = document.getElementById('shop-list');
+  if (dl) dl.innerHTML = shops.map(s => `<option value="${esc(s)}"></option>`).join('');
+
+  ['L', 'I'].forEach(pfx => {
+    const box = document.getElementById(pfx + '-shop-quick');
+    const wrap = document.getElementById(pfx + '-shop-quick-wrap');
+    if (!box) return;
+    if (shops.length) {
+      box.innerHTML = shops.map(s =>
+        `<button type="button" class="rchip" data-shop="${esc(s)}" onclick="fillShop('${pfx}', '${jsq(s)}')">${esc(s)}</button>`
+      ).join('');
+      if (wrap) wrap.style.display = '';
+    } else {
+      box.innerHTML = '';
+      if (wrap) wrap.style.display = 'none';
+    }
+    markShopQuick(pfx);
+  });
+}
+// 点店铺胶囊：填进输入框；再点一下取消
+function fillShop(pfx, s) {
+  const el = document.getElementById(pfx + '-shop');
+  if (el) el.value = (el.value.trim() === s) ? '' : s;
+  markShopQuick(pfx);
+}
+// 胶囊高亮跟输入框内容保持同步
+function markShopQuick(pfx) {
+  const v = ((document.getElementById(pfx + '-shop') || {}).value || '').trim();
+  document.querySelectorAll('#' + pfx + '-shop-quick .rchip').forEach(b => {
+    b.classList.toggle('on', b.dataset.shop === v);
+  });
 }
 function delInv(iid) {
   delArmed('I:' + iid, () => {
@@ -3408,7 +3521,7 @@ function flash(text) {
 }
 
 // ===================== 弹窗点击外部关闭 =====================
-['modal-ledger','modal-inv','modal-eat','modal-pref','modal-shelf','modal-sync','modal-csv','modal-date','modal-take','modal-freeze','modal-itemicon','modal-slices','modal-uneat','modal-rank','modal-rate','modal-shop'].forEach(mid => {
+['modal-ledger','modal-inv','modal-eat','modal-pref','modal-shelf','modal-sync','modal-csv','modal-date','modal-take','modal-freeze','modal-itemicon','modal-slices','modal-uneat','modal-rank','modal-rate','modal-shop','modal-weight'].forEach(mid => {
   document.getElementById(mid).addEventListener('click', (e) => {
     if (e.target.id === mid) closeModal(mid);
   });

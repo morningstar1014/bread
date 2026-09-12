@@ -352,6 +352,9 @@
     min-width: 0;
   }
   .pool-name-text { word-break: keep-all; overflow-wrap: anywhere; }
+  .pool-name-text.clickable { cursor: pointer; transition: color .18s ease, border-color .18s ease;
+    border-bottom: 1px dashed transparent; }
+  .pool-name-text.clickable:hover { color: var(--mint-deep); border-bottom-color: var(--mint-deep); }
   .pool-info {
     font-size: 12px; color: var(--ink-cool-soft);
     font-family: "Source Han Mono", "Consolas", monospace;
@@ -1610,6 +1613,26 @@
     </div>
   </div>
 
+  <!-- ============ 改名（冰箱里每一行） ============ -->
+  <div class="modal-mask" id="modal-rename" data-page-node-id="mdlRename">
+    <div class="modal cool" data-page-node-id="mdlRenameBox">
+      <h2 data-page-node-id="mdlRenameT">✏️ 改名字</h2>
+      <div class="modal-sub" id="rename-sub" data-page-node-id="mdlRenameSub"></div>
+      <div class="field" data-page-node-id="mdlRenameF">
+        <label data-page-node-id="mdlRenameL">商品名称</label>
+        <input id="R-name" placeholder="如 全麦吐司" onkeydown="if(event.key==='Enter')confirmRename()" data-page-node-id="mdlRenameInput" />
+      </div>
+      <div class="field" id="rename-sync-field" data-page-node-id="mdlRenameSyncF">
+        <label data-page-node-id="mdlRenameSyncL">同名的历史记录</label>
+        <div class="shop-pick" id="rename-sync-pick" data-page-node-id="mdlRenameSyncB"></div>
+      </div>
+      <div class="modal-actions" data-page-node-id="mdlRenameAct">
+        <button class="btn btn-cancel" onclick="closeModal('modal-rename')" data-page-node-id="mdlRenameCancel">取消</button>
+        <button class="btn btn-ok" onclick="confirmRename()" data-page-node-id="mdlRenameSave">保存</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============ 吐出来（撤销吃记录）============ -->
   <div class="modal-mask" id="modal-uneat" data-page-node-id="ZonzkCe5ZJT7R1BSFfS0IF">
     <div class="modal cool" data-page-node-id="vFxaIA1M6Dc7YaulCASMcS">
@@ -2032,7 +2055,7 @@ function renderInv() {
       <div class="pool-row ${zero ? 'zero' : ''}">
         <div class="ic clickable" onclick="openItemIcon('inv','${it.id}')" title="点一下换图标">${icHtml(it.icon)}</div>
         <div class="pool-name">
-          <span class="pool-name-text">${esc(it.name)}</span>${tag}
+          <span class="pool-name-text clickable" onclick="openRename('${it.id}')" title="点一下改名字">${esc(it.name)}</span>${tag}
           <span class="pool-info" onclick="openDate('${it.id}')" title="点改放入日期">${info}</span>
         </div>
         <div class="qty-stepper">
@@ -2043,6 +2066,7 @@ function renderInv() {
         <div class="pool-actions">
           <button class="shop-btn" onclick="openShop('${it.id}')" title="改店铺">🏪</button>
           <button class="shop-btn" onclick="openWeight('${it.id}')" title="改重量">⚖️</button>
+          <button class="shop-btn" onclick="openRename('${it.id}')" title="改名字">✏️</button>
           <button class="eat-btn" ${zero ? 'disabled' : ''} onclick="openEat('${it.id}','inv')">开吃</button>
           <button class="take-btn" ${zero ? 'disabled' : ''} onclick="openTake('${it.id}')" title="从冰箱带走，放进背包">带走</button>
           <button class="del ${armed?'armed':''}" onclick="delInv('${it.id}')" title="删除">${armed?'确认删除?':'×'}</button>
@@ -2720,6 +2744,75 @@ function clearWeight() {
   renderAll();
   closeModal('modal-weight');
   flash(`⚖️ ${it.name} 的重量清掉了`);
+}
+
+// ===================== 改名（冰箱里的每一行） =====================
+// 同名的吃过记录 / 背包条目默认一起改 —— 不然改完名字，咪豆榜会把它当成两款东西分开算
+let renameTargetId = null;
+let renameSync = true;
+function openRename(id) {
+  const it = (data.inventory || []).find(x => x.id === id);
+  if (!it) return;
+  renameTargetId = id;
+  const old = it.name || '';
+  const sub = document.getElementById('rename-sub');
+  if (sub) sub.textContent = `${it.icon || '🍞'} ${old}`;
+
+  // 数一下有多少同名历史记录（吃过 + 背包），没有就把这一栏藏起来
+  const nEat = (data.eatLog || []).filter(e => e.name === old).length;
+  const nLed = ['mi', 'dou'].reduce((s, w) =>
+    s + (data.ledger[w] || []).filter(x => x.name === old).length, 0);
+  renameSync = (nEat + nLed) > 0;
+  const field = document.getElementById('rename-sync-field');
+  if (field) field.style.display = renameSync ? '' : 'none';
+  renderRenameSyncChips(nEat, nLed);
+
+  const input = document.getElementById('R-name');
+  if (input) input.value = old;
+  openModal('modal-rename');
+  setTimeout(() => { if (input) { input.focus(); input.select(); } }, 60);
+}
+function renderRenameSyncChips(nEat, nLed) {
+  const pick = document.getElementById('rename-sync-pick');
+  if (!pick) return;
+  const n = nEat + nLed;
+  const parts = [];
+  if (nEat) parts.push(`吃过 ${nEat} 条`);
+  if (nLed) parts.push(`背包 ${nLed} 条`);
+  pick.innerHTML = renameSync
+    ? `<button type="button" class="rchip on" data-sync="1" onclick="toggleRenameSync()">✓ 同名的 ${n} 条（${parts.join(' + ')}）一起改</button>`
+    : `<button type="button" class="rchip" data-sync="0" onclick="toggleRenameSync()">只改冰箱里这一条</button>`;
+}
+function toggleRenameSync() {
+  renameSync = !renameSync;
+  const old = (renameTarget() || {}).name || '';
+  const nEat = (data.eatLog || []).filter(e => e.name === old).length;
+  const nLed = ['mi', 'dou'].reduce((s, w) =>
+    s + (data.ledger[w] || []).filter(x => x.name === old).length, 0);
+  renderRenameSyncChips(nEat, nLed);
+}
+function renameTarget() { return (data.inventory || []).find(x => x.id === renameTargetId); }
+function confirmRename() {
+  const it = renameTarget();
+  if (!it) { closeModal('modal-rename'); return; }
+  const v = ((document.getElementById('R-name') || {}).value || '').trim();
+  if (!v) { flash('⚠️ 名字不能空着'); return; }
+  const old = it.name || '';
+  if (v === old) { closeModal('modal-rename'); return; }
+
+  let nEat = 0, nLed = 0;
+  if (renameSync) {
+    (data.eatLog || []).forEach(e => { if (e.name === old) { e.name = v; nEat++; } });
+    ['mi', 'dou'].forEach(w => (data.ledger[w] || []).forEach(x => {
+      if (x.name === old) { x.name = v; nLed++; }
+    }));
+  }
+  it.name = v;
+  save(data); bumpLastSync();
+  renderAll();
+  closeModal('modal-rename');
+  const extra = (nEat + nLed) ? `（连带改 ${nEat} 条吃过 · ${nLed} 条背包）` : '';
+  flash(`✏️ ${old} → ${v}${extra}`);
 }
 
 // ===================== 弹窗 · 通用 =====================
@@ -3533,7 +3626,7 @@ function flash(text) {
 }
 
 // ===================== 弹窗点击外部关闭 =====================
-['modal-ledger','modal-inv','modal-eat','modal-pref','modal-shelf','modal-sync','modal-csv','modal-date','modal-take','modal-freeze','modal-itemicon','modal-slices','modal-uneat','modal-rank','modal-rate','modal-shop','modal-weight'].forEach(mid => {
+['modal-ledger','modal-inv','modal-eat','modal-pref','modal-shelf','modal-sync','modal-csv','modal-date','modal-take','modal-freeze','modal-itemicon','modal-slices','modal-uneat','modal-rank','modal-rate','modal-shop','modal-weight','modal-rename'].forEach(mid => {
   document.getElementById(mid).addEventListener('click', (e) => {
     if (e.target.id === mid) closeModal(mid);
   });

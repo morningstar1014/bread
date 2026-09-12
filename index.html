@@ -397,8 +397,20 @@
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    cursor: grab;
   }
+  .inv-shops.dragging { cursor: grabbing; }
   .inv-shops::-webkit-scrollbar { display: none; }
+  /* 桌面端：露出细滚动条 + 支持滚轮横滑 / 按住拖拽 */
+  @media (hover: hover) and (pointer: fine) {
+    .inv-shops { scrollbar-width: thin; scrollbar-color: var(--line-cool) transparent; }
+    .inv-shops::-webkit-scrollbar { display: block; height: 6px; }
+    .inv-shops::-webkit-scrollbar-track { background: transparent; }
+    .inv-shops::-webkit-scrollbar-thumb {
+      background: var(--line-cool); border-radius: 3px;
+    }
+    .inv-shops::-webkit-scrollbar-thumb:hover { background: var(--mint-deep); }
+  }
   .shop-chip {
     flex: 0 0 auto;
     font-family: inherit; font-size: 13px; letter-spacing: 1px;
@@ -1981,7 +1993,7 @@ function renderInv() {
   const shops = ['全部', ...Array.from(new Set(all.map(x => x.note).filter(Boolean)))];
   if (!shops.includes(curShop)) curShop = '全部';
   document.getElementById('inv-shops').innerHTML = shops.map(s =>
-    `<button class="shop-chip ${s===curShop?'on':''}" onclick="setShop(${JSON.stringify(s)})">${esc(s)}</button>`
+    `<button class="shop-chip ${s===curShop?'on':''}" onclick="setShop('${jsq(s)}')">${esc(s)}</button>`
   ).join('') +
     // 👁 切换按钮 — 推到最右；已隐藏状态高亮（绿）
     `<button class="shop-chip empty-toggle ${hideEmptyInv ? 'on' : ''}" onclick="toggleHideEmpty()" title="${hideEmptyInv ? '已隐藏 qty=0 的库存，点击显示全部' : '当前显示着全部库存，点击隐藏已吃完的'}">👁 ${hideEmptyInv ? `已隐藏 ${emptyCount}` : '显示全部'}</button>`;
@@ -3534,6 +3546,51 @@ document.getElementById('inv-shops').addEventListener('click', (e) => {
   const name = chip.textContent.trim();
   if (name) setShop(name);
 });
+
+// ===================== 店铺筛选条：桌面端横滑 =====================
+// 手机能手指划，电脑上鼠标滚轮默认只走纵向 → 这里补上「滚轮横滑 + 按住拖拽」
+(function () {
+  const bar = document.getElementById('inv-shops');
+  if (!bar) return;
+  const canScroll = () => bar.scrollWidth > bar.clientWidth + 1;
+
+  // 1) 鼠标滚轮 → 横向滚动（纵向滚轮也吃，滚到头就还给页面）
+  bar.addEventListener('wheel', (e) => {
+    if (e.shiftKey) return;                       // shift+滚轮是浏览器原生横滑
+    if (!canScroll()) return;
+    const d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+    if (!d) return;
+    const before = bar.scrollLeft;
+    bar.scrollLeft = before + d;
+    if (bar.scrollLeft !== before) e.preventDefault();
+  }, { passive: false });
+
+  // 2) 按住拖拽（鼠标/触屏笔都走 pointer 事件）
+  let down = false, moved = false, startX = 0, startLeft = 0;
+  bar.addEventListener('pointerdown', (e) => {
+    if (e.button !== 0) return;
+    down = true; moved = false; startX = e.clientX; startLeft = bar.scrollLeft;
+  });
+  window.addEventListener('pointermove', (e) => {
+    if (!down) return;
+    const dx = e.clientX - startX;
+    if (!moved) {
+      if (Math.abs(dx) < 5) return;               // 抖动阈值，避免误判成拖拽
+      moved = true; bar.classList.add('dragging');
+    }
+    bar.scrollLeft = startLeft - dx;
+  });
+  window.addEventListener('pointerup', () => {
+    if (!down) return;
+    down = false; bar.classList.remove('dragging');
+    if (!moved) return;
+    // 拖完那一下会触发 click → 拦住，别让它误切店铺
+    bar.addEventListener('click', (ev) => {
+      ev.stopPropagation(); ev.preventDefault();
+    }, { capture: true, once: true });
+  });
+  window.addEventListener('pointercancel', () => { down = false; bar.classList.remove('dragging'); });
+})();
 
 // ===================== 云端同步（多人共享同一个链接） =====================
 // 数据存在服务器上：任何人改动 → 写回服务端 → 别人打开/轮询即看到同一份。

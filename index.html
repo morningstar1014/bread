@@ -450,6 +450,21 @@
     transition: all .2s ease;
   }
   .shop-btn:hover { background: var(--soft-cool); border-color: var(--mint); transform: translateY(-1px); }
+  /* 「修改」入口：平时只占一颗按钮，点开才展开 🏪 ⚖️ ✏️（手机端不再挤成一排） */
+  .edit-entry { color: var(--mint-deep); border-color: var(--mint); background: rgba(255,255,255,.78); }
+  .edit-entry:hover { background: var(--soft-cool); }
+  .edit-mini { display: inline-flex; align-items: center; gap: 5px; }
+  .mini-btn {
+    width: 28px; height: 28px; padding: 0;
+    display: inline-flex; align-items: center; justify-content: center;
+    border-radius: 50%;
+    border: 1px solid var(--line-cool); background: #fff;
+    font-size: 13px; line-height: 1; cursor: pointer; font-family: inherit;
+    transition: all .16s ease;
+  }
+  .mini-btn:hover { background: var(--soft-cool); border-color: var(--mint); }
+  .mini-btn:active { transform: scale(.92); }
+  .mini-btn.cancel { color: var(--ink-cool-soft); font-size: 12px; background: rgba(255,255,255,.6); }
   .eat-btn {
     background: var(--mint-deep); color: #F1F5EE;
     border: none; padding: 7px 16px;
@@ -1142,6 +1157,8 @@
     .qbtn { width: 24px; height: 24px; font-size: 15px; }
     .pool-actions { grid-area: act; justify-content: flex-end; flex-wrap: wrap; }
     .eat-btn, .take-btn { padding: 6px 13px; font-size: 11.5px; letter-spacing: 1px; }
+    .edit-entry { padding: 6px 12px; font-size: 12px; }
+    .mini-btn { width: 26px; height: 26px; font-size: 12.5px; }
 
     /* ---- 弹窗 ---- */
     .modal {
@@ -2064,9 +2081,14 @@ function renderInv() {
           <button class="qbtn" onclick="stepQty('${it.id}',1)" title="加一份">＋</button>
         </div>
         <div class="pool-actions">
-          <button class="shop-btn" onclick="openShop('${it.id}')" title="改店铺">🏪</button>
-          <button class="shop-btn" onclick="openWeight('${it.id}')" title="改重量">⚖️</button>
-          <button class="shop-btn" onclick="openRename('${it.id}')" title="改名字">✏️</button>
+          ${editOpen.has('I:'+it.id)
+            ? `<span class="edit-mini">
+                 <button class="mini-btn" onclick="openShop('${it.id}')" title="改店铺">🏪</button>
+                 <button class="mini-btn" onclick="openWeight('${it.id}')" title="改重量">⚖️</button>
+                 <button class="mini-btn" onclick="openRename('${it.id}')" title="改名字">✏️</button>
+                 <button class="mini-btn cancel" onclick="toggleEdit('I','${it.id}')" title="收起">✕</button>
+               </span>`
+            : `<button class="shop-btn edit-entry" onclick="toggleEdit('I','${it.id}')" title="改店铺 / 重量 / 名字">⚙️ 修改</button>`}
           <button class="eat-btn" ${zero ? 'disabled' : ''} onclick="openEat('${it.id}','inv')">开吃</button>
           <button class="take-btn" ${zero ? 'disabled' : ''} onclick="openTake('${it.id}')" title="从冰箱带走，放进背包">带走</button>
           <button class="del ${armed?'armed':''}" onclick="delInv('${it.id}')" title="删除">${armed?'确认删除?':'×'}</button>
@@ -2678,6 +2700,7 @@ function confirmShop() {
   const it = shopTarget();
   if (!it) { closeModal('modal-shop'); return; }
   it.note = (document.getElementById('S-shop').value || '').trim();
+  closeEdit('I', it.id);
   save(data); bumpLastSync();
   renderAll();
   closeModal('modal-shop');
@@ -2687,6 +2710,7 @@ function clearShop() {
   const it = shopTarget();
   if (!it) { closeModal('modal-shop'); return; }
   it.note = '';
+  closeEdit('I', it.id);
   save(data); bumpLastSync();
   renderAll();
   closeModal('modal-shop');
@@ -2731,6 +2755,7 @@ function confirmWeight() {
   const it = weightTarget();
   if (!it) { closeModal('modal-weight'); return; }
   it.weight = (document.getElementById('W-weight').value || '').trim();
+  closeEdit('I', it.id);
   save(data); bumpLastSync();
   renderAll();
   closeModal('modal-weight');
@@ -2740,6 +2765,7 @@ function clearWeight() {
   const it = weightTarget();
   if (!it) { closeModal('modal-weight'); return; }
   it.weight = '';
+  closeEdit('I', it.id);
   save(data); bumpLastSync();
   renderAll();
   closeModal('modal-weight');
@@ -2808,6 +2834,7 @@ function confirmRename() {
     }));
   }
   it.name = v;
+  closeEdit('I', it.id);
   save(data); bumpLastSync();
   renderAll();
   closeModal('modal-rename');
@@ -3076,6 +3103,17 @@ function saveLedger() {
 }
 // 删除改为「二次点击确认」：点一下进入 armed（红字"确认删除?"），再点才真删；2 秒不点自动还原。
 // 不依赖原生 confirm —— 内置预览 / 移动端 WebView 的 confirm 常被静默拦截，导致删除"没反应"。
+// 哪一行的「修改」展开着（纯界面状态，不进数据、不落盘）
+// 一次只开一行：点另一行的修改，上一行自动收起
+const editOpen = new Set();
+function toggleEdit(pfx, id) {
+  const key = pfx + ':' + id;
+  if (editOpen.has(key)) editOpen.delete(key);
+  else { editOpen.clear(); editOpen.add(key); }
+  if (pfx === 'L') renderLedger(); else renderInv();
+}
+function closeEdit(pfx, id) { editOpen.delete(pfx + ':' + id); }
+
 const armedDel = new Set();
 function delArmed(key, doDelete) {
   if (!armedDel.has(key)) {

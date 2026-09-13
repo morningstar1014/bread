@@ -611,6 +611,11 @@
   .star-btn:hover { transform: scale(1.16); }
   .star-btn:active { transform: scale(.92); }
   .star-tip { margin-left: 8px; font-size: 12px; color: var(--ink-soft); letter-spacing: .5px; }
+  /* 「一起吃」→ 打分变成两行（🐱 一行 / 🐶 一行），各打各的 */
+  .star-row.duo { flex-direction: column; align-items: flex-start; gap: 5px; }
+  .eat-star-line { display: flex; align-items: center; gap: 6px; }
+  .eat-star-line .duo-emo { font-size: 16px; }
+  .eat-star-line .star-tip { margin-left: 4px; }
   .star-clear {
     margin-left: 8px; font-size: 11.5px; font-family: inherit; cursor: pointer;
     padding: 3px 11px; border-radius: 999px;
@@ -630,6 +635,11 @@
   }
   .mini-star.on { color: var(--melon); }
   .mini-star:hover { transform: scale(1.3); }
+  /* 一起吃的记录 → 行内两行小星（🐱 一行 / 🐶 一行） */
+  .rate-mini.duo { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 1px; }
+  .rate-mini.duo .duo-line { display: inline-flex; align-items: center; gap: 2px; }
+  .rate-mini.duo .duo-emo { font-size: 11px; }
+  .rate-mini.duo .mini-star { font-size: 12px; }
 
   /* 顶部「咪豆榜」入口按钮 */
   .rank-btn {
@@ -669,6 +679,10 @@
   .rate-what { font-size: 11.5px; color: var(--ink-soft); margin-top: 3px; letter-spacing: .5px; }
   .rate-stars { flex: 0 0 auto; }
   .rate-stars .star-btn { font-size: 22px; }
+  /* 一起吃的记录 → 咪 / 豆 各打各的分，两行（按款打分的弹窗里） */
+  .rate-stars-duo { flex: 0 0 auto; display: flex; flex-direction: column; gap: 2px; }
+  .rate-stars-duo .duo-line { display: flex; align-items: center; justify-content: flex-end; gap: 6px; }
+  .duo-emo { font-style: normal; font-size: 13px; line-height: 1; opacity: .9; }
 
   /* ============ 咪豆榜 ============ */
   .rank-modal .rank-list { max-height: 56vh; overflow-y: auto; padding: 2px; }
@@ -2254,10 +2268,18 @@ function rowsOf(items, who) {
       : '';
     const bothTag = e.who === 'both' ? `<span class="eaten-both-tag">👫 一起</span>` : '';
     // 星级：点第 n 颗打分，再点同一颗清除
-    const r = Number(e.rating) || 0;
-    const starsHtml = `<span class="rate-mini" title="${r ? '当前 ' + r + ' 星 · 点一下改分' : '还没打分 · 点一下打分'}">${
-      [1,2,3,4,5].map(n => `<button type="button" class="mini-star ${n <= r ? 'on' : ''}" onclick="rateEaten('${e.id}',${n})">★</button>`).join('')
+    // 一起吃的记录 → 咪 / 豆 各一行，各打各的
+    const isBoth = e.who === 'both';
+    const miniLine = (w, r) => `<span class="duo-line"><i class="duo-emo">${rateWhoEmo(w)}</i>${
+      [1,2,3,4,5].map(n => `<button type="button" class="mini-star ${n <= r ? 'on' : ''}" onclick="rateEaten('${e.id}',${n}${isBoth ? `,'${w}'` : ''})">★</button>`).join('')
     }</span>`;
+    // 单人记录：谁吃的就用谁的（单人记录分数都存在 e.rating 里）
+    const rOne = rateOf(e, e.who === 'dou' ? 'dou' : 'mi');
+    const starsHtml = isBoth
+      ? `<span class="rate-mini duo" title="一起吃 · 咪和豆各打各的分">${miniLine('mi', rateOf(e, 'mi'))}${miniLine('dou', rateOf(e, 'dou'))}</span>`
+      : `<span class="rate-mini" title="${rOne ? '当前 ' + rOne + ' 星 · 点一下改分' : '还没打分 · 点一下打分'}">${
+          [1,2,3,4,5].map(n => `<button type="button" class="mini-star ${n <= rOne ? 'on' : ''}" onclick="rateEaten('${e.id}',${n})">★</button>`).join('')
+        }</span>`;
     return `
       <div class="row eaten">
         <div class="ic">${icHtml(e.icon)}</div>
@@ -2306,11 +2328,14 @@ function rankAgg() {
     if (!r) { r = { name: e.name, icon: e.icon || '🍞', n: 0, amt: 0, rAll: [], rMi: [], rDou: [], last: '' }; map.set(e.name, r); }
     r.n++;
     r.amt += (rankWho === 'all') ? eatAmount(e) : eatAmountFor(e, rankWho);
-    const rt = Number(e.rating) || 0;
-    if (rt > 0) {
-      r.rAll.push(rt);
-      if (e.who === 'mi' || e.who === 'both') r.rMi.push(rt);
-      if (e.who === 'dou' || e.who === 'both') r.rDou.push(rt);
+    // 一起吃的记录：咪、豆各取自己那份分（rateOf 会自动分人；老记录回退到共用分）
+    if (e.who === 'mi' || e.who === 'both') {
+      const v = rateOf(e, 'mi');
+      if (v > 0) { r.rMi.push(v); r.rAll.push(v); }
+    }
+    if (e.who === 'dou' || e.who === 'both') {
+      const v = rateOf(e, 'dou');
+      if (v > 0) { r.rDou.push(v); r.rAll.push(v); }
     }
     if ((e.date || '') > r.last) r.last = e.date || '';
     if (!r.icon || r.icon === '🍞') r.icon = e.icon || '🍞';
@@ -2339,7 +2364,7 @@ function renderRank() {
   if (!mask.classList.contains('show')) return;      // 弹窗没打开就别白算
 
   // 智能默认：还没人打过分 → 先按回购次数排（不然满屏「未评分」，看不出名堂）
-  if (!rankBy) rankBy = (data.eatLog || []).some(e => Number(e.rating) > 0) ? 'rating' : 'count';
+  if (!rankBy) rankBy = (data.eatLog || []).some(e => rateOf(e, 'mi') > 0 || rateOf(e, 'dou') > 0) ? 'rating' : 'count';
 
   document.querySelectorAll('#modal-rank .rchip').forEach(b => {
     if (b.dataset.who !== undefined) b.classList.toggle('on', b.dataset.who === rankWho);
@@ -3233,28 +3258,87 @@ function delInv(iid) {
 
 // ===================== 弹窗 · 吃面包 =====================
 let eatTarget = null, eatWho = null;
-let eatRating = 0;                       // 开吃时打的味道分（0 = 没打）
+let eatRating = 0;                       // 单人开吃时打的味道分（0 = 没打）
+let eatRatings = { mi: 0, dou: 0 };      // 「一起吃」时两个人各打各的
 const RATING_TIP = { 0: '', 1: '嗯…不太行', 2: '一般般', 3: '还不错', 4: '好吃！', 5: '回购王 👑' };
 
-// 吃弹窗里的星级打分：点第 n 颗 = n 分；再点同一颗 = 取消（0）
-function setEatRating(n) {
-  eatRating = (eatRating === n) ? 0 : n;
-  document.querySelectorAll('#E-star-row .star-btn').forEach(b => {
-    b.classList.toggle('on', Number(b.dataset.star) <= eatRating);
-  });
-  document.getElementById('E-star-tip').textContent = RATING_TIP[eatRating] || '';
+// 吃弹窗里的星级打分：
+//   单人 → 一组星（eatRating）
+//   一起吃 → 两组星 🐱 / 🐶，各打各的（eatRatings.mi / eatRatings.dou）
+function renderEatStars() {
+  const row = document.getElementById('E-star-row');
+  if (!row) return;
+  const both = eatWho === 'both';
+  row.classList.toggle('duo', both);
+  if (both) {
+    row.innerHTML = ['mi', 'dou'].map(w => `
+      <span class="eat-star-line">
+        <i class="duo-emo">${rateWhoEmo(w)}</i>
+        <span class="star-row">
+          ${[1,2,3,4,5].map(n => `<button type="button" class="star-btn ${n <= eatRatings[w] ? 'on' : ''}" onclick="setEatRating(${n},'${w}')">★</button>`).join('')}
+        </span>
+        <span class="star-tip">${eatRatings[w] ? RATING_TIP[eatRatings[w]] : '还没打分'}</span>
+      </span>`).join('');
+  } else {
+    row.innerHTML = [1,2,3,4,5].map(n =>
+        `<button type="button" class="star-btn ${n <= eatRating ? 'on' : ''}" onclick="setEatRating(${n})">★</button>`).join('')
+      + `<button type="button" class="star-clear" onclick="setEatRating(0)">跳过</button>`
+      + `<span class="star-tip" id="E-star-tip">${RATING_TIP[eatRating] || ''}</span>`;
+  }
+}
+function setEatRating(n, who) {
+  if (eatWho === 'both') {
+    const w = who === 'dou' ? 'dou' : 'mi';
+    eatRatings[w] = (eatRatings[w] === n) ? 0 : n;
+  } else {
+    eatRating = (eatRating === n) ? 0 : n;
+  }
+  renderEatStars();
 }
 
+// ── 评分：一起吃要分开算 ──
+// 单人记录：分数存 e.rating，是谁的就是谁的
+// 一起吃  ：分数存 e.ratingMi / e.ratingDou，两个人各打各的
+// 老数据（一起吃但只有 e.rating）：那个分先两边共用，等谁重新打分再各自独立
+function rateOf(e, who) {
+  if (!e) return 0;
+  if (e.who === 'both') {
+    const v = e[who === 'dou' ? 'ratingDou' : 'ratingMi'];
+    if (v === 0 || v) return Number(v) || 0;     // 显式存过（哪怕是 0）就以它为准
+    return Number(e.rating) || 0;                // 老记录兜底
+  }
+  return Number(e.rating) || 0;
+}
+function rateKeyOf(e, who) {
+  if (e.who !== 'both') return 'rating';
+  return who === 'dou' ? 'ratingDou' : 'ratingMi';
+}
+function rateWhoName(who) {
+  if (who === 'mi' || who === 'dou') {
+    return (data.prefs && data.prefs[who] && data.prefs[who].name) || (who === 'mi' ? '咪' : '豆');
+  }
+  return '一起';
+}
+function rateWhoEmo(who) {
+  if (who === 'mi' || who === 'dou') {
+    return (data.prefs && data.prefs[who] && data.prefs[who].emoji) || (who === 'mi' ? '🐱' : '🐶');
+  }
+  return '👫';
+}
 // 给吃过记录打分 / 改分（点第 n 颗；再点同一颗 = 清除）
-function rateEaten(logId, n) {
+//   who：只有当这条是「一起吃」时才需要传（'mi' / 'dou'）
+function rateEaten(logId, n, who) {
   const e = (data.eatLog || []).find(x => x.id === logId);
   if (!e) return;
-  e.rating = (Number(e.rating) === n) ? 0 : n;
+  const w = e.who === 'both' ? (who === 'dou' ? 'dou' : 'mi') : (e.who === 'dou' ? 'dou' : 'mi');
+  const val = (rateOf(e, w) === n) ? 0 : n;
+  e[rateKeyOf(e, w)] = val;
   save(data); bumpLastSync();
   renderAll();
   if (document.getElementById('modal-rate').classList.contains('show')) renderRate();
-  if (e.rating > 0) flash(`${'★'.repeat(e.rating)} ${e.name} · ${RATING_TIP[e.rating] || ''}`);
-  else flash(`已清除 ${e.name} 的评分`);
+  const tail = e.who === 'both' ? ' · ' + rateWhoName(w) : '';
+  if (val > 0) flash(`${'★'.repeat(val)} ${e.name}${tail} · ${RATING_TIP[val] || ''}`);
+  else flash(`已清除 ${e.name}${tail} 的评分`);
 }
 // 弹窗：给某一款的每一次吃记录打分 / 改分
 let rateName = '';
@@ -3272,21 +3356,37 @@ function renderRate() {
   if (sub) sub.textContent = `${icon} ${rateName} · 一共吃过 ${items.length} 次`;
   if (!items.length) { box.innerHTML = `<div class="rank-empty">没有记录～</div>`; return; }
   box.innerHTML = items.map(e => {
-    const r = Number(e.rating) || 0;
-    const whoTxt = e.who === 'both' ? '👫 一起' : ((data.prefs && data.prefs[e.who] && data.prefs[e.who].name) || e.who || '');
+    const both = e.who === 'both';
     const nm = (data.prefs && data.prefs.mi && data.prefs.mi.name) || '咪';
     const nd = (data.prefs && data.prefs.dou && data.prefs.dou.name) || '豆';
-    const whoName = e.who === 'both' ? '👫 ' + nm + '+' + nd : whoTxt;
+    const whoTxt = e.who === 'both' ? '👫 一起' : ((data.prefs && data.prefs[e.who] && data.prefs[e.who].name) || e.who || '');
+    const whoName = both ? '👫 ' + nm + '+' + nd : whoTxt;
+
+    // 一组星（一起吃的记录 → 两组，各带自己的小头像）
+    const starLine = (w, r) => `
+      <div class="duo-line">
+        ${both ? `<i class="duo-emo">${rateWhoEmo(w)}</i>` : ''}
+        <span class="star-row rate-stars">
+          ${[1,2,3,4,5].map(n => `<button type="button" class="star-btn ${n <= r ? 'on' : ''}" onclick="rateEaten('${e.id}',${n}${both ? `,'${w}'` : ''})">★</button>`).join('')}
+          ${r ? `<button type="button" class="star-clear" onclick="rateEaten('${e.id}',${r}${both ? `,'${w}'` : ''})">清除</button>` : ''}
+        </span>
+      </div>`;
+
+    const starsHtml = both
+      ? `<div class="rate-stars-duo">${starLine('mi', rateOf(e, 'mi'))}${starLine('dou', rateOf(e, 'dou'))}</div>`
+      : starLine(e.who === 'dou' ? 'dou' : 'mi', rateOf(e, e.who === 'dou' ? 'dou' : 'mi'));
+
+    let tip;
+    if (both) tip = (rateOf(e, 'mi') || rateOf(e, 'dou')) ? '' : ' · 还没打分';
+    else { const r = rateOf(e, 'mi'); tip = r ? ` · <b style="color:var(--caramel-deep)">${RATING_TIP[r]}</b>` : ' · 还没打分'; }
+
     return `
       <div class="rate-row">
         <div class="rate-info">
           <div class="rate-when">${fmt(e.date)}${e.slot ? ' ' + e.slot : ''} · ${whoName}</div>
-          <div class="rate-what">× ${e.qty} ${eatUnitOf(e)}${r ? ` · <b style="color:var(--caramel-deep)">${RATING_TIP[r]}</b>` : ' · 还没打分'}</div>
+          <div class="rate-what">× ${e.qty} ${eatUnitOf(e)}${tip}</div>
         </div>
-        <div class="star-row rate-stars">
-          ${[1,2,3,4,5].map(n => `<button type="button" class="star-btn ${n <= r ? 'on' : ''}" onclick="rateEaten('${e.id}',${n})">★</button>`).join('')}
-          ${r ? `<button type="button" class="star-clear" onclick="rateEaten('${e.id}',${r})">清除</button>` : ''}
-        </div>
+        ${starsHtml}
       </div>`;
   }).join('');
 }
@@ -3298,7 +3398,7 @@ function openEat(itemId, source) {
   eatTarget = itemId;
   pickedSlot = '';
   eatRating = 0;
-  setEatRating(0);
+  eatRatings = { mi: 0, dou: 0 };
   document.querySelectorAll('#E-slot-row .slot-chip').forEach(b => b.classList.remove('on'));
 
   const whoField = document.getElementById('eat-who-field');
@@ -3313,6 +3413,7 @@ function openEat(itemId, source) {
     whoField.style.display = 'none';
     eatWho = eatSource;     // 背包物品归属就是 who
   }
+  renderEatStars();          // 选「一起」时打分才会变成两组，所以放在 eatWho 定下来之后
   document.getElementById('E-qty').max = item ? item.qty : 1;
   document.getElementById('E-qty').value = 1;
   document.getElementById('E-date').value = new Date().toISOString().slice(0,10);
@@ -3347,13 +3448,18 @@ function confirmEat() {
   // 把单价写进吃过记录，后面才能算「这个月吃了多少钱」
   // 件 → 按 qty 计；份 → 单价 ÷ 总份数 × 份数
   // unitPrice = 这一刻的「每份单价」快照：以后再改份数 / 改价，这条记录的金额都不动
+  // 一起吃 → 两个人的分分开存（ratingMi / ratingDou），并且**两个都显式写**，
+  // 这样 rateOf 不会把老数据的兜底分混进来
+  const rateFields = eatWho === 'both'
+    ? { rating: 0, ratingMi: eatRatings.mi || 0, ratingDou: eatRatings.dou || 0 }
+    : { rating: eatRating || 0 };
   data.eatLog.unshift({
     id: id(), who: eatWho, name: item.name, icon: item.icon,
     qty, date, slot, unit,
     price: Number(item.price) || 0,
     slices: Number(item.slices) || 0,
     unitPrice: unitPriceOf(item.price, unit, item.slices),
-    rating: eatRating || 0,          // 味道打分 1–5（0 = 没打）
+    ...rateFields,           // 味道打分 1–5（0 = 没打）
     note: item.note || '',
     src: eatSource,        // 从哪儿吃的（'inv' 大冰箱 / 'mi' / 'dou' 背包）→ 撤销时好还回原处
   });
@@ -3365,7 +3471,11 @@ function confirmEat() {
 
   save(data); bumpLastSync(); closeModal('modal-eat'); renderAll();
   const slotTxt = slot ? `（${slot}）` : '';
-  const rateTxt = eatRating > 0 ? ` ${'★'.repeat(eatRating)}${RATING_TIP[eatRating] ? ' ' + RATING_TIP[eatRating] : ''}` : '';
+  const rateTxt = eatWho === 'both'
+    ? ['mi', 'dou'].filter(w => eatRatings[w] > 0)
+        .map(w => `${rateWhoEmo(w)}${'★'.repeat(eatRatings[w])}`).join(' ')
+        .replace(/^/, ' ')
+    : (eatRating > 0 ? ` ${'★'.repeat(eatRating)}${RATING_TIP[eatRating] ? ' ' + RATING_TIP[eatRating] : ''}` : '');
   if (eatWho === 'both') {
     flash(`👫 咪 & 豆 一起吃掉 ${item.icon} ${item.name} × ${qty} ${unit} ${slotTxt}${rateTxt}`);
   } else {
@@ -3433,7 +3543,7 @@ function pickWho(el, scope) {
   el.classList.add('active');
   const who = el.dataset.who;
   if (scope === 'ledger') ledgerWho = who;
-  else if (scope === 'eat') eatWho = who;
+  else if (scope === 'eat') { eatWho = who; renderEatStars(); }   // 选「一起」→ 打分变两组
   else if (scope === 'take') takeWho = who;
 }
 

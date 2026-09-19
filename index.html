@@ -576,6 +576,12 @@
     color: var(--caramel-deep);
     font-family: "Source Han Mono", "Consolas", monospace;
   }
+  /* 这条吃下去多少热量（份装已经摊到每一份了） */
+  .eaten-kcal {
+    margin-left: 6px; font-size: 11.5px; font-weight: 600;
+    color: var(--tomato);
+    font-family: "Source Han Mono", "Consolas", monospace;
+  }
 
   /* 月份分组标题 */
   .month-group { margin-top: 10px; }
@@ -2188,6 +2194,32 @@ function eatAmount(e) {
   if (!up) return 0;
   return up * Number(e.qty || 0);
 }
+// 热量同理：条装整条多少就是多少；份装要先把总热量摊到每一份，再乘吃了几份
+function unitKcalOf(kcal, unit, slices) {
+  const k = Number(kcal) || 0;
+  if (!k) return 0;
+  if (unit === '份' && Number(slices) > 0) return k / Number(slices);
+  return k;
+}
+// 反向：吃过记录里存的是「每份」的热量，吐回冰箱时要还原成整份（÷ 过的要 × 回来）
+function wholeKcalOf(kcal, unit, slices) {
+  const k = Number(kcal) || 0;
+  if (!k) return 0;
+  if (unit === '份' && Number(slices) > 0) return k * Number(slices);
+  return k;
+}
+function eatKcal(e) {
+  return (Number(e && e.kcal) || 0) * (Number(e && e.qty) || 0);
+}
+function eatKcalFor(e, who) {
+  const k = eatKcal(e);
+  return (isShared(e) && who) ? k / 2 : k;
+}
+// 热量文案（吃过记录里那个小标记）：整数就 320，带小数进位到整数
+function kcalShort(n) {
+  const k = Number(n) || 0;
+  return k > 0 ? `🔥 ${fmtNum(Math.round(k))}` : '';
+}
 function eatUnitOf(e) { return e.unit || (e.unit === '份' ? '份' : '件'); }
 
 // 👫 一起吃 → 金额 / 数量两人各一半（两边加起来 = 实际总量，账不会重复算）
@@ -2300,6 +2332,12 @@ function rowsOf(items, who) {
       ? `<span class="eaten-amt"${isShared(e) ? ` title="一起吃 · 共 ¥${fmtMoney(full)}，一人一半"` : ''}>${isShared(e) ? '½ ' : ''}¥${fmtMoney(amt)}</span>`
       : '';
     const bothTag = e.who === 'both' ? `<span class="eaten-both-tag">👫 一起</span>` : '';
+    // 热量：份装已经在存的时候摊到每一份了，这里 × 吃了几份；一起吃的显示自己那一半
+    const kcalAll = eatKcal(e);
+    const kcalHalf = eatKcalFor(e, who);
+    const kcalHtml = kcalAll > 0
+      ? `<span class="eaten-kcal"${isShared(e) ? ` title="一起吃 · 共 ${fmtNum(Math.round(kcalAll))} 千卡，一人一半"` : ''}>${isShared(e) ? '½ ' : ''}${kcalShort(kcalHalf)}</span>`
+      : '';
     // 星级：点第 n 颗打分，再点同一颗清除
     // 一起吃的记录 → 咪 / 豆 各一行，各打各的
     const isBoth = e.who === 'both';
@@ -2317,7 +2355,7 @@ function rowsOf(items, who) {
       <div class="row eaten">
         <div class="ic">${icHtml(e.icon)}</div>
         <div class="row-name">${esc(e.name)}<span class="qty">× ${e.qty} ${unit}</span>${bothTag}</div>
-        <div class="row-date">${fmt(e.date)}${slotTxt}${amtHtml}${starsHtml}</div>
+        <div class="row-date">${fmt(e.date)}${slotTxt}${amtHtml}${kcalHtml}${starsHtml}</div>
         <div class="row-actions">
           <button class="uneat-btn" onclick="openUneat('${e.id}')" title="吃错了？吐出来，数量还回原处">${UNEAT_SVG}</button>
         </div>
@@ -2502,7 +2540,7 @@ function addBackTo(arr, e, qty, unit) {
     if (Number(e.price))  exist.price  = Number(e.price);
     if (unit === '份' && Number(e.slices)) exist.slices = Number(e.slices);
     if (!exist.icon || exist.icon === '🍞') exist.icon = e.icon;
-    if (!Number(exist.kcal) && Number(e.kcal)) exist.kcal = Number(e.kcal);
+    if (!Number(exist.kcal) && Number(e.kcal)) exist.kcal = wholeKcalOf(e.kcal, unit, e.slices);
   } else {
     arr.push({
       id: id(), name: e.name, icon: e.icon || '🍞',
@@ -2512,7 +2550,7 @@ function addBackTo(arr, e, qty, unit) {
       slices: Number(e.slices) || 0,
       note:   e.note || '',
       weight: e.weight || '',
-      kcal:   Number(e.kcal) || 0,
+      kcal:   wholeKcalOf(e.kcal, unit, e.slices),
     });
   }
 }
@@ -3575,7 +3613,8 @@ function confirmEat() {
     price: Number(item.price) || 0,
     slices: Number(item.slices) || 0,
     unitPrice: unitPriceOf(item.price, unit, item.slices),
-    kcal: Number(item.kcal) || 0,   // 整份热量快照（和 unitPrice 一样，后面的改动不影响这条）
+    // 热量快照：份装先摊到每份（和 unitPrice 一样按份存），乘 qty 才是真吃进去的
+    kcal: unitKcalOf(item.kcal, unit, item.slices),
     ...rateFields,           // 味道打分 1–5（0 = 没打）
     note: item.note || '',
     src: eatSource,        // 从哪儿吃的（'inv' 大冰箱 / 'mi' / 'dou' 背包）→ 撤销时好还回原处

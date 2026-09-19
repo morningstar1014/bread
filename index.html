@@ -450,8 +450,13 @@
     transition: all .2s ease;
   }
   .shop-btn:hover { background: var(--soft-cool); border-color: var(--mint); transform: translateY(-1px); }
-  /* 「修改」入口：平时只占一颗按钮，点开才展开 🏪 ⚖️ ✏️（手机端不再挤成一排） */
-  .edit-entry { color: var(--mint-deep); border-color: var(--mint); background: rgba(255,255,255,.78); }
+  /* 「修改」入口：平时只占一颗齿轮，点开才展开 🏪 ⚖️ ✏️（手机端不再挤成一排） */
+  .edit-entry {
+    color: var(--mint-deep); border-color: var(--mint); background: rgba(255,255,255,.78);
+    /* 只有图标没有字 → 做成正圆，和展开后的 .mini-btn 一样大 */
+    width: 26px; height: 26px; padding: 0; font-size: 13px;
+    display: inline-flex; align-items: center; justify-content: center;
+  }
   .edit-entry:hover { background: var(--soft-cool); }
   .edit-mini { display: inline-flex; align-items: center; gap: 5px; }
   .mini-btn {
@@ -1171,7 +1176,7 @@
     .qbtn { width: 24px; height: 24px; font-size: 15px; }
     .pool-actions { grid-area: act; justify-content: flex-end; flex-wrap: wrap; }
     .eat-btn, .take-btn { padding: 6px 13px; font-size: 11.5px; letter-spacing: 1px; }
-    .edit-entry { padding: 6px 12px; font-size: 12px; }
+    .edit-entry { width: 26px; height: 26px; padding: 0; font-size: 13px; }
     .mini-btn { width: 26px; height: 26px; font-size: 12.5px; }
 
     /* ---- 弹窗 ---- */
@@ -2102,7 +2107,7 @@ function renderInv() {
                  <button class="mini-btn" onclick="openRename('${it.id}')" title="改名字">✏️</button>
                  <button class="mini-btn cancel" onclick="toggleEdit('I','${it.id}')" title="收起">✕</button>
                </span>`
-            : `<button class="shop-btn edit-entry" onclick="toggleEdit('I','${it.id}')" title="改店铺 / 重量 / 名字">⚙️ 修改</button>`}
+            : `<button class="shop-btn edit-entry" onclick="toggleEdit('I','${it.id}')" title="改店铺 / 重量 / 名字">⚙️</button>`}
           <button class="eat-btn" ${zero ? 'disabled' : ''} onclick="openEat('${it.id}','inv')">开吃</button>
           <button class="take-btn" ${zero ? 'disabled' : ''} onclick="openTake('${it.id}')" title="从冰箱带走，放进背包">带走</button>
           <button class="del ${armed?'armed':''}" onclick="delInv('${it.id}')" title="删除">${armed?'确认删除?':'×'}</button>

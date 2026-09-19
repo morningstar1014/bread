@@ -960,6 +960,8 @@
   .modal.cool .icon-grid button.active { border-color: var(--mint); background: var(--soft-cool); }
   /* 价格 / 店铺 / 重量 三连输入 */
   .trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  /* 价格 / 店铺 / 重量 / 热量 —— 四个一排（窄屏会退化成单列） */
+  .trio.quad { grid-template-columns: repeat(4, 1fr); }
   .trio .field { margin-bottom: 0; }
 
   /* 文字图标（如「包」= 包子）单独排版，字号字重跟 emoji 对齐 */
@@ -1187,7 +1189,7 @@
       border-radius: 18px;
     }
     .modal h2 { font-size: 20px; }
-    .trio { grid-template-columns: 1fr; gap: 8px; }
+    .trio, .trio.quad { grid-template-columns: 1fr; gap: 8px; }
     .who-row { gap: 8px; }
     .who-card { padding: 10px 12px; font-size: 14px; }
     .icon-grid { grid-template-columns: repeat(6, 1fr); gap: 5px; padding: 10px; }
@@ -1358,10 +1360,11 @@
         </div>
         <p style="margin-top:6px; font-size:12px; color:var(--ink-cool-soft); line-height:1.5;" data-page-node-id="EFh9260IDPZCCAx6sMfwiK">份数按第一次切的时候定，之后不再变</p>
       </div>
-      <div class="trio" data-page-node-id="fMfpBOkUjRBELU7je9En1b">
+      <div class="trio quad" data-page-node-id="fMfpBOkUjRBELU7je9En1b">
         <div class="field" data-page-node-id="yyxc8xwCavwsKUbdN87krR"><label data-page-node-id="wHu189DAfy5hwoN5qFJH0p">价格 ¥</label><input id="L-price" type="number" step="0.1" min="0" placeholder="选填" oninput="updateSlicesHint('L')" data-page-node-id="K6mVMRYJzv376pGALQoE4w" /></div>
         <div class="field" data-page-node-id="4isiO6LW2y6Voj1Fa945Fk"><label data-page-node-id="nhvJEePdEAWEXCj715CZ3l">店铺</label><input id="L-shop" list="shop-list" placeholder="选填" oninput="markShopQuick('L')" data-page-node-id="kxC0hHHREucHrzX0sEFZtk" /></div>
         <div class="field" data-page-node-id="NN9NMGfewpCYJ1cayZuhMq"><label data-page-node-id="lVBWovSKDoctIXG1S67xEH">重量</label><input id="L-weight" placeholder="如 120g" data-page-node-id="H9AMu8OMm29AgxahH3LWEf" /></div>
+        <div class="field" data-page-node-id="LkcalF"><label data-page-node-id="LkcalL">热量 千卡</label><input id="L-kcal" type="number" step="1" min="0" placeholder="整份 · 选填" data-page-node-id="LkcalInput" /></div>
       </div>
       <div class="field shop-quick" id="L-shop-quick-wrap" style="display:none;" data-page-node-id="LshopQuickW">
         <label data-page-node-id="LshopQuickL">常去的店 · 点一下填进去</label>
@@ -1412,10 +1415,11 @@
         </div>
         <p style="margin-top:6px; font-size:12px; color:var(--ink-cool-soft); line-height:1.5;" data-page-node-id="dRFsHLmDbsuyyi6eLibgcz">份数按第一次切的时候定，之后不再变</p>
       </div>
-      <div class="trio" data-page-node-id="EIiUVRuoMtH5EfyC5SsRSr">
+      <div class="trio quad" data-page-node-id="EIiUVRuoMtH5EfyC5SsRSr">
         <div class="field" data-page-node-id="RoRYLXXhwVLV1ElO4psUa7"><label data-page-node-id="Y9IKyRRDuGmSNy9wtNOz8x">价格 ¥</label><input id="I-price" type="number" step="0.1" min="0" placeholder="选填" oninput="updateSlicesHint('I')" data-page-node-id="4PFOQtDgFW919C8cV6aZRB" /></div>
         <div class="field" data-page-node-id="AyKc3jqR2hlpK3sSmYY0kU"><label data-page-node-id="CeorxA9feHEkMaof0QcRim">店铺</label><input id="I-shop" list="shop-list" placeholder="选填" oninput="markShopQuick('I')" data-page-node-id="TYusufvJvdmGwKloJ4sTUh" /></div>
         <div class="field" data-page-node-id="A6H3S4QkL8Mku0tn9uQAtX"><label data-page-node-id="GKw8pPncHAcbpP6EOPkniL">重量</label><input id="I-weight" placeholder="如 120g" data-page-node-id="ay9BAwunfHJMtrWEnN55KC" /></div>
+        <div class="field" data-page-node-id="IkcalF"><label data-page-node-id="IkcalL">热量 千卡</label><input id="I-kcal" type="number" step="1" min="0" placeholder="整份 · 选填" data-page-node-id="IkcalInput" /></div>
       </div>
       <div class="field shop-quick" id="I-shop-quick-wrap" style="display:none;" data-page-node-id="IshopQuickW">
         <label data-page-node-id="IshopQuickL">常去的店 · 点一下填进去</label>
@@ -1645,6 +1649,27 @@
         <button class="btn btn-cancel" onclick="clearWeight()" data-page-node-id="mdlWeightClear">清掉</button>
         <button class="btn btn-cancel" onclick="closeModal('modal-weight')" data-page-node-id="mdlWeightCancel">取消</button>
         <button class="btn btn-ok" onclick="confirmWeight()" data-page-node-id="mdlWeightSave">保存</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ 改热量（冰箱里每一行） ============ -->
+  <div class="modal-mask" id="modal-kcal" data-page-node-id="mdlKcal">
+    <div class="modal cool" data-page-node-id="mdlKcalBox">
+      <h2 data-page-node-id="mdlKcalT">🔥 改热量</h2>
+      <div class="modal-sub" id="kcal-sub" data-page-node-id="mdlKcalSub"></div>
+      <div class="field" data-page-node-id="mdlKcalQuickF">
+        <label data-page-node-id="mdlKcalQuickL">常见的数 · 点一下填进去</label>
+        <div class="shop-pick" id="kcal-quick" data-page-node-id="mdlKcalQuickB"></div>
+      </div>
+      <div class="field" data-page-node-id="mdlKcalInputF">
+        <label data-page-node-id="mdlKcalInputL">整份热量（千卡）</label>
+        <input id="K-kcal" type="number" step="1" min="0" placeholder="如 320" oninput="markKcalChips()" onkeydown="if(event.key==='Enter')confirmKcal()" data-page-node-id="mdlKcalInput" />
+      </div>
+      <div class="modal-actions" data-page-node-id="mdlKcalAct">
+        <button class="btn btn-cancel" onclick="clearKcal()" data-page-node-id="mdlKcalClear">清掉</button>
+        <button class="btn btn-cancel" onclick="closeModal('modal-kcal')" data-page-node-id="mdlKcalCancel">取消</button>
+        <button class="btn btn-ok" onclick="confirmKcal()" data-page-node-id="mdlKcalSave">保存</button>
       </div>
     </div>
   </div>
@@ -2010,6 +2035,7 @@ function renderLedger() {
       const info = [
         it.price ? `¥${fmtMoney(it.price)}${perTxt}` : '',
         it.weight ? esc(it.weight) : '',
+        kcalTxt(it),
       ].filter(Boolean).join(' · ');
       const shopTag = it.note ? `<span class="shop-tag">${esc(it.note)}</span>` : '';
       return `
@@ -2084,6 +2110,7 @@ function renderInv() {
     const meta = [
       it.price ? `¥${fmtMoney(it.price)}${perTxt}` : '',
       it.weight ? esc(it.weight) : '',
+      kcalTxt(it),
     ].filter(Boolean).join(' · ');
     const info = [meta, fmt(it.date)].filter(Boolean).join(' · ');
     const unitSmall = unit === '份' ? `份 ⇄` : `件 ⇄`;
@@ -2104,6 +2131,7 @@ function renderInv() {
             ? `<span class="edit-mini">
                  <button class="mini-btn" onclick="openShop('${it.id}')" title="改店铺">🏪</button>
                  <button class="mini-btn" onclick="openWeight('${it.id}')" title="改重量">⚖️</button>
+                 <button class="mini-btn" onclick="openKcal('${it.id}')" title="改热量">🔥</button>
                  <button class="mini-btn" onclick="openRename('${it.id}')" title="改名字">✏️</button>
                  <button class="mini-btn cancel" onclick="toggleEdit('I','${it.id}')" title="收起">✕</button>
                </span>`
@@ -2474,6 +2502,7 @@ function addBackTo(arr, e, qty, unit) {
     if (Number(e.price))  exist.price  = Number(e.price);
     if (unit === '份' && Number(e.slices)) exist.slices = Number(e.slices);
     if (!exist.icon || exist.icon === '🍞') exist.icon = e.icon;
+    if (!Number(exist.kcal) && Number(e.kcal)) exist.kcal = Number(e.kcal);
   } else {
     arr.push({
       id: id(), name: e.name, icon: e.icon || '🍞',
@@ -2483,6 +2512,7 @@ function addBackTo(arr, e, qty, unit) {
       slices: Number(e.slices) || 0,
       note:   e.note || '',
       weight: e.weight || '',
+      kcal:   Number(e.kcal) || 0,
     });
   }
 }
@@ -2623,15 +2653,17 @@ function confirmTake() {
   if (exist) {
     exist.qty = Number(exist.qty || 0) + qty;
     exist.unit = unit;
-    // 把单价 / 份数分母一起带进背包，之后在背包里吃掉也能算准钱
+    // 把单价 / 份数分母 / 热量一起带进背包，之后在背包里吃掉也能算准钱和热量
     if (Number(it.price)) exist.price = Number(it.price);
     if (unit === '份' && Number(it.slices)) exist.slices = Number(it.slices);
+    if (!Number(exist.kcal) && Number(it.kcal)) exist.kcal = Number(it.kcal);
   } else {
     data.ledger[takeWho].push({
       id: id(), name: it.name, icon: it.icon || '🍞',
       qty, date: today, unit,
       price: Number(it.price) || 0,
       slices: Number(it.slices) || 0,
+      kcal: Number(it.kcal) || 0,
     });
   }
   save(data); bumpLastSync(); closeModal('modal-take'); renderAll();
@@ -2661,7 +2693,7 @@ function confirmFreeze() {
   if (!qty || qty < 1) { alert('至少冷冻 1 ' + unit + ' 呀～'); return; }
   if (qty > it.qty) { alert(`背包里只有 ${it.qty} ${unit} 哦～`); return; }
 
-  // 背包减，仓库加（同名合并，价格 / 份数 / 店铺 / 重量一并带回去）
+  // 背包减，仓库加（同名合并，价格 / 份数 / 店铺 / 重量 / 热量一并带回去）
   it.qty -= qty;
   const today = new Date().toISOString().slice(0, 10);
   const exist = data.inventory.find(x => x.name === it.name && (x.unit || '件') === unit);
@@ -2674,6 +2706,7 @@ function confirmFreeze() {
     if (!exist.icon || exist.icon === '🍞') exist.icon = it.icon;
     if (!exist.note && it.note) exist.note = it.note;
     if (!exist.weight && it.weight) exist.weight = it.weight;
+    if (!Number(exist.kcal) && Number(it.kcal)) exist.kcal = Number(it.kcal);
   } else {
     data.inventory.push({
       id: id(), name: it.name, icon: it.icon || '🍞',
@@ -2681,6 +2714,7 @@ function confirmFreeze() {
       price: Number(it.price) || 0,
       slices: Number(it.slices) || 0,
       note: it.note || '', weight: it.weight || '',
+      kcal: Number(it.kcal) || 0,
     });
   }
   // 全冻走了 → 这条从背包里移走
@@ -2745,6 +2779,76 @@ function clearShop() {
   renderAll();
   closeModal('modal-shop');
   flash(`🏪 ${it.name} 的店铺清掉了`);
+}
+
+// ===================== 热量（显示文案 + 冰箱里每一行改） =====================
+// 存的是「整份 / 整条的总热量」，不是每 100g。份装且有切片的，额外摊出一句「每份多少」，
+// 这样吃掉 1 片的时候心里有数（和价格那边「¥x/份」一个道理）。
+function kcalTxt(it) {
+  const k = Number(it && it.kcal) || 0;
+  if (!k) return '';
+  const s = Number(it.slices) || 0;
+  let t = `🔥 ${fmtNum(k)} 千卡`;
+  if ((it.unit || '件') === '份' && s > 0) t += ` · ${fmtNum(Math.round(k / s))}/份`;
+  return t;
+}
+
+let kcalTargetId = null;
+const KCAL_PRESETS = ['100', '150', '200', '250', '300', '350', '400', '500', '600'];
+function openKcal(id) {
+  const it = (data.inventory || []).find(x => x.id === id);
+  if (!it) return;
+  kcalTargetId = id;
+  const sub = document.getElementById('kcal-sub');
+  if (sub) {
+    const s = Number(it.slices) || 0;
+    sub.textContent = `${it.icon || '🍞'} ${it.name}`
+      + (((it.unit || '件') === '份' && s > 0) ? ` · 整份写总热量，页面会自己摊出每份` : '');
+  }
+  // 别人写过的热量也做成胶囊，方便快速回填
+  const used = Array.from(new Set((data.inventory || []).map(x => String(Number(x.kcal) || 0)).filter(v => v !== '0')));
+  const opts = used.concat(KCAL_PRESETS.filter(w => used.indexOf(w) < 0));
+  const q = document.getElementById('kcal-quick');
+  if (q) q.innerHTML = opts.map(w => `<button type="button" class="rchip" data-k="${esc(w)}" onclick="pickKcal('${jsq(w)}')">${esc(w)}</button>`).join('');
+
+  const input = document.getElementById('K-kcal');
+  if (input) input.value = Number(it.kcal) ? String(Number(it.kcal)) : '';
+  markKcalChips();
+  openModal('modal-kcal');
+  setTimeout(() => { if (input) input.focus(); }, 60);
+}
+function pickKcal(v) {
+  const el = document.getElementById('K-kcal');
+  if (el) el.value = (String(el.value).trim() === v) ? '' : v;
+  markKcalChips();
+}
+function markKcalChips() {
+  const v = String((document.getElementById('K-kcal') || {}).value || '').trim();
+  document.querySelectorAll('#kcal-quick .rchip').forEach(b => {
+    b.classList.toggle('on', b.dataset.k === v);
+  });
+}
+function kcalTarget() { return (data.inventory || []).find(x => x.id === kcalTargetId); }
+function confirmKcal() {
+  const it = kcalTarget();
+  if (!it) { closeModal('modal-kcal'); return; }
+  const v = Number(String((document.getElementById('K-kcal') || {}).value || '').trim());
+  it.kcal = (v > 0) ? Math.round(v) : 0;
+  closeEdit('I', it.id);
+  save(data); bumpLastSync();
+  renderAll();
+  closeModal('modal-kcal');
+  flash(it.kcal ? `🔥 ${it.name} → ${fmtNum(it.kcal)} 千卡` : `🔥 ${it.name} 的热量清掉了`);
+}
+function clearKcal() {
+  const it = kcalTarget();
+  if (!it) { closeModal('modal-kcal'); return; }
+  it.kcal = 0;
+  closeEdit('I', it.id);
+  save(data); bumpLastSync();
+  renderAll();
+  closeModal('modal-kcal');
+  flash(`🔥 ${it.name} 的热量清掉了`);
 }
 
 // ===================== 改重量（冰箱里的每一行） =====================
@@ -3107,6 +3211,7 @@ function openLedgerModal() {
   document.getElementById('L-price').value = '';
   document.getElementById('L-shop').value = '';
   document.getElementById('L-weight').value = '';
+  document.getElementById('L-kcal').value = '';
   refreshShopList();
   pickerOpen = null;
   openModal('modal-ledger');
@@ -3120,6 +3225,7 @@ function saveLedger() {
   const price  = document.getElementById('L-price').value.trim();
   const note   = document.getElementById('L-shop').value.trim();
   const weight = document.getElementById('L-weight').value.trim();
+  const kcal   = Number(document.getElementById('L-kcal').value) || 0;
   if (!name) { alert('写一下款式名呀～'); return; }
   if (!qty || qty < 1) { alert('数量至少 1 哦～'); return; }
   if (!date) { alert('选一下日期～'); return; }
@@ -3127,6 +3233,7 @@ function saveLedger() {
   data.ledger[ledgerWho].push({
     id: id(), name, icon: pickedIcon.ledger, qty, date, unit,
     price: price ? Number(price) : 0, note, weight,
+    kcal: kcal > 0 ? Math.round(kcal) : 0,   // 整份热量（千卡）
     slices: slicesOf('L'),          // 单位=份 时，一个切成几份
   });
   save(data); bumpLastSync(); closeModal('modal-ledger'); renderAll();
@@ -3176,6 +3283,7 @@ function openInvModal() {
   document.getElementById('I-price').value = '';
   document.getElementById('I-shop').value = '';
   document.getElementById('I-weight').value = '';
+  document.getElementById('I-kcal').value = '';
   refreshShopList();
   pickerOpen = null;
   openModal('modal-inv');
@@ -3188,6 +3296,7 @@ function saveInv() {
   const price  = document.getElementById('I-price').value.trim();
   const note   = document.getElementById('I-shop').value.trim();
   const weight = document.getElementById('I-weight').value.trim();
+  const kcal   = Number(document.getElementById('I-kcal').value) || 0;
   if (!name) { alert('写一下款式名呀～'); return; }
   if (!qty || qty < 1) { alert('数量至少 1 哦～'); return; }
   if (!date) { alert('选一下日期～'); return; }
@@ -3198,16 +3307,18 @@ function saveInv() {
     exist.date = date;
     if (!exist.unit) exist.unit = unit;
     if (!exist.icon || exist.icon === '🍞') exist.icon = pickedIcon.inv;
-    // 选填项：只在填了的时候覆盖，避免把已有价格/店铺/重量清掉
+    // 选填项：只在填了的时候覆盖，避免把已有价格/店铺/重量/热量清掉
     if (price)  exist.price  = Number(price);
     if (note)   exist.note   = note;
     if (weight) exist.weight = weight;
+    if (kcal > 0) exist.kcal = Math.round(kcal);
     // 份数分母只在「还没定过」的时候写入：一旦定下就锁死，补货不会把之前的每份价改掉
     if (unit === '份' && slicesOf('I') && !Number(exist.slices)) exist.slices = slicesOf('I');
   } else {
     data.inventory.push({
       id: id(), name, icon: pickedIcon.inv, qty, date, unit,
       price: price ? Number(price) : 0, note, weight,
+      kcal: kcal > 0 ? Math.round(kcal) : 0,   // 整份热量（千卡）
       slices: slicesOf('I'),        // 单位=份 时，一个切成几份
     });
   }
@@ -3464,6 +3575,7 @@ function confirmEat() {
     price: Number(item.price) || 0,
     slices: Number(item.slices) || 0,
     unitPrice: unitPriceOf(item.price, unit, item.slices),
+    kcal: Number(item.kcal) || 0,   // 整份热量快照（和 unitPrice 一样，后面的改动不影响这条）
     ...rateFields,           // 味道打分 1–5（0 = 没打）
     note: item.note || '',
     src: eatSource,        // 从哪儿吃的（'inv' 大冰箱 / 'mi' / 'dou' 背包）→ 撤销时好还回原处
@@ -3779,7 +3891,7 @@ function flash(text) {
 }
 
 // ===================== 弹窗点击外部关闭 =====================
-['modal-ledger','modal-inv','modal-eat','modal-pref','modal-shelf','modal-sync','modal-csv','modal-date','modal-take','modal-freeze','modal-itemicon','modal-slices','modal-uneat','modal-rank','modal-rate','modal-shop','modal-weight','modal-rename'].forEach(mid => {
+['modal-ledger','modal-inv','modal-eat','modal-pref','modal-shelf','modal-sync','modal-csv','modal-date','modal-take','modal-freeze','modal-itemicon','modal-slices','modal-uneat','modal-rank','modal-rate','modal-shop','modal-weight','modal-kcal','modal-rename'].forEach(mid => {
   document.getElementById(mid).addEventListener('click', (e) => {
     if (e.target.id === mid) closeModal(mid);
   });

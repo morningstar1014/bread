@@ -2059,8 +2059,21 @@ function renderLedger() {
   });
 }
 
+// 冰箱顶部那排店铺：只留「还有货」的店，按该店最早入库那件的日期升序（先入库的排前面）
+// 整店吃光（qty 全为 0）的店不再占位置；没写日期的排到最后
+function stockedShops(inv) {
+  const firstIn = new Map();                 // 店铺 → 该店最早的入库日期
+  (inv || []).forEach(x => {
+    if (!x.note || Number(x.qty || 0) <= 0) return;
+    const d = x.date || '9999-12-31';
+    if (!firstIn.has(x.note) || d < firstIn.get(x.note)) firstIn.set(x.note, d);
+  });
+  return ['全部', ...Array.from(firstIn.keys())
+    .sort((a, b) => firstIn.get(a) < firstIn.get(b) ? -1 : 1)];
+}
+
 function renderInv() {
-  // all = 全部库存（店铺 chips、金额统计用，不受"隐藏已吃完"开关影响）
+  // all = 全部库存（金额统计用，不受"隐藏已吃完"开关影响）
   // list = 当前要渲染的库存（=全量 或 滤掉 qty<=0 的，看开关）
   const all  = data.inventory.slice().sort((a,b) => a.date < b.date ? 1 : -1);
   const list = hideEmptyInv ? all.filter(x => Number(x.qty||0) > 0) : all;
@@ -2080,8 +2093,8 @@ function renderInv() {
   document.getElementById('stat-total').textContent = totalQty;
   document.getElementById('stat-value').textContent = (totalValue>0 ? '¥'+fmtMoney(totalValue) : '¥0');
 
-  // 店铺筛选条（始终用全量 → 永辉这种只剩 0 qty 的店 chip 还在，方便点回去删/补）
-  const shops = ['全部', ...Array.from(new Set(all.map(x => x.note).filter(Boolean)))];
+  // 店铺筛选条：只列还有货的店，按最早入库日期升序（详见 stockedShops）
+  const shops = stockedShops(all);
   if (!shops.includes(curShop)) curShop = '全部';
   document.getElementById('inv-shops').innerHTML = shops.map(s =>
     `<button class="shop-chip ${s===curShop?'on':''}" onclick="setShop('${jsq(s)}')">${esc(s)}</button>`
